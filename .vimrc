@@ -85,7 +85,8 @@ let NERDTreeShowHidden=1 "Shows Hidden Files
 
 " Airline Config
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'gruvbox_material'
+let g:airline_theme = 'material'
+" let g:airline_theme = 'gruvbox_material'
 " let g:airline_section_c = '%F' "show full filepath instead of just the file
 
 " Airline Tabline
@@ -139,6 +140,15 @@ nnoremap <F2> :set invpaste paste?<CR>
 imap <F2> <C-O>:set invpaste paste?<CR>
 set pastetoggle=<F2>
 
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe' "change this path according to your mount point.
+if executable(s:clip)
+  augroup WSLYank
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+  augroup END
+endif
+
 " =========================================================================== "
 "                   Color Scheme & Color Scheme Settings
 " =========================================================================== "
@@ -153,4 +163,5 @@ let g:gruvbox_material_enable_italic = 1
 " set background color to dark
 set background=dark
 " set colorscheme
-colorscheme gruvbox-material
+" colorscheme gruvbox-material
+colorscheme material
