@@ -16,14 +16,17 @@ set rtp+=~/.vim/autoload/plug.vim
 call plug#begin('~/.vim/plugged')
 " code completion
 Plug 'mattn/emmet-vim'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Coc Extensions To Install
-" coc-html, coc-css, coc-sql, coc-tsserver, coc-xml, coc-python, coc-clangd
-" coc-json, coc-emmet, coc-sh
-" tree file system explorer
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" misc
 Plug 'scrooloose/nerdtree' "file explorer for vim
 Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
+Plug 'anned20/vimsence'
+Plug 'ryanoasis/vim-devicons'
+" Code Linters/Formaters (Prettier, Clang-Format, etc...)
+Plug 'prettier/vim-prettier'
+Plug 'rhysd/vim-clang-format'
 
 " statusline plugins
 Plug 'vim-airline/vim-airline'
@@ -34,7 +37,9 @@ Plug 'edkolev/promptline.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'kaicataldo/material.vim'
+Plug 'hzchirs/vim-material'
 Plug 'sainnhe/gruvbox-material'
+Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 " =========================================================================== "
@@ -82,10 +87,16 @@ set viminfo='100,<9999,s100
 " =========================================================================== "
 "NERDTree config
 let NERDTreeShowHidden=1 "Shows Hidden Files
+let g:NERDTreeGitStatusWithFlags = 1
+" clang-format config
+let g:clang_format#auto_format = 1
+let g:clang_format#detect_style_file = 1
 
+"coc config
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-sql', 'coc-tsserver', 'coc-xml', 'coc-python', 'coc-clangd', 'coc-json', 'coc-emmet', 'coc-sh', 'coc-pairs']
 " Airline Config
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'material'
+let g:airline_theme = 'gruvbox_material'
 " let g:airline_theme = 'gruvbox_material'
 " let g:airline_section_c = '%F' "show full filepath instead of just the file
 
@@ -133,6 +144,8 @@ nnoremap <C-o> :NERDTreeToggle<CR>
 " set or disable list (uprintable characters)
 nnoremap <F12> :set list!<CR>
 
+map <C-K> :pyf /usr/bin/clang-format.py<cr>
+imap <C-K> <c-o>:pyf /usr/share/vim/addons/syntax/clang-format.py<cr> 
 "nnoremap <C-PageUp>:tabnext<CR>
 "nnoremap <C-PageDown>:tabprev<CR>
 " copy and paste button mappings
@@ -156,6 +169,9 @@ endif
 let g:material_terminal_italics = 1
 let g:material_theme_style = 'ocean'
 
+" ayu config
+let ayucolor = 'mirage' " mirage & light also available
+
 " gruvbox-material config
 let g:gruvbox_material_enable_italic = 1
 " let g:gruvbox_material_disable_italic_comment = 1
@@ -163,5 +179,26 @@ let g:gruvbox_material_enable_italic = 1
 " set background color to dark
 set background=dark
 " set colorscheme
-" colorscheme gruvbox-material
-colorscheme material
+colorscheme gruvbox-material
+" colorscheme ayu
+" colorscheme vim-material
+
+"hi Normal ctermbg=NONE guibg=NONE
+"hi airline_section_c ctermbg=NONE guibg=NONE
+"hi airline_tabfill ctermbg=NONE guibg=NONE
+let t:is_transparent = 0
+function! Toggle_transparent()
+  if t:is_transparent == 0
+    hi Normal ctermbg=NONE guibg=NONE
+    hi airline_section_c ctermbg=NONE guibg=NONE
+    hi airline_tabfill ctermbg=NONE guibg=NONE
+    let t:is_transparent = 1
+  else
+    set background=dark
+    let t:is_transparent = 0
+  endif
+endfunction
+noremap <C-t> : call Toggle_transparent()<CR>
+hi Normal ctermbg=NONE guibg=NONE
+hi airline_section_c ctermbg=NONE guibg=NONE
+hi airline_tabfill ctermbg=NONE guibg=NONE
