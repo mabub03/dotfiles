@@ -37,10 +37,8 @@ if g:os == "Darwin"
   " Mac stuff
 endif
 
-" code completion
 " if choose to use make a file for itself and the coc extensions
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " misc
 Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
@@ -64,4 +62,4 @@ for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
   exe 'source' f
 endfor
 
-call plug#end()
+"call plug#end()
