@@ -23,6 +23,7 @@ if g:os == "Windows"
   source ~/AppData/local/nvim/mappings.vim
   source ~/AppData/local/nvim/colorschemes.vim
 endif
+
 " for functions add a functions.vim file
 " for autocommands add a autocmd.vim file
 " source $HOME/.config/nvim/after/ftplugin   " for ftplugins (filetype plugins)

@@ -1,0 +1,58 @@
+" if choose to use make a file for itself and the coc extensions
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+
+call plug#end()
+
+lua << EOF
+require 'nvim_lsp'.pyls.setup{}
+EOF
+
+set completeopt -= preview
+
+autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+" start from go
+
+" for Godot dev: require'lspconfig'.gdscript.setup{}
+
+" for go dev: require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
+
+"If doesn't work in more than one buffer then look at
+"github.com/nvim-lua/completion-nvim
+" :lua << EOF
+ " local nvim_lsp = require ('nvim_lsp')
+  
+  "local on_attach = function(_, bufnr)
+    "vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.lsp.omnifunc')
+    "require'completion'.on_attach()
+  "end
+
+  "local servers = {'cssls', 'pyright', 'pyls', 'jedi', 'clangd', 'cmake', 'hls', 'htm', 'jsonls', 'tsserver', 'sqls', 'vimls'}
+  "for _, lsp in ipairs(servers) do 
+    "nvim_lsp[lsp].setup { 
+      "on_attach = on_attach,
+    "}
+  "end
+"EOF
+"  require'lspconfig'.cssls.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.jedi_language_server.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.clangd.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.cmake.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.hls.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.htm.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.jsonls.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.sqls.setup{on_attach=require'completion'.on_attach}
+"  require'lspconfig'.vimls.setup{on_attach=require'completion'.on_attach}
+"EOF
+
+" use tab as trigger keys from completion-nvim plugin
+"imap <tab> <Plug> (completion_smart_tab)
+"imap <s-tab> <Plug> (completion_smart_s_tab)
+
+
