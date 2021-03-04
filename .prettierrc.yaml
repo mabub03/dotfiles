@@ -1,0 +1,31 @@
+semi: true
+overrides:
+  - files: "*.css"
+    options:
+      tabWidth: 4
+trailingComma: "es5"
+tabWidth: 2
+printWidth: 80
+quoteProps: "as-needed"
+singleQuote: false
+jsxSingleQuote: false
+useTabs: false
+bracketSpacing: true
+jsxBracketSameLine: false
+# Pragma Example:
+# /**
+# * @prettier
+# */
+#     or
+# /**
+# * @format
+# */
+requirePragma: true
+insertPragma: false
+# html whitespace options
+# "css" - Respect the default value of CSS display property 
+# "strict" - Whitespaces are considered sensitive
+# "ignore" - Whitespaces are considered insensitive
+htmlWhitespaceSensitivity: "strict"
+endOfLine: "lf"
+embeddedLanguageFormatting: "auto"

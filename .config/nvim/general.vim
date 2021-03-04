@@ -15,10 +15,9 @@ set modelines=0
 set wrap
 set textwidth=80 " stops can type up to column 80
 
-set tabstop=8
+set expandtab
 set shiftwidth=2
 set softtabstop=2
-set expandtab
 
 set scrolloff=5 " keep at least 5 lines above/below
 set sidescrolloff=5 " keep at least 5 line left/right

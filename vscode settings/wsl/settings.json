@@ -1,0 +1,24 @@
+{
+  "workbench.colorTheme": "Material Theme Ocean",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "vscode-neovim.useWSL": true,
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+  "vscode-neovim.neovimInitVimPaths.linux": "/home/mabub03/.config/nvim/init.vim",
+  "editor.fontLigatures": "1",
+  "terminal.integrated.fontFamily": "FiraCode NF",
+  "editor.fontFamily": "FiraCode NF",
+  "editor.fontWeight": "400",
+  "python.languageServer": "Microsoft",
+  "prettier.eslintIntegration": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "php.validate.executablePath": "/usr/bin/php7.4",
+  "php.executablePath": "/usr/bin/php7.4",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  }
+}

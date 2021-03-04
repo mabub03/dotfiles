@@ -1,10 +1,10 @@
-if !exists("g:os")
-  if has("win64") || has("win32") || has("win16")
-    let g:os =  "Windows"
-  else
-    let g:os = substitute(system('uname'), '\n', '', '')
-  endif
-endif
+"if !exists("g:os")
+"  if has("win64") || has("win32") || has("win16")
+"    let g:os =  "Windows"
+"  else
+"    let g:os = substitute(system('uname'), '\n', '', '')
+"  endif
+"endif
 
 if g:os == "Windows"
   " If vim-plug isn't detected it gets automatically installed
@@ -45,9 +45,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'anned20/vimsence'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
-
-" Code Linters/Formaters
-Plug 'prettier/vim-prettier'
 
 " colorschemes
 Plug 'joshdick/onedark.vim'

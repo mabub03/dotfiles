@@ -1,6 +1,3 @@
-" NERDTree toggles on with <ctrl> + <o>
-nnoremap <C-o> :NERDTreeToggle<CR>
-
 " set or disable list (uprintable characters)
 nnoremap <F12> :set list!<CR>
 
