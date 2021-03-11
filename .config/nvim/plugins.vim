@@ -53,12 +53,13 @@ Plug 'kaicataldo/material.vim'
 Plug 'hzchirs/vim-material'
 Plug 'sainnhe/gruvbox-material'
 Plug 'ayu-theme/ayu-vim'
+" Neovim Feauture Plugins
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " update parcers on update
+Plug 'nvim-treesitter/playground'
 
 " Plugins that are neater in their own file
 for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
   exe 'source' f
 endfor
 
-" Neovim Feauture Plugins
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " update parcers on update
 "call plug#end()
