@@ -59,4 +59,6 @@ for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
   exe 'source' f
 endfor
 
+" Neovim Feauture Plugins
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " update parcers on update
 "call plug#end()

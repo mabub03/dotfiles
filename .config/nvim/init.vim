@@ -19,6 +19,7 @@ if g:os == "Linux"
     source $HOME/.config/nvim/general.vim
     source $HOME/.config/nvim/mappings.vim
     source $HOME/.config/nvim/colorschemes.vim
+    luafile $HOME/.config/nvim/lua/treesitter-config.lua
     "source $HOME/.config/nvim/after/ftplugin/*.vim
   endif
 endif
