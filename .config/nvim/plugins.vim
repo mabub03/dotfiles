@@ -1,41 +1,13 @@
-"if !exists("g:os")
-"  if has("win64") || has("win32") || has("win16")
-"    let g:os =  "Windows"
-"  else
-"    let g:os = substitute(system('uname'), '\n', '', '')
-"  endif
-"endif
-
-if g:os == "Windows"
-  " If vim-plug isn't detected it gets automatically installed
-  " if used scoop then can ~/scoop/apps/neovim/
-  if empty(glob('~/AppData/local/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/AppData/local/nvim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
-  
-  " set the runtime path to include vim-plug and initialize
-  set rtp+=~/.config/nvim/autoload/plug.vim
-  call plug#begin('~/AppData/local/nvim/plugged')
-endif
-
-if g:os == "Linux"
-  " If vim-plug isn't detected it gets automatically installed
-  if empty(glob('~/.config/nvim/autoload/plug.vim'))
+" auto download vim-plug if not installed already
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
+endif
   
-  " set the runtime path to include vim-plug and initialize
-  set rtp+=~/.config/nvim/autoload/plug.vim
-  call plug#begin('~/.config/nvim/plugged')
-endif
-
-if g:os == "Darwin"
-  " Mac stuff
-endif
+" set the runtime path to include vim-plug and initialize
+set rtp+=~/.config/nvim/autoload/plug.vim
+call plug#begin('~/.config/nvim/plugged')
 
 " if choose to use make a file for itself and the coc extensions
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -45,7 +17,15 @@ Plug 'sheerun/vim-polyglot'
 Plug 'anned20/vimsence'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'scrooloose/nerdtree'
+Plug 'dense-analysis/ale'
+Plug 'prettier/vim-prettier', {'do': 'npm install'}
 
+" Status Line Plugins
+Plug 'vim-airline/vim-airline'
+Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/promptline.vim'
 " colorschemes
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -53,13 +33,9 @@ Plug 'kaicataldo/material.vim'
 Plug 'hzchirs/vim-material'
 Plug 'sainnhe/gruvbox-material'
 Plug 'ayu-theme/ayu-vim'
+
 " Neovim Feauture Plugins
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " update parcers on update
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/playground'
-
-" Plugins that are neater in their own file
-for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
-  exe 'source' f
-endfor
-
-"call plug#end()
+call plug#end()
