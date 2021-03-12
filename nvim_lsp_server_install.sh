@@ -11,6 +11,7 @@ npm i -g sql-language-server
 npm i -g pyright
 npm install -g typescript typescript-language-server
 npm install -g vim-language-server
+npm install -g intelephense
 apt install python3-pip
 pip3 install cmake-language-server
 
