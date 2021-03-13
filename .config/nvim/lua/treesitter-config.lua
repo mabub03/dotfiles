@@ -7,7 +7,10 @@ require 'nvim-treesitter.configs'.setup {
         enable = true,
         disable = {},
         updatetime = 25, -- debounced time for highlighting nodes in teh playground from source code
-        persist_queries = false -- Whether the query persists across vim sessions
+        persist_queries = false, -- Whether the query persists across vim sessions
+    },
+    autotag = {
+        enable = true,
     }
 }
 

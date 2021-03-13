@@ -27,9 +27,14 @@ let g:airline#extensions#tabline#tab_min_count = 2
 " disables the wird orange arrow on the tabline
 let g:airline#extensions#tabline#show_tab_type = 0
 
-" Airline Git Branch
+" Git Branch Settings
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#branch#empty_message = ''
+
+" Neovim Lsp Settings
+let g:airline#extensions#nvimlsp#enabled = 1
+let g:airline#extensions#nvimlsp#error_symbol = 'E'
+let g:airline#extensions#nvimlsp#warning_symbol = 'W'
 
 " Tmux Airline Config (tmuxline.vim extension)
 let g:airline#extensions#tmuxline#enabled = 1

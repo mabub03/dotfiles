@@ -21,6 +21,10 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'scrooloose/nerdtree'
 Plug 'dense-analysis/ale'
 Plug 'prettier/vim-prettier', {'do': 'npm install'}
+Plug 'hrsh7th/nvim-compe'
+"Plug 'norcalli/snippets.nvim'
+Plug 'windwp/nvim-ts-autotag'
+Plug 'honza/vim-snippets'
 
 " Status Line Plugins
 Plug 'vim-airline/vim-airline'

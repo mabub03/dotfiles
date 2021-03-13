@@ -13,7 +13,7 @@ let g:completion_enable_auto_popup = 1
 imap <silent> <c-p> <Plug>(compeltion_trigger)
 
 " possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
-" let g:completion_enable_snippet = 'UltiSnips'  " disable by defualt
+let g:completion_enable_snippet = 'UltiSnips'  " disable by defualt
 
 " automatically enabled to disable uncomment
 " let g:completion_enable_auto_hover = 0

@@ -29,6 +29,7 @@ set noshowmode
 set showcmd
 
 set number
+set relativenumber
 
 set encoding=utf-8
 
