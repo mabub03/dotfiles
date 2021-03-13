@@ -20,5 +20,8 @@
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true
+  },
+  "window.zoomLevel": 1,
+  "editor.lineNumbers": "relative",
   }
 }
