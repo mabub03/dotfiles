@@ -15,21 +15,17 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'anned20/vimsence'
-Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
-Plug 'nvim-lua/completion-nvim'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'dense-analysis/ale'
 Plug 'prettier/vim-prettier', {'do': 'npm install'}
-Plug 'hrsh7th/nvim-compe'
-"Plug 'norcalli/snippets.nvim'
-Plug 'windwp/nvim-ts-autotag'
-Plug 'honza/vim-snippets'
+"Plug 'honza/vim-snippets'
 
 " Status Line Plugins
-Plug 'vim-airline/vim-airline'
-Plug 'edkolev/tmuxline.vim'
-Plug 'edkolev/promptline.vim'
+" Plug 'vim-airline/vim-airline'
+" Plug 'edkolev/tmuxline.vim'
+" Plug 'edkolev/promptline.vim'
 " colorschemes
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -38,7 +34,16 @@ Plug 'hzchirs/vim-material'
 Plug 'sainnhe/gruvbox-material'
 Plug 'ayu-theme/ayu-vim'
 
-" Neovim Feauture Plugins
+" lua neovim only plugins
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
+Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
+Plug 'norcalli/snippets.nvim'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'windwp/nvim-ts-autotag'
+Plug 'kyazdani42/nvim-tree.lua'
+" Neovim official feature plugins
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " update parcers on update
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/playground'

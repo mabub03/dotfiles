@@ -1,7 +1,3 @@
-"set runtimepath^=~/.vim runtimepath+=~/.vim/after
-"let &packpath=&runtimepath
-"source ~/.vimrc
-
 if !exists("g:os")
   if has("win64") || has("win32") || has("win16")
     let g:os =  "Windows"
@@ -19,14 +15,11 @@ if g:os == "Linux"
     source $HOME/.config/nvim/general.vim
     source $HOME/.config/nvim/mappings.vim
     source $HOME/.config/nvim/colorschemes.vim
-    source $HOME/.config/nvim/plugins.d/airline.vim
+    "source $HOME/.config/nvim/plugins.d/airline.vim
     source $HOME/.config/nvim/plugins.d/ale.vim
-    "source $HOME/.config/nvim/plugins.d/completion-config.vim
-    "source $HOME/.config/nvim/plugins.d/lspconfig.vim
-    source $HOME/.config/nvim/plugins.d/nerdtree.vim
+    source $HOME/.config/nvim/plugins.d/nvimtree-config.vim
     source $HOME/.config/nvim/plugins.d/prettier.vim
     luafile $HOME/.config/nvim/lua/init.lua
-    "source $HOME/.config/nvim/after/ftplugin/*.vim
   endif
 endif
 
@@ -41,6 +34,3 @@ if g:os == "Windows"
     source ~/AppData/local/nvim/colorschemes.vim
   endif
 endif
-" for functions add a functions.vim file
-" for autocommands add a autocmd.vim file
-" source $HOME/.config/nvim/after/ftplugin   " for ftplugins (filetype plugins)

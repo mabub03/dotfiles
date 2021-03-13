@@ -11,6 +11,9 @@ set laststatus=2
 
 set modelines=0
 
+" reset the leader from \ to a different key
+let mapleader=";"
+
 " sets word wrap
 set wrap
 set textwidth=80 " stops can type up to column 80
