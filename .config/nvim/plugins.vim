@@ -14,16 +14,16 @@ call plug#begin('~/.config/nvim/plugged')
 " misc
 Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
-Plug 'anned20/vimsence'
 "Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
 "Plug 'scrooloose/nerdtree'
 Plug 'dense-analysis/ale'
 Plug 'prettier/vim-prettier', {'do': 'npm install'}
+Plug 'tweekmonster/startuptime.vim'
 "Plug 'honza/vim-snippets'
 
 " Status Line Plugins
-" Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 " Plug 'edkolev/tmuxline.vim'
 " Plug 'edkolev/promptline.vim'
 " colorschemes
@@ -35,6 +35,9 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'ayu-theme/ayu-vim'
 
 " lua neovim only plugins
+Plug 'tjdevries/colorbuddy.nvim'
+Plug 'akinsho/nvim-bufferline.lua'
+Plug 'windwp/nvim-autopairs'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
 Plug 'nvim-lua/completion-nvim'

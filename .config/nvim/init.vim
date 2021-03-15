@@ -14,11 +14,11 @@ if g:os == "Linux"
     source $HOME/.config/nvim/plugins.vim
     source $HOME/.config/nvim/general.vim
     source $HOME/.config/nvim/mappings.vim
-    source $HOME/.config/nvim/colorschemes.vim
     "source $HOME/.config/nvim/plugins.d/airline.vim
     source $HOME/.config/nvim/plugins.d/ale.vim
     source $HOME/.config/nvim/plugins.d/nvimtree-config.vim
     source $HOME/.config/nvim/plugins.d/prettier.vim
+    source $HOME/.config/nvim/colorschemes.vim
     luafile $HOME/.config/nvim/lua/init.lua
   endif
 endif

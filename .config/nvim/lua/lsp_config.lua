@@ -45,12 +45,25 @@ local on_attach = function(client, bufnr)
   end
 end
 
+vim.api.nvim_exec([[
+ autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+ autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 100)
+ autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+ autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 100)
+ autocmd BufWritePre *.css lua vim.lsp.buf.formatting_sync(nil, 100)
+ autocmd BufWritePre *.php lua vim.lsp.buf.formatting_sync(nil, 100)
+ autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 100)
+]], true)
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
+
+--[[
 local servers = { "pyright", "rust_analyzer", "tsserver" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+]]--
+
 -- autoformat
 -- autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
 -- autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
