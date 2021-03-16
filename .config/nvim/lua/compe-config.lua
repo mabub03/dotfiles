@@ -12,7 +12,7 @@ require 'compe'.setup {
   incomplete_delay = 400;
   max_abbr_width = 100;
   max_kind_width = 100;
-  max_menu_width = 10000;
+  max_menu_width = 100;
   documentation = true;
 
   source = {
