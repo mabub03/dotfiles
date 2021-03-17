@@ -6,7 +6,7 @@ paq{'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 
 -- Add your packages
 paq 'tpope/vim-fugitive'
-paq 'sheerun/vim-polyglot'
+-- paq 'sheerun/vim-polyglot'
 paq 'mattn/emmet-vim'
 paq 'dense-analysis/ale'
 paq {'prettier/vim-prettier', run = 'npm install'}

@@ -3,6 +3,7 @@
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif]]
+vim.cmd('filetype plugin indent on')
 vim.o.termguicolors = true
 -- Unprintable char mapping
 vim.cmd('set listchars=tab:>>,trail:.,precedes:<,extends:>,eol:$')
