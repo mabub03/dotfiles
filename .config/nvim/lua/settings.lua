@@ -18,8 +18,10 @@ vim.cmd('set shortmess+=c')
 vim.wo.wrap = true
 vim.bo.textwidth = 80 -- stops can type up to column 80
 vim.o.expandtab = true
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
+--vim.o.shiftwidth = 2
+--vim.o.softtabstop = 2
+vim.cmd("set shiftwidth=2")
+vim.cmd("set softtabstop=2")
 vim.o.scrolloff = 5 -- keep at least 5 lines above/below
 vim.o.sidescrolloff=5 -- keep at least 5 line left/right
 -- makes backspace work like any other text editor

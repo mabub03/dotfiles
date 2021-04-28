@@ -1,35 +1,47 @@
 if vim.g.vscode then
   vim.cmd('source ~/.config/nvim/lua/vscode/init.vim')
 else   
+-- Settings
+require('settings')
 vim.cmd('source $HOME/.config/nvim/mappings.vim')
 
-require('settings')
+-- Plugins
 require('plugins')
-require('devicons')
---require('statusline-config')
+require('autopairs-config')
+require('devicons-config')
+require('bufferline-config')
+require('colorizer-config')
+require('compe-config')
 --require('deep_ocean')
 --require('deep_ocean2')
 -- require('evilline')
-require('spaceline')
+--require('lsp_config')
 require('nvimtree')
 vim.cmd('source $HOME/.config/nvim/lua/nvimtree/nvimtree-config.vim')
-require('colorizer-config')
-require('autopairs-config')
-require('bufferline-config')
-require('treesitter-config')
---require('statusline')
-require('lsp_config')
 --require('snippets-config')
-require('compe-config')
-require('lsp/html-lsp')
-require('lsp/php-lsp')
-require('lsp/css-lsp') 
-require('lsp/json-lsp')
-require('lsp/bash-lsp')
-require('lsp/tsserver-lsp')
-require('lsp/python-lsp')
+require('spaceline')
+--require('statusline-config')
+--require('statusline')
+require('treesitter-config')
+require('nv-lspsaga')
+require('nv-lspkind')
 --vim.cmd('source $HOME/.config/nvim/colorschemes.vim')
 vim.cmd('source $HOME/.config/nvim/plugins.d/ale.vim')
 vim.cmd('source $HOME/.config/nvim/plugins.d/prettier.vim')
+
+-- LSP 
+require('lsp')
+require('lsp.tsserver-lsp')
+require('lsp.html-lsp')
+require('lsp.php-lsp')
+require('lsp.css-lsp') 
+require('lsp.json-lsp')
+require('lsp.bash-lsp')
+require('lsp.python-lsp')
+require('lsp.lua-lsp')
+
+
+-- Colorscheme Settings
 require('colorscheme')
+
 end

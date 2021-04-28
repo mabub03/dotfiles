@@ -17,25 +17,32 @@ paq 'tweekmonster/startuptime.vim'
 -- colorschemes
 paq'joshdick/onedark.vim'
 paq 'arcticicestudio/nord-vim'
-paq 'kaicataldo/material.vim'
-paq 'hzchirs/vim-material'
+--paq 'kaicataldo/material.vim'
+paq 'marko-cerovac/material.nvim'
+--paq 'hzchirs/vim-material'
 paq 'sainnhe/gruvbox-material'
+--paq 'tjdevries/colorbuddy.nvim'
 paq 'ayu-theme/ayu-vim'
 
 -- lua neovim only plugins
-paq 'tjdevries/colorbuddy.nvim'
-paq 'akinsho/nvim-bufferline.lua'
-paq 'windwp/nvim-autopairs'
 paq 'kyazdani42/nvim-web-devicons'
+paq 'akinsho/nvim-bufferline.lua'
+-- paq 'romgrk/barbar.nvim'
+paq 'windwp/nvim-autopairs'
 paq {'glepnir/galaxyline.nvim', branch = 'main'}
 paq 'nvim-lua/completion-nvim'
 paq 'hrsh7th/nvim-compe'
 paq 'norcalli/snippets.nvim'
-paq 'norcalli/nvim-colorizer.lua'
+--paq 'norcalli/nvim-colorizer.lua'
 paq 'windwp/nvim-ts-autotag'
 paq 'kyazdani42/nvim-tree.lua'
 -- Neovim official feature plugins
 paq {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- update parcers on update
 paq 'neovim/nvim-lspconfig'
 paq 'nvim-treesitter/playground'
+-- Neovim LSP
+paq 'onsails/lspkind-nvim'
+paq 'glepnir/lspsaga.nvim'
+-- Java lsp install plugin
+-- paq 'mfussenegger/nvim-jdtls'
 
