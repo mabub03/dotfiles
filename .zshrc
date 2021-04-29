@@ -3,9 +3,10 @@ source ~/.zsh/prompt_info_functions.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/half-life.zsh-theme
 
-#source ~/.zsh/norm.zsh-theme
-#source ~/.zsh/raw.zsh-theme
-#source ~/zsh_plugins/lambda.zsh-theme
+# Possible themes, but need to figure out what they need from OhMyZsh to function
+# source ~/.zsh/norm.zsh-theme
+# source ~/.zsh/raw.zsh-theme
+# source ~/zsh_plugins/lambda.zsh-theme
 # source ~/duellj.zsh
 
 alias ls='ls --color=auto'
