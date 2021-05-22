@@ -10,7 +10,7 @@ require('plugins')
 require('autopairs-config')
 require('devicons-config')
 require('bufferline-config')
-require('colorizer-config')
+--require('colorizer-config')
 require('compe-config')
 --require('deep_ocean')
 --require('deep_ocean2')
@@ -43,5 +43,6 @@ require('lsp.lua-lsp')
 
 -- Colorscheme Settings
 require('colorscheme')
+require('discord_rich_presence')
 
 end

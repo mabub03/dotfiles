@@ -20,6 +20,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt autocd extendedglob nomatch notify
 unsetopt beep
+# set vim mode
+set -o vi
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -30,14 +32,18 @@ compinit
 # ======================================================================
 
 export EDITOR="nvim"
-export EDITOR="nvim"
 
 export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 [ -f "/home/mabub03/.ghcup/env" ] && source "/home/mabub03/.ghcup/env" # ghcup-env
 
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+# Linux set display 
+export DISPLAY=:0.0
+# WSL with Xserver (not WSLg) configuration
+#export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-  source /etc/profile.d/vte-2.91.sh
-fi
+#if using tillix uncomment out
+
+#if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+#  source /etc/profile.d/vte-2.91.sh
+#fi
 
