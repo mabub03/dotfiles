@@ -19,7 +19,9 @@ require('compe-config')
 require('nvimtree')
 vim.cmd('source $HOME/.config/nvim/lua/nvimtree/nvimtree-config.vim')
 --require('snippets-config')
-require('spaceline')
+--require('spaceline')
+--require('lua_line')
+require('evil_lualine')
 --require('statusline-config')
 --require('statusline')
 require('treesitter-config')
@@ -28,6 +30,7 @@ require('nv-lspkind')
 --vim.cmd('source $HOME/.config/nvim/colorschemes.vim')
 vim.cmd('source $HOME/.config/nvim/plugins.d/ale.vim')
 vim.cmd('source $HOME/.config/nvim/plugins.d/prettier.vim')
+require('lsp_config')
 
 -- LSP 
 require('lsp')
@@ -39,10 +42,11 @@ require('lsp.json-lsp')
 require('lsp.bash-lsp')
 require('lsp.python-lsp')
 require('lsp.lua-lsp')
-
+-- require('ccls')
 
 -- Colorscheme Settings
-require('colorscheme')
 require('discord_rich_presence')
+require('colorscheme')
+vim.cmd('source $HOME/.config/nvim/transparency.vim')
 
 end

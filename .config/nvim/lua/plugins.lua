@@ -6,6 +6,7 @@ paq{'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 
 -- Add your packages
 paq 'tpope/vim-fugitive'
+paq 'miyakogi/seiya.vim'
 -- paq 'sheerun/vim-polyglot'
 paq 'mattn/emmet-vim'
 paq 'dense-analysis/ale'
@@ -29,7 +30,7 @@ paq 'kyazdani42/nvim-web-devicons'
 paq 'akinsho/nvim-bufferline.lua'
 -- paq 'romgrk/barbar.nvim'
 paq 'windwp/nvim-autopairs'
-paq {'glepnir/galaxyline.nvim', branch = 'main'}
+--paq {'glepnir/galaxyline.nvim', branch = 'main'}
 paq 'nvim-lua/completion-nvim'
 paq 'hrsh7th/nvim-compe'
 paq 'norcalli/snippets.nvim'
@@ -43,6 +44,9 @@ paq 'nvim-treesitter/playground'
 -- Neovim LSP
 paq 'onsails/lspkind-nvim'
 paq 'glepnir/lspsaga.nvim'
+paq 'kabouzeid/nvim-lspinstall'
 -- Java lsp install plugin
 -- paq 'mfussenegger/nvim-jdtls'
-
+-- Discord Rich Presence
+paq 'andweeb/presence.nvim'
+paq 'hoob3rt/lualine.nvim'

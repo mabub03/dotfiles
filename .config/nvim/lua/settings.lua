@@ -14,6 +14,8 @@ vim.o.mouse="a" -- enable mouse
 -- reset the leader from \ to a different key
 vim.cmd('let mapleader=";"')
 vim.cmd('set shortmess+=c')
+-- save to clipboard
+vim.cmd('set clipboard=unnamedplus')
 -- sets word wrap
 vim.wo.wrap = true
 vim.bo.textwidth = 80 -- stops can type up to column 80
