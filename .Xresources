@@ -1,1 +1,48 @@
 xterm*selectToClipboard: true
+
+! URxvt Config
+! ===============================
+! Font Config
+URxvt*font: xft:FiraCode Nerd Font Mono Regular:style=mono:pixelsize=12:antialias=true
+URxvt*boldFont: xft:FiraCode Nerd Font Mono Bold:style=mono:pixelsize=12:antialias=true
+URxvt*italicFont: xft:FiraCode Nerd Font Mono Itallic:style=mono:pizelsize=12:antialias=true
+URxvt.letterSpace: -1
+URxvt.lineSpace: -1
+
+! Scrollbar style
+! scrollbar style -rxvt (default)
+! plain (compact), NeXT, or xtermn
+URxvt.scrollstyle: plain
+URxvt.scrollBar_right: True
+
+! Transparency - 0 (invisible) to 100 (fully opaque)
+URxvt*depth: 0
+
+! gruvbox material dark theme
+! foreground/background
+URxvt*background: #282828
+URxvt*foreground: #d4be98
+! black
+URxvt.color0  : #665c54
+URxvt.color8  : #928374
+! red
+URxvt.color1  : #ea6962
+URxvt.color9  : #ea6962
+! green
+URxvt.color2  : #a9b665
+URxvt.color10 : #a9b665
+! yellow
+URxvt.color3  : #e78a4e
+URxvt.color11 : #d8a657
+! blue
+URxvt.color4  : #7daea3
+URxvt.color12 : #7daea3
+! magenta
+URxvt.color5  : #d3869b
+URxvt.color13 : #d3869b
+! cyan
+URxvt.color6  : #89b482
+URxvt.color14 : #89b482
+! white
+URxvt.color7  : #d4be98
+URxvt.color15 : #d4be98
