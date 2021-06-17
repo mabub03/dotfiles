@@ -25,6 +25,7 @@ curl -fLo "Fira Code Light Nerd Font Complete.ttf" https://github.com/ryanoasis/
 # Fira Code Mono
 # ========================================================
 # Regular
+curl -fLo "Fira Code Regular Nerd Font Complete Mono.tff" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
 
 # Bold
 curl -fLo "Fira Code Bold Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Bold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
