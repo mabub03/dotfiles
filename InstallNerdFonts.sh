@@ -1,6 +1,6 @@
 #!/bin/bash
-mkdir -p ~/.local/share/fonts 
-cd ~/.local/share/fonts
+mkdir -p $HOME/.local/share/fonts 
+cd $HOME/.local/share/fonts
 # Fira Code 
 # ========================================================
 # Regular
