@@ -1,0 +1,2 @@
+/*Add this file to ~./mozilla/firefox/<profile>/chrome */
+#contentAreaContextMenu{ margin: 2px 0 0 2px }
