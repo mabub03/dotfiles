@@ -1,4 +1,4 @@
-export ZSH="/home/mabub03/.oh-my-zsh"
+export ZSH_CUSTOM="/home/mabub03/.oh-my-zsh"
 
 # ======================================================================
 # Lines configured by zsh-newuser-install
@@ -38,5 +38,5 @@ export VISUAL="nvim"
 
 ZSH_THEME="cdimascio-lambda"
 plugins=(git npm zsh-autosuggestions)
-source $ZSH/oh-my-zsh.sh
+source $ZSH_CUSTOM/oh-my-zsh.sh
 
