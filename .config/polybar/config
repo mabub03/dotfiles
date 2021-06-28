@@ -56,11 +56,13 @@ font-0 = fixed:pixelsize=10;1
 font-1 = "FiraCode Nerd Font Mono:size=10;1"
 font-2 = "Noto Color Emoji:pixelsize=10;1"
 
+enable-ipc = true
+
 modules-left = i3
 ; mpd stands for music player domain
 modules-center = date mpd
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = pulseaudio xkeyboard memory cpu wlan eth temperature powermenu
+modules-right = dunst pulseaudio xkeyboard memory cpu wlan eth temperature powermenu
 ;modules-right = pulseaudio xkeyboard memory cpu wlan eth temperature powermenu
 
 tray-position = right
@@ -171,6 +173,19 @@ label-urgent-padding = 2
 ;bar-empty = ─
 ;bar-empty-font = 2
 ;bar-empty-foreground = ${colors.foreground-alt}
+
+[module/dunst]
+type = custom/ipc
+initial = 1
+format-foreground = ${colors.yellow}
+
+hook-0 = echo "%{A1:notify-send "DUNST_COMMAND_PAUSE" && polybar-msg hook dunst 2:}%{A}" &
+hook-1 = echo "%{A1:notify-send "DUNST_COMMAND_RESUME" && polybar-msg hook dunst 1:}%{A}" &
+;type = custom/ipc
+;initial = 1
+;format-foreground = ${colors.yellow}
+;hook-0 = echo "%{A1:notify-send "dunstctl set-paused false" && polybar-msg hook dunst 2:}%{A}"
+;hook-1 = echo "%{A1:notify-send "dunstctl set-paused true" && polybar-msg hook dunst 1:}%{A}"
 
 [module/cpu]
 type = internal/cpu
