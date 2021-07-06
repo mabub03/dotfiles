@@ -6,25 +6,36 @@
 
 # Requirements
 # Debian/Ubuntu
-# apt install python3
-# apt install python3-pip
-# pip3 install cmake-language-server
-# Arch
-pacman -S python
-pacman -S python-pip
-pacman -S nodejs
-pacman -S npm
-pacman -S ninja
-#pacman -S ccls
-pip install cmake-language-server
+sudo apt remove rustc cargo
+sudo apt install python3 python3-pip nodejs npm ninja-build
 
-npm i -g bash-language-server
-npm install -g vscode-langservers-extracted
-npm i -g sql-language-server
-npm i -g pyright
-npm install -g typescript typescript-language-server
-npm install -g vim-language-server
-npm install -g intelephense
+# Install Rust
+cd $HOME
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+
+# Install Rust Analyzer Stable Release
+cd $HOME
+git clone https://github.com/rust-analyzer/rust-analyzer.git && cd rust-analyzer
+cargo xtask install --server
+
+#pip3 install cmake-language-server
+# Arch
+#pacman -S python
+#pacman -S python-pip
+#pacman -S nodejs
+#pacman -S npm
+#pacman -S ninja
+#pacman -S ccls
+#pip install cmake-language-server
+
+sudo npm i -g bash-language-server
+sudo npm install -g vscode-langservers-extracted
+sudo npm i -g sql-language-server
+sudo npm i -g pyright
+sudo npm install -g typescript typescript-language-server
+sudo npm install -g vim-language-server
+sudo npm install -g intelephense
 
 # Lua Install
 cd $HOME/.local/share/nvim

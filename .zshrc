@@ -40,3 +40,5 @@ ZSH_THEME="cdimascio-lambda"
 plugins=(git npm zsh-autosuggestions)
 source $ZSH_CUSTOM/oh-my-zsh.sh
 
+# alias to make update and upgrade one command
+alias update='sudo apt update && sudo apt upgrade'
