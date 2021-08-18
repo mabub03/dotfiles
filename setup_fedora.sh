@@ -146,9 +146,25 @@ fc-cache -fv
 cd $HOME
 
 # change to zsh, setup nvm, and install node
+#chsh -s $(which zsh)
+#source $HOME/dotfiles/zsh_plugin_setup.sh
+#exec zsh
+#curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | zsh
+#source $HOME/.zshrc
+#nvm install node
+#cd $HOME
+
+# change to zsh, setup nvm, and install node
+cp $HOME/dotfiles/.zshrc $HOME
+git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
+git clone https://github.com/cdimascio/lambda-zsh-theme.git
+cd lambda-zsh-theme
+sudo cp cdimascio-lambda.lambda-zsh-theme $HOME/.oh-my-zsh/themes
+cd $HOME
+git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/plugins/zsh-autosuggestions
 chsh -s $(which zsh)
-source $HOME/dotfiles/zsh_plugin_setup.sh
 exec zsh
+source $HOME/dotfiles/zsh_plugin_setup.sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | zsh
 source $HOME/.zshrc
 nvm install node
