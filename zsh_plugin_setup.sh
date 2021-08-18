@@ -12,5 +12,6 @@ sudo cp cdimascio-lambda.zsh-theme $ZSH_CUSTOM/themes
 cd $HOME
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 # End Script by Sourcing Zsh
 source $HOME/.zshrc
