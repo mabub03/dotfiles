@@ -65,28 +65,26 @@ sudo dnf update -y
 # maybe remove if proven not needed:
 # gnome-document-viewer rhythm box gnome boxes
 # ===============================================
-sudo dnf remove -y \ 
-  gnome-software \ 
+sudo dnf remove -y \
+  gnome-software \
   gnome-contacts \
-  #gnome-weather \ 
   gnome-logs \
-  gnome-maps \ 
-  #gnome-online-miners \ 
-  gnome-photos \ 
-  totem \ 
-  cheese \ 
-  gedit \ 
-  gnome-system-monitor \ 
-  gnome-yelp \ 
-  gnome-font-viewer \ 
+  gnome-maps \
+  gnome-photos \
+  totem \
+  cheese \
+  gedit \
+  gnome-system-monitor \
+  gnome-yelp \
+  gnome-font-viewer \
   nano \
   abrt
 
-sudo dnf install -y \ 
-  gnome-tweaks \ 
-  gnome-extensions-app \ 
-  neovim \ 
-  "@C Development Tools And Libraries" \ 
+sudo dnf install -y \
+  gnome-tweaks \
+  gnome-extensions-app \
+  neovim \
+  "@C Development Tools And Libraries" \
   "@Development Tools" \
   "@Development Libraries" \
   util-linux-user \
