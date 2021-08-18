@@ -25,7 +25,7 @@ export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 [ -f "/home/mabub03/.ghcup/env" ] && source "/home/mabub03/.ghcup/env" # ghcup-env
 
 # Linux set display 
-export DISPLAY=:0.0
+# export DISPLAY=:0.0
 # WSL with Xserver (not WSLg) configuration
 #export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 export EDITOR="nvim"
@@ -41,4 +41,4 @@ plugins=(git npm zsh-autosuggestions)
 source $ZSH_CUSTOM/oh-my-zsh.sh
 
 # alias to make update and upgrade one command
-alias update='sudo apt update && sudo apt upgrade'
+# alias update='sudo apt update && sudo apt upgrade'
