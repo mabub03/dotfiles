@@ -54,7 +54,7 @@ sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
 sudo dnf update -y
 
@@ -65,6 +65,8 @@ sudo dnf update -y
 # maybe remove if proven not needed:
 # gnome-document-viewer rhythm box gnome boxes
 # ===============================================
+# Do not have whitespace at the end of the of the lines here or else it won't
+# remove packages and launch them instead
 sudo dnf remove -y \
   gnome-software \
   gnome-contacts \
@@ -80,6 +82,9 @@ sudo dnf remove -y \
   nano \
   abrt
 
+# Install packages 
+# Do not have whitespace at the end of the of the lines here or else it won't
+# install packages and launch them instead
 sudo dnf install -y \
   gnome-tweaks \
   gnome-extensions-app \
@@ -203,4 +208,7 @@ connection.stable-id=${CONNECTION}/${BOOT}
 EOF
 
 sudo systemctl restart NetworkManager
+
+echo "Setup script has finished running"
+echo "Restart your computer now for changes to take effect"
 
