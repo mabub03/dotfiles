@@ -1,13 +1,11 @@
 #!/bin/bash
 # REQUIREMENTS:
-# RUN AS SUDO
 # npm/node, ghcup (preferably in path from the installation, pip (python package installer), perl
-# not included = c++, go, groovy, lua
+# not included = c++, go, groovy, clojure
 
 # Requirements
 # Debian/Ubuntu
-sudo apt remove rustc cargo
-sudo apt install python3 python3-pip nodejs npm ninja-build
+#sudo apt install python3 python3-pip nodejs npm ninja-build
 
 # Install Rust
 cd $HOME
@@ -29,13 +27,13 @@ cargo xtask install --server
 #pacman -S ccls
 #pip install cmake-language-server
 
-sudo npm i -g bash-language-server
-sudo npm install -g vscode-langservers-extracted
-sudo npm i -g sql-language-server
-sudo npm i -g pyright
-sudo npm install -g typescript typescript-language-server
-sudo npm install -g vim-language-server
-sudo npm install -g intelephense
+npm i -g bash-language-server
+npm install -g vscode-langservers-extracted
+npm i -g sql-language-server
+npm i -g pyright
+npm install -g typescript typescript-language-server
+npm install -g vim-language-server
+npm install -g intelephense
 
 # Lua Install
 cd $HOME/.local/share/nvim
