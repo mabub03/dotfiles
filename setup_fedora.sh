@@ -51,9 +51,9 @@ sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
 sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
 
 # setup repos
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
-dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
 sudo dnf update -y
@@ -125,6 +125,7 @@ then
   sudo dnf install -y steam lutris wine winetricks
 fi
 
+# remove whatever isn't needed to clean up system just incase something got missed
 flatpak remove --unused
 sudo dnf autoremove -y
 
