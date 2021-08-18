@@ -148,7 +148,7 @@ cd $HOME
 #install nvm for node 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 source .bashrc
-nvm node
+nvm install node
 
 # add gtk and kitty settings from dotfiles to .config
 cp $HOME/dotfiles/.config/gtk-3.0 $HOME/.config
@@ -180,7 +180,7 @@ gnome-extensions disable background-logo@fedorahosted.org
 
 # install gnome themes, icons, and cursors
 git clone https://github.com/cbrnix/Flatery.git
-mv Flattery
+cd Flattery
 ./install.sh
 cd $HOME
 
