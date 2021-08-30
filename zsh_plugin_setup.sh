@@ -1,5 +1,5 @@
 #!/bin/zsh
-cp .zshrc $HOME
+cp $HOME/dotfiles/.zshrc $HOME
 cd $HOME
 source $HOME/.zshrc
 

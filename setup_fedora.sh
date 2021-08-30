@@ -80,6 +80,7 @@ sudo dnf remove -y \
   gnome-yelp \
   gnome-font-viewer \
   nano \
+  gnome-boxes \
   abrt
 
 # Install packages 
@@ -108,7 +109,12 @@ sudo dnf install -y \
   ffmpeg \
   mediainfo \
   piper \
+  cmake \
   zsh
+
+# install gnome-boxes from flathub since the one from fedora packages can't load
+# gnome os nightly 
+flatpak install flathub org.gnome.Boxes
 
 # install Joplin
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
@@ -151,14 +157,8 @@ source .bashrc
 nvm install node
 
 # add gtk and kitty settings from dotfiles to .config
-cp $HOME/dotfiles/.config/gtk-3.0 $HOME/.config
-cp $HOME/dotfiles/.config/kitty $HOME/.config
-
-# add wifi powersave file to deactivate wifi powersave
-sudo bash -c 'cat > /etc/Networkmanager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
-[connection]
-wifi.powersave=2
-EOF
+cp -r $HOME/dotfiles/.config/gtk-3.0 $HOME/.config
+cp -r $HOME/dotfiles/.config/kitty $HOME/.config
 
 # setup neovim
 source $HOME/dotfiles/setup_nvim.sh
@@ -180,7 +180,7 @@ gnome-extensions disable background-logo@fedorahosted.org
 
 # install gnome themes, icons, and cursors
 git clone https://github.com/cbrnix/Flatery.git
-cd Flattery
+cd Flatery
 ./install.sh
 cd $HOME
 
@@ -192,6 +192,16 @@ sudo dnf install bibata-cursor-themes
 
 #Enable touchpad while typing (uncomment if you use touch screen) 
 #gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false
+
+# add wifi powersave file to deactivate wifi powersave
+# for some reason the commented out code below doesn't work so just gonna use
+# echo messages and hope it works
+#sudo bash -c 'cat > /etc/Networkmanager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
+#[connection]
+#wifi.powersave=2
+#EOF
+sudo echo "[connection]" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+sudo echo "wifi.powersave=2" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
 
 #Randomize MAC address and restart NetworkManager
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/00-macrandomize.conf' <<-'EOF'
