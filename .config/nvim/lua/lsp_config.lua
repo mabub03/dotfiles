@@ -1,4 +1,5 @@
 local nvim_lsp = require('lspconfig')
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'sumneko_lua', 'cssls', 'bashls', 'intelephense', 'tsserver', 'jsonls', 'html' }
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -72,3 +73,11 @@ end
 -- autocmd BufWritePre *.php lua vim.lsp.buf.formatting_sync(nil, 100)
 -- autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end

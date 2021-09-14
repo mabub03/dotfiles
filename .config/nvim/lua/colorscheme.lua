@@ -5,7 +5,7 @@ vim.cmd("let g:ayucolor = 'mirage'") -- mirage & light also available
 -- gruvbox-material config
 vim.cmd('let g:gruvbox_material_enable_italic = 1')
 vim.cmd('let g:gruvbox_material_disable_italic_comment = 0')
---vim.cmd('colorscheme gruvbox-material')
+vim.cmd('colorscheme gruvbox-material')
 
 -- set background color to dark
 vim.o.background = 'dark'
@@ -18,4 +18,4 @@ vim.g.material_italic_variables = false
 vim.g.material_contrast = true
 vim.g.material_borders = false
 vim.g.material_disable_background = false
-require('material').set()
+--require('material').set()

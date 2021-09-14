@@ -21,6 +21,8 @@ require('nv-lspkind')
 vim.cmd('source $HOME/.config/nvim/plugins.d/ale.vim')
 vim.cmd('source $HOME/.config/nvim/plugins.d/prettier.vim')
 require('lsp_config')
+require('nv-telescope')
+--require('dapui')
 
 -- LSP
 require('lsp')
@@ -34,6 +36,9 @@ require('lsp.python-lsp')
 require('lsp.lua-lsp')
 require('lsp.rust')
 -- require('ccls')
+
+-- Dap
+require('dbg')
 
 -- Colorscheme Settings
 require('discord_rich_presence')

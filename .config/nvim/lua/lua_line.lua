@@ -18,8 +18,8 @@ local config = {
 --require'lualine'.setup {
   options = {
     icons_enabled = true,
---    theme = 'gruvbox_material',
-    theme = 'material-nvim',
+    theme = 'gruvbox_material',
+--    theme = 'material-nvim',
     component_separators = {'', ''},
     section_separators = {'', ''},
     disabled_filetypes = {}

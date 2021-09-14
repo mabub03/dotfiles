@@ -32,4 +32,3 @@ vim.o.showmode = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.encoding = 'utf-8'
-

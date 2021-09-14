@@ -2,8 +2,8 @@ require 'bufferline'.setup{
   options = {
     view = "multiwindow", -- or "default",
     numbers = "ordinal", -- or  "ordinal" or "buffer_id",
-    number_style = "superscript", -- or "",
-    mappings = true, -- or false,
+    -- number style being depreciated use a function in numbers
+    --number_style = "superscript", -- or "",
     buffer_close_icon= '',
     modified_icon = '●',
     close_icon = '',
@@ -14,8 +14,7 @@ require 'bufferline'.setup{
     -- [focused and unfocused]. eg: { '|', '|' }
     separator_style = 'slant', -- or "thick" or "thin" or { 'any', 'any' },
     always_show_bufferline = true, -- or false,
-    enforce_regular_tabs = false,
-
+    enforce_regular_tabs = true,
     diagnostics = "nvim_lsp", -- or false
     diagnostics_indicator = function(count, level)
       local icon = level:match("error") and " " or ""

@@ -81,6 +81,8 @@ sudo dnf remove -y \
   gnome-font-viewer \
   nano \
   gnome-boxes \
+  sassc \
+  libsass\
   abrt
 
 # Install packages 
@@ -175,10 +177,28 @@ cd blur-my-shell
 make install
 cd $HOME
 
+mkdir $HOME/.themes
+mkdir $HOME/.icons
+
 # disable background logo extension
 gnome-extensions disable background-logo@fedorahosted.org
 
 # install gnome themes, icons, and cursors
+git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+cd WhiteSur-gtk-theme
+./install.sh -c dark
+./install.sh -t all
+./install.sh -i fedora
+./tweaks.sh -F
+./tweaks.sh -i fedora
+sudo .tweaks.sh -g
+#./tweaks.sh -f
+sudo ./tweaks.sh -g -b default
+
+git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+cd WhiteSur-icon-theme
+./install.sh
+
 git clone https://github.com/cbrnix/Flatery.git
 cd Flatery
 ./install.sh
@@ -186,6 +206,8 @@ cd $HOME
 
 sudo dnf copr enable peterwu/rendezvous
 sudo dnf install bibata-cursor-themes
+
+sudo flatpak override --filesystem=~/.themes
 
 #Enable tap to click (uncomment if you use touch screen)
 #gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
@@ -201,7 +223,7 @@ sudo dnf install bibata-cursor-themes
 #wifi.powersave=2
 #EOF
 sudo echo "[connection]" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
-sudo echo "wifi.powersave=2" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+sudo echo "wifi.powersave = 2" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
 
 #Randomize MAC address and restart NetworkManager
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/00-macrandomize.conf' <<-'EOF'
