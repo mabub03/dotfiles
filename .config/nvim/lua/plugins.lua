@@ -1,9 +1,9 @@
 local packer = require'packer'
 packer.startup(function(use)
   -- Add your packages
-  use 'tpope/vim-fugitive'
+  --use 'tpope/vim-fugitive'
   use 'miyakogi/seiya.vim'
-  use 'mattn/emmet-vim'
+  --use 'mattn/emmet-vim'
   use 'dense-analysis/ale'
   use {'prettier/vim-prettier', run = 'npm install'}
   use 'tweekmonster/startuptime.vim'
@@ -15,34 +15,73 @@ packer.startup(function(use)
   use 'sainnhe/gruvbox-material'
   use 'ayu-theme/ayu-vim'
 
-  use 'kyazdani42/nvim-web-devicons'
   use 'akinsho/nvim-bufferline.lua'
-  use 'windwp/nvim-autopairs'
-  use 'nvim-lua/completion-nvim'
-  use 'hrsh7th/nvim-compe'
-  use 'norcalli/snippets.nvim'
-  use 'windwp/nvim-ts-autotag'
-  use 'kyazdani42/nvim-tree.lua'
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- update parcers on update
+
+  use {
+    'L3MON4D3/LuaSnip',
+    requires = 'rafamadriz/friendly-snippets'
+  }
+  use {
+    "hrsh7th/nvim-cmp",
+    requires = {
+      --"hrsh7th/vim-vsnip",
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'f3fora/cmp-spell',
+      'hrsh7th/cmp-calc',
+      'octaltree/cmp-look',
+      'saadparwaiz1/cmp_luasnip',
+      --'kristijanhusak/vim-dadbod-completion',
+      --'tpope/vim-dadbod',
+      'windwp/nvim-ts-autotag',
+      'hrsh7th/cmp-emoji'
+    }
+  }
+  use {
+    'tzachar/cmp-tabnine',
+    run = './install.sh',
+    requires = 'hrsh7th/nvim-cmp'
+  }
+
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+      'nvim-treesitter/playground',
+      'windwp/nvim-autopairs'
+    },
+  }
+
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+
   use 'neovim/nvim-lspconfig'
-  use 'nvim-treesitter/playground'
   use 'onsails/lspkind-nvim'
   use 'glepnir/lspsaga.nvim'
-  use 'kabouzeid/nvim-lspinstall'
   -- Java lsp install plugin
   -- paq 'mfussenegger/nvim-jdtls'
   -- Discord Rich Presence
   use 'andweeb/presence.nvim'
   use 'hoob3rt/lualine.nvim'
   -- Dap plugins
-  use 'mfussenegger/nvim-dap'
-  use 'rcarriga/nvim-dap-ui'
-  -- use 'theHamsta/nvim-dap-virtual-text'
+  use {
+    'mfussenegger/nvim-dap',
+    requires = {
+     'rcarriga/nvim-dap-ui',
+     'theHamsta/nvim-dap-virtual-text',
+     'mfussenegger/nvim-dap-python'
+    }
+  }
   -- Telescope plugin
   use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'nvim-telescope/telescope-dap.nvim'
-  -- Dap languages
-  use 'mfussenegger/nvim-dap-python'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      'nvim-telescope/telescope-dap.nvim'
+    }
+  }
 end)

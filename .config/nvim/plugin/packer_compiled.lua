@@ -125,6 +125,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-dap"
   },
+  ["nvim-dap-python"] = {
+    loaded = true,
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-dap-python"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-dap-ui"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
