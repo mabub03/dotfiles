@@ -52,9 +52,14 @@ sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
 
 # setup repos
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# rpm fusion free and non free
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
+# brave
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+# vscodium
+sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 
 sudo dnf update -y
 
@@ -112,7 +117,11 @@ sudo dnf install -y \
   mediainfo \
   piper \
   cmake \
+  codium \
   zsh
+
+# to run a file that only root can access specify the user data dir by doing the
+# command [NOT RECCOMENDED]: sudo codium --user-data-dir="~/.vscode-root" 
 
 # install gnome-boxes from flathub since the one from fedora packages can't load
 # gnome os nightly 
