@@ -73,7 +73,11 @@ sudo dnf update -y
 # Do not have whitespace at the end of the of the lines here or else it won't
 # remove packages and launch them instead
 sudo dnf remove -y \
-  gnome-software \
+  gnome-calendar \
+  eog \
+  evince \
+  gnome-calculator \
+  gnome-clocks \
   gnome-contacts \
   gnome-logs \
   gnome-maps \
@@ -95,7 +99,6 @@ sudo dnf remove -y \
 # install packages and launch them instead
 sudo dnf install -y \
   gnome-tweaks \
-  gnome-extensions-app \
   neovim \
   "@C Development Tools And Libraries" \
   "@Development Tools" \
@@ -125,7 +128,30 @@ sudo dnf install -y \
 
 # install gnome-boxes from flathub since the one from fedora packages can't load
 # gnome os nightly 
-flatpak install flathub org.gnome.Boxes
+flatpak install -y flathub \
+  org.gnome.Boxes \
+  discord \
+  org.gnome.Weather \
+  org.videolan.VLC \
+  org.gnome.Calander \
+  org.kde.krita \
+  org.gnome.eog \
+  org.gnome.Rythmbox3 \
+  org.libreoffice.LibreOffice \
+  org.gnome.Evince \
+  org.gnome.Calculator \
+  org.gnome.clocks \
+  org.gnome.Extensions \
+  org.gnome.Evolution \
+  org.kde.kpat \
+  org.freedesktop.Piper \
+  org.supertuxproject.SuperTux \
+  net.cozic.joplin_desktop \
+  com.github.tchx84.Flatseal \
+  com.spotify.Client \
+  com.bitwarden \
+  com.jgraph.drawio
+  
 
 # install Joplin
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
@@ -193,30 +219,27 @@ mkdir $HOME/.icons
 gnome-extensions disable background-logo@fedorahosted.org
 
 # install gnome themes, icons, and cursors
-git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
-cd WhiteSur-gtk-theme
-./install.sh -c dark
-./install.sh -t all
-./install.sh -i fedora
-./tweaks.sh -F
-./tweaks.sh -i fedora
-sudo .tweaks.sh -g
+# git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+# cd WhiteSur-gtk-theme
+# ./install.sh -c dark
+# ./install.sh -t all
+# ./install.sh -i fedora
+# ./tweaks.sh -F
+# ./tweaks.sh -i fedora
+# sudo .tweaks.sh -g
 #./tweaks.sh -f
-sudo ./tweaks.sh -g -b default
-
-git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
-cd WhiteSur-icon-theme
-./install.sh
+# sudo ./tweaks.sh -g -b default
+# sudo flatpak override --filesystem=~/.themes
 
 git clone https://github.com/cbrnix/Flatery.git
 cd Flatery
 ./install.sh
 cd $HOME
 
-sudo dnf copr enable peterwu/rendezvous
-sudo dnf install bibata-cursor-themes
-
-sudo flatpak override --filesystem=~/.themes
+git clone https://github.com/ful1e5/Bibata_Cursor.git
+cd Bibata_Cursor
+make unix
+make install
 
 #Enable tap to click (uncomment if you use touch screen)
 #gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
