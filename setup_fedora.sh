@@ -86,12 +86,14 @@ sudo dnf remove -y \
   cheese \
   gedit \
   gnome-system-monitor \
+  gnome-weather \
   gnome-yelp \
   gnome-font-viewer \
   nano \
   gnome-boxes \
   sassc \
-  libsass\
+  libsass \
+  rhythmbox \
   abrt
 
 # Install packages 
@@ -103,6 +105,9 @@ sudo dnf install -y \
   "@C Development Tools And Libraries" \
   "@Development Tools" \
   "@Development Libraries" \
+  clang \
+  libgtk-3-dev \
+  gtk3-devel \
   util-linux-user \
   kitty \
   bpytop \
@@ -110,7 +115,6 @@ sudo dnf install -y \
   foliate \
   neofetch \
   ninja-build \
-  discord \
   brave-browser \
   timeshift \
   redhat-lsb-core \
@@ -118,7 +122,6 @@ sudo dnf install -y \
   gnome-shell-extension-appindicator \
   ffmpeg \
   mediainfo \
-  piper \
   cmake \
   codium \
   zsh
@@ -152,10 +155,6 @@ flatpak install -y flathub \
   com.bitwarden \
   com.jgraph.drawio
   
-
-# install Joplin
-wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
-
 echo -n "Do you want to install Nvidia drivers? [y/N]"
 read NVIDIA_PROMPT
 if [[ $NVIDIA_PROMPT == "y" || $NVIDIA_PROMPT == "Y" ]]
@@ -199,7 +198,6 @@ cp -r $HOME/dotfiles/.config/kitty $HOME/.config
 
 # setup neovim
 source $HOME/dotfiles/setup_nvim.sh
-source $HOME/dotfiles/lsp_server_install.sh
 
 # install intellij toolbox for intellij ides
 source $HOME/dotfiles/install_jetbrains_toolbox.sh
@@ -218,28 +216,10 @@ mkdir $HOME/.icons
 # disable background logo extension
 gnome-extensions disable background-logo@fedorahosted.org
 
-# install gnome themes, icons, and cursors
-# git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
-# cd WhiteSur-gtk-theme
-# ./install.sh -c dark
-# ./install.sh -t all
-# ./install.sh -i fedora
-# ./tweaks.sh -F
-# ./tweaks.sh -i fedora
-# sudo .tweaks.sh -g
-#./tweaks.sh -f
-# sudo ./tweaks.sh -g -b default
-# sudo flatpak override --filesystem=~/.themes
-
 git clone https://github.com/cbrnix/Flatery.git
 cd Flatery
 ./install.sh
 cd $HOME
-
-git clone https://github.com/ful1e5/Bibata_Cursor.git
-cd Bibata_Cursor
-make unix
-make install
 
 #Enable tap to click (uncomment if you use touch screen)
 #gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true

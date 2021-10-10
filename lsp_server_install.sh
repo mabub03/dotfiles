@@ -36,7 +36,8 @@ npm install -g vim-language-server
 npm install -g intelephense
 
 # Lua Install
-cd $HOME/.local/share/nvim
+mkdir $HOME/dev/language_server
+cd $HOME/dev/language_server
 git clone https://github.com/sumneko/lua-language-server
 cd lua-language-server
 git submodule update --init --recursive
@@ -44,7 +45,6 @@ cd 3rd/luamake
 compile/install.sh
 cd ../..
 ./3rd/luamake/luamake rebuild
-
 
 # ghcup command doesn't work but the installer lets you select if you 
 #want to install the haskell langauge server from the install menu
