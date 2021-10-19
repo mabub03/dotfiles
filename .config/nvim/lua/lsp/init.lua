@@ -1,4 +1,6 @@
 local nvim_lsp = require('lspconfig')
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'sumneko_lua', 'cssls', 'bashls', 'intelephense', 'tsserver', 'jsonls', 'html' }
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -45,15 +47,15 @@ local on_attach = function(client, bufnr)
   end
 end
 
---[[vim.api.nvim_exec([[
+vim.api.nvim_exec([[
  autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
  autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 100)
  autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
  autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 100)
  autocmd BufWritePre *.css lua vim.lsp.buf.formatting_sync(nil, 100)
  autocmd BufWritePre *.php lua vim.lsp.buf.formatting_sync(nil, 100)
- autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 100) ]]
---]], true)
+ autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 100)
+]], true)
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 
@@ -72,3 +74,26 @@ end
 -- autocmd BufWritePre *.php lua vim.lsp.buf.formatting_sync(nil, 100)
 -- autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
+
+require('lsp.tsserver-lsp')
+require('lsp.html-lsp')
+require('lsp.php-lsp')
+require('lsp.css-lsp')
+require('lsp.json-lsp')
+require('lsp.bash-lsp')
+require('lsp.python-lsp')
+require('lsp.lua-lsp')
+require('lsp.rust')
+-- TODO: fix ccls lsp setup
+-- require('ccls')

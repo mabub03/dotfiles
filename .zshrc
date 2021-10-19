@@ -19,13 +19,11 @@ compinit
 # ======================================================================
 export LANG=en_US.UTF-8
 
+export PATH="$PATH:`pwd`/flutter/bin"
+
 #export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 #[ -f "/home/mabub03/.ghcup/env" ] && source "/home/mabub03/.ghcup/env" # ghcup-env
 
-# Linux set display 
-# export DISPLAY=:0.0
-# WSL with Xserver (not WSLg) configuration
-#export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 export EDITOR="nvim"
 export VISUAL="nvim"
 

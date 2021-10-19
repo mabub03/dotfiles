@@ -69,6 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/LuaSnip"
+  },
   ale = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/ale"
@@ -77,13 +81,33 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/ayu-vim"
   },
-  ["completion-nvim"] = {
+  ["cmp-buffer"] = {
     loaded = true,
-    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/completion-nvim"
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/cmp-buffer"
   },
-  ["emmet-vim"] = {
+  ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/emmet-vim"
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
+  ["cmp-tabnine"] = {
+    loaded = true,
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/cmp-tabnine"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
+  },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
+  },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/friendly-snippets"
   },
   ["gruvbox-material"] = {
     loaded = true,
@@ -117,9 +141,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
-  ["nvim-compe"] = {
+  ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-dap"] = {
     loaded = true,
@@ -129,17 +153,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-dap-python"
   },
-  ["nvim-dap-ui"] = {
+  ["nvim-dap-virtual-text"] = {
     loaded = true,
-    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-dap-ui"
+    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
-  },
-  ["nvim-lspinstall"] = {
-    loaded = true,
-    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -177,10 +197,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/seiya.vim"
   },
-  ["snippets.nvim"] = {
-    loaded = true,
-    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/snippets.nvim"
-  },
   ["startuptime.vim"] = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/startuptime.vim"
@@ -196,10 +212,6 @@ _G.packer_plugins = {
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/telescope.nvim"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/home/mabub03/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
   ["vim-prettier"] = {
     loaded = true,

@@ -9,7 +9,6 @@ end
 Dap = require('dap')
 require('dap-python').setup('$HOME/bin/python')
 
-vim.g.dap_virtual_text = true
 -- Dap keymappings (may move to a different place later)
 map('n', '<leader>dc', '<cmd>lua require"dap".continue()<CR>')
 map('n', '<leader>dsv', '<cmd>lua require"dap".step_over()<CR>')
@@ -21,4 +20,8 @@ map('n', '<leader>dsbm', '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.
 map('n', '<leader>dro', '<cmd>lua require"dap".repl.open()<CR>')
 map('n', '<leader>drl', '<cmd>lua require"dap".repl.run_last()<CR>')
 
-
+require('dbg.node') 
+require('dbg.chrome')
+require('dbg.php')
+-- TODO: fix netcore debugger 
+-- require('dbg.netcore')

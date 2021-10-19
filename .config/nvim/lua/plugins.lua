@@ -28,14 +28,10 @@ packer.startup(function(use)
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
-      'f3fora/cmp-spell',
-      'hrsh7th/cmp-calc',
-      'octaltree/cmp-look',
       'saadparwaiz1/cmp_luasnip',
       --'kristijanhusak/vim-dadbod-completion',
       --'tpope/vim-dadbod',
-      'windwp/nvim-ts-autotag',
-      'hrsh7th/cmp-emoji'
+      'windwp/nvim-ts-autotag'
     }
   }
   use {
@@ -70,7 +66,6 @@ packer.startup(function(use)
   use {
     'mfussenegger/nvim-dap',
     requires = {
-     'rcarriga/nvim-dap-ui',
      'theHamsta/nvim-dap-virtual-text',
      'mfussenegger/nvim-dap-python'
     }
@@ -84,4 +79,6 @@ packer.startup(function(use)
       'nvim-telescope/telescope-dap.nvim'
     }
   }
+
+  use 'glepnir/dashboard-nvim'
 end)

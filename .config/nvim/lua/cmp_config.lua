@@ -70,11 +70,7 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'cmp_tabnine' },
     { name = 'buffer' },
-    { name = 'spell' },
     { name = 'path' },
-    { name = 'calc' },
-    { name = 'look' },
-    { name = 'emoji' }
   },
 }
 
