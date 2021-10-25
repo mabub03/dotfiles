@@ -14,7 +14,7 @@ source $HOME/.cargo/env
 
 # Install Rust Analyzer Stable Release
 cd $HOME
-git clone https://github.com/rust-analyzer/rust-analyzer.git && cd rust-analyzer
+git clone https://github.com/rust-analyzer/rust-analyzer.git && cd $HOME/rust-analyzer
 cargo xtask install --server
 
 #pip3 install cmake-language-server
