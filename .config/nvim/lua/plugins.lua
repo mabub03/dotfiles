@@ -34,12 +34,12 @@ packer.startup(function(use)
       'windwp/nvim-ts-autotag'
     }
   }
-  use {
+--[[  use {
     'tzachar/cmp-tabnine',
     run = './install.sh',
     requires = 'hrsh7th/nvim-cmp'
   }
-
+]]
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',

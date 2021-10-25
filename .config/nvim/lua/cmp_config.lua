@@ -68,7 +68,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'cmp_tabnine' },
+  --  { name = 'cmp_tabnine' },
     { name = 'buffer' },
     { name = 'path' },
   },
@@ -86,8 +86,8 @@ require('nvim-autopairs.completion.cmp').setup({
 })
 
 -- coding ai from the tzachar/cmp-tabnine plugin
-local tabnine = require('cmp_tabnine.config')
-tabnine:setup({max_lines = 1000, max_num_results = 20, sort = true})
+--local tabnine = require('cmp_tabnine.config')
+--tabnine:setup({max_lines = 1000, max_num_results = 20, sort = true})
 
 -- database completion with kristijanhusak/vim-dadbod-completion plugin
 --vim.api.nvim_exec([[
