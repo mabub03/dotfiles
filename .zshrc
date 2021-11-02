@@ -51,6 +51,3 @@ source $ZSH_CUSTOM/oh-my-zsh.sh
 
 alias luamake=/home/mabub03/dev/language_server/lua-language-server/3rd/luamake/luamake
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
