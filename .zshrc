@@ -19,9 +19,23 @@ compinit
 # End of lines added by compinstall
 # ======================================================================
 export LANG=en_US.UTF-8
+export VOLTA_HOME=$HOME/.volta
 
-export PATH="$PATH:`pwd`/flutter/bin"
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+
+export ANDROID_HOME=$HOME/Android
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH
+export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH
+export PATH=$ANDROID_SDK_ROOT/emulator:$PATH
+
+export PATH="/home/mabub03/flutter/bin:$PATH"
+export PATH=$VOLTA_HOME/bin:$PATH
+
+#export PATH="$PATH:`pwd`/flutter/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
+export CHROME_EXECUTABLE="/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 #export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 #[ -f "/home/mabub03/.ghcup/env" ] && source "/home/mabub03/.ghcup/env" # ghcup-env
 
@@ -37,7 +51,6 @@ source $ZSH_CUSTOM/oh-my-zsh.sh
 
 alias luamake=/home/mabub03/dev/language_server/lua-language-server/3rd/luamake/luamake
 
-# fnm
-export PATH=/home/mabub03/.fnm:$PATH
-#eval "`fnm env`"
-eval "$(fnm env)"
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
