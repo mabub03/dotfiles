@@ -46,32 +46,30 @@ sudo firewall-cmd --reload
 
 # edit dnf.conf to make it faster and exclude gnome tour so updating doesn't reinstall it
 # maximum of parallel downloads is 20
-sudo echo 'max_parallel_downloads=15' | sudo tee -a /etc/dnf/dnf.conf
+sudo echo 'max_parallel_downloads=20' | sudo tee -a /etc/dnf/dnf.conf
 sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
 sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
 
 # setup repos
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-# rpm fusion free and non free
-sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
+# rpm fusion free and non free (don't need in fedora 35 just when setting up after install click turn on 3rd party repos button)
+#sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
 # brave
-sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-# vscodium
-sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
+#sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+#sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
+# microsoft edge beta repos
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
+sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-beta.repo
+
+# vscode repos
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo dnf update -y
 
-# remove bloat
-# totem is gnome videos
-# cheese is gnome's webcam photo taking and video recording software
-# ===============================================
-# maybe remove if proven not needed:
-# gnome-document-viewer rhythm box gnome boxes
-# ===============================================
 # Do not have whitespace at the end of the of the lines here or else it won't
-# remove packages and launch them instead
+# Remove packages and some of these will be reinstalled with flatpak
 sudo dnf remove -y \
   gnome-calendar \
   eog \
@@ -115,7 +113,6 @@ sudo dnf install -y \
   foliate \
   neofetch \
   ninja-build \
-  brave-browser \
   timeshift \
   redhat-lsb-core \
   gnome-shell-extension-user-theme \
@@ -123,17 +120,15 @@ sudo dnf install -y \
   ffmpeg \
   mediainfo \
   cmake \
-  codium \
-  zsh
+  code \
+  zsh \
+  discord \
+  microsoft-edge-beta
+  #brave-browser
 
-# to run a file that only root can access specify the user data dir by doing the
-# command [NOT RECCOMENDED]: sudo codium --user-data-dir="~/.vscode-root" 
-
-# install gnome-boxes from flathub since the one from fedora packages can't load
-# gnome os nightly 
+# install gnome-boxes from flathub since the one from fedora packages can't load gnome os nightly 
 flatpak install -y flathub \
   org.gnome.Boxes \
-  discord \
   org.gnome.Weather \
   org.videolan.VLC \
   org.gnome.Calander \
@@ -187,14 +182,10 @@ unzip JetBrainsMono.zip
 fc-cache -fv
 cd $HOME
 
-#install nvm for node 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+#install volta for a node manager
+curl https://get.volta.sh | bash
 source .bashrc
-nvm install node
-
-# add gtk and kitty settings from dotfiles to .config
-cp -r $HOME/dotfiles/.config/gtk-3.0 $HOME/.config
-cp -r $HOME/dotfiles/.config/kitty $HOME/.config
+volta install node
 
 # setup neovim
 source $HOME/dotfiles/setup_nvim.sh
@@ -210,16 +201,8 @@ cd blur-my-shell
 make install
 cd $HOME
 
-mkdir $HOME/.themes
-mkdir $HOME/.icons
-
 # disable background logo extension
 gnome-extensions disable background-logo@fedorahosted.org
-
-git clone https://github.com/cbrnix/Flatery.git
-cd Flatery
-./install.sh
-cd $HOME
 
 #Enable tap to click (uncomment if you use touch screen)
 #gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
