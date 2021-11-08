@@ -53,7 +53,7 @@ sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
 # setup repos
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 # rpm fusion free and non free (don't need in fedora 35 just when setting up after install click turn on 3rd party repos button)
-#sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
+sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
 # brave
 #sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 #sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
@@ -92,6 +92,9 @@ sudo dnf remove -y \
   sassc \
   libsass \
   rhythmbox \
+  libreoffice-writer \
+  libreoffice-calc \
+  libreoffice-impress \
   abrt
 
 # Install packages 
@@ -104,10 +107,8 @@ sudo dnf install -y \
   "@Development Tools" \
   "@Development Libraries" \
   clang \
-  libgtk-3-dev \
   gtk3-devel \
   util-linux-user \
-  kitty \
   bpytop \
   libstdc++-static \
   foliate \
@@ -123,6 +124,8 @@ sudo dnf install -y \
   code \
   zsh \
   discord \
+  python3-pip \
+  openssl \
   microsoft-edge-beta
   #brave-browser
 
@@ -165,6 +168,17 @@ then
   sudo dnf install -y steam lutris wine winetricks
 fi
 
+echo -n "Do you use a laptop? [y/N]"
+read $LAPTOP_PROMPT
+if [[ $LAPTOP_PROMPT == "y" || $LAPTOP_PROMPT == "Y" ]]
+then
+  sudo dnf install -y tlp
+  #Enable tap to click
+  gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+  # Enable disable touchpad while typing
+  # gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false
+fi
+
 # remove whatever isn't needed to clean up system just incase something got missed
 flatpak remove --unused
 sudo dnf autoremove -y
@@ -203,12 +217,6 @@ cd $HOME
 
 # disable background logo extension
 gnome-extensions disable background-logo@fedorahosted.org
-
-#Enable tap to click (uncomment if you use touch screen)
-#gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-
-#Enable touchpad while typing (uncomment if you use touch screen) 
-#gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false
 
 # add wifi powersave file to deactivate wifi powersave
 # for some reason the commented out code below doesn't work so just gonna use
