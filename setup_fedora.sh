@@ -173,6 +173,7 @@ read $LAPTOP_PROMPT
 if [[ $LAPTOP_PROMPT == "y" || $LAPTOP_PROMPT == "Y" ]]
 then
   sudo dnf install -y tlp
+  sudo systemctl enable tlp
   #Enable tap to click
   gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
   # Enable disable touchpad while typing
@@ -193,6 +194,8 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.z
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
 unzip FiraCode.zip
 unzip JetBrainsMono.zip
+rm -rf FiraCode.zip
+rm -rf JetBrainsMono.zip
 fc-cache -fv
 cd $HOME
 
