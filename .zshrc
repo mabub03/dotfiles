@@ -1,5 +1,6 @@
+# use zprof to profile zsh
 zmodload zsh/zprof
-export ZSH_CUSTOM="/home/mabub03/.oh-my-zsh"
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ======================================================================
 # Lines configured by zsh-newuser-install
@@ -25,16 +26,11 @@ export PATH=$VOLTA_HOME/bin:$PATH
 
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
-export CHROME_EXECUTABLE="/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
-#export CHROME_EXECUTABLE="/usr/bin/microsoft-edge"
+export PATH="$HOME/.local/bin:$PATH"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-#ZSH_THEME="cdimascio-lambda"
-plugins=(git npm zsh-autosuggestions)
-source $ZSH_CUSTOM/oh-my-zsh.sh
-
-alias ls='lsd'
+alias ls='exa --icons'
 
 eval "$(starship init zsh)"
