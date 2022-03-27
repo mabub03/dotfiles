@@ -54,14 +54,15 @@ sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 # rpm fusion free and non free (don't need in fedora 35 just when setting up after install click turn on 3rd party repos button)
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
-# brave
-#sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-#sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+
+# enable google chrome repos
+sudo dnf install fedora-workstation-repositories
+sudo dnf config-manager --set-enabled google-chrome
 
 # microsoft edge beta repos
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
-sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-beta.repo
+sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo
 
 # vscode repos
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -126,8 +127,8 @@ sudo dnf install -y \
   discord \
   python3-pip \
   openssl \
-  microsoft-edge-beta
-  #brave-browser
+  google-chrome-stable \
+  microsoft-edge-stable
 
 # install gnome-boxes from flathub since the one from fedora packages can't load gnome os nightly 
 flatpak install -y flathub \
@@ -226,10 +227,10 @@ gnome-extensions disable background-logo@fedorahosted.org
 # echo messages and hope it works
 #sudo bash -c 'cat > /etc/Networkmanager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
 #[connection]
-#wifi.powersave=2
+#wifi.powersave=3
 #EOF
 sudo echo "[connection]" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
-sudo echo "wifi.powersave = 2" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+sudo echo "wifi.powersave = 3" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
 
 #Randomize MAC address and restart NetworkManager
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/00-macrandomize.conf' <<-'EOF'
@@ -237,7 +238,9 @@ sudo bash -c 'cat > /etc/NetworkManager/conf.d/00-macrandomize.conf' <<-'EOF'
 wifi.scan-rand-mac-address=yes
 
 [connection]
-wifi.cloned-mac-address=random
+# Generate a random MAC for each WiFi and associate the two permanently
+wifi.cloned-mac-address=stable
+# Randomize MAC for every ethernet connection
 ethernet.cloned-mac-address=random
 connection.stable-id=${CONNECTION}/${BOOT}
 EOF
