@@ -31,7 +31,7 @@ sudo bash -c 'cat > /etc/sysctl.d/10-security.conf' <<-'EOF'
 net.core.bpf_jit_harden = 2
 EOF
 
-sudo sysctl --load=/etc/sysctl.d/10-security.conf.conf
+sudo sysctl --load=/etc/sysctl.d/10-security.conf
 
 # blacklist Firewire SBP2
 echo "blacklist firewire-sbp2" | sudo tee /etc/modprobe.d/blacklist.conf
@@ -46,7 +46,7 @@ sudo firewall-cmd --reload
 
 # edit dnf.conf to make it faster and exclude gnome tour so updating doesn't reinstall it
 # maximum of parallel downloads is 20
-sudo echo 'max_parallel_downloads=20' | sudo tee -a /etc/dnf/dnf.conf
+sudo echo 'max_parallel_downloads=15' | sudo tee -a /etc/dnf/dnf.conf
 sudo echo 'fastestmirror=True' | sudo tee -a /etc/dnf/dnf.conf
 sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
 
@@ -72,23 +72,16 @@ sudo dnf update -y
 # Do not have whitespace at the end of the of the lines here or else it won't
 # Remove packages and some of these will be reinstalled with flatpak
 sudo dnf remove -y \
-  gnome-calendar \
   eog \
   evince \
-  gnome-calculator \
-  gnome-clocks \
   gnome-contacts \
   gnome-logs \
   gnome-maps \
   gnome-photos \
   totem \
   cheese \
-  gedit \
   gnome-system-monitor \
-  gnome-weather \
   gnome-yelp \
-  gnome-font-viewer \
-  nano \
   gnome-boxes \
   sassc \
   libsass \
@@ -110,48 +103,37 @@ sudo dnf install -y \
   clang \
   gtk3-devel \
   util-linux-user \
-  bpytop \
   libstdc++-static \
-  foliate \
   neofetch \
   ninja-build \
   timeshift \
   redhat-lsb-core \
-  gnome-shell-extension-user-theme \
-  gnome-shell-extension-appindicator \
   ffmpeg \
   mediainfo \
   cmake \
   code \
   zsh \
-  discord \
   python3-pip \
   openssl \
+  sassc \
   google-chrome-stable \
   microsoft-edge-stable
 
 # install gnome-boxes from flathub since the one from fedora packages can't load gnome os nightly 
 flatpak install -y flathub \
   org.gnome.Boxes \
-  org.gnome.Weather \
   org.videolan.VLC \
-  org.gnome.Calander \
   org.kde.krita \
-  org.gnome.eog \
-  org.gnome.Rythmbox3 \
   org.libreoffice.LibreOffice \
-  org.gnome.Evince \
-  org.gnome.Calculator \
-  org.gnome.clocks \
   org.gnome.Extensions \
-  org.gnome.Evolution \
-  org.kde.kpat \
   org.freedesktop.Piper \
-  org.supertuxproject.SuperTux \
   net.cozic.joplin_desktop \
   com.github.tchx84.Flatseal \
   com.spotify.Client \
   com.bitwarden \
+  com.discordapp.Discord \
+  com.github.johnfactotum.Foliate \
+  com.usebottles.bottles \
   com.jgraph.drawio
   
 echo -n "Do you want to install Nvidia drivers? [y/N]"
@@ -166,11 +148,12 @@ echo -n "Do you want to install Steam and Lutris? [y/N]"
 read GAME_PROMPT
 if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
 then
-  sudo dnf install -y steam lutris wine winetricks
+  # might need to add lutris, wine, and winetricks if bottles isn't enough
+  sudo dnf install -y steam
 fi
 
 echo -n "Do you use a laptop? [y/N]"
-read $LAPTOP_PROMPT
+read LAPTOP_PROMPT
 if [[ $LAPTOP_PROMPT == "y" || $LAPTOP_PROMPT == "Y" ]]
 then
   sudo dnf install -y tlp
@@ -181,7 +164,7 @@ then
   # gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false
 fi
 
-# remove whatever isn't needed to clean up system just incase something got missed
+# remove whatever isn't needed to clean up system just in case something got missed
 flatpak remove --unused
 sudo dnf autoremove -y
 
@@ -200,10 +183,22 @@ rm -rf JetBrainsMono.zip
 fc-cache -fv
 cd $HOME
 
+# install gtk 3 libadwaita theme
+git clone https://github.com/lassekongo83/adw-gtk3.git
+cd adw-gtk3
+meson build
+sudo ninja -C build install
+
 #install volta for a node manager
 curl https://get.volta.sh | bash
 source .bashrc
 volta install node
+
+git clone https://github.com/aristocratos/btop.git
+cd btop
+make
+sudo make install
+cd $HOME
 
 # setup neovim
 source $HOME/dotfiles/setup_nvim.sh
@@ -212,15 +207,34 @@ source $HOME/dotfiles/setup_nvim.sh
 source $HOME/dotfiles/install_jetbrains_toolbox.sh
 
 # Enable GNOME shell extensions
-gsettings set org.gnome.shell disable-user-extensions false
-gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
+cd $HOME
+mkdir gnome-extensions-repos
+cd gnome-extensions-repos
 git clone https://github.com/aunetx/blur-my-shell
 cd blur-my-shell
 make install
+cd $HOME/gnome-extensions-repos
+git clone https://github.com/ubuntu/gnome-shell-extension-appindicator.git
+cd gnome-shell-extension-appindicator
+meson gnome-shell-extension-appindicator /tmp/g-s-appindicators-build
+ninja -C /tmp/g-s-appindicators-build install
+cd $HOME/gnome-extensions-repos
+git clone https://github.com/Aryan20/Logomenu.git
+cd Logomenu
+make install
 cd $HOME
+
+# enable the newly installed gnome extension apps
+gnome-extensions enable blur-my-shell@aunetx
+gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
+gnome-extensions enable logomenu@aryan_k
 
 # disable background logo extension
 gnome-extensions disable background-logo@fedorahosted.org
+
+# setup chrome desktop parameters
+cp /usr/share/applications/google-chrome.desktop ~/.local/share/applications/google-chrome.desktop
+sed -i 's;/usr/bin/google-chrome-stable;/usr/bin/google-chrome-stable --enable-features=WebUIDarkMode,VaapiVideoDecoder,VaapiVideoEncoder,CanvasOopRasterization --disable-gpu-driver-workarounds --use-gl=desktop --force-dark-mode;g' ~/.local/share/applications/google-chrome.desktop
 
 # add wifi powersave file to deactivate wifi powersave
 # for some reason the commented out code below doesn't work so just gonna use
@@ -229,8 +243,12 @@ gnome-extensions disable background-logo@fedorahosted.org
 #[connection]
 #wifi.powersave=3
 #EOF
-sudo echo "[connection]" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
-sudo echo "wifi.powersave = 3" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+#sudo echo "[connection]" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+#sudo echo "wifi.powersave = 3" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+sudo bash -c 'cat > /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
+[connection]
+wifi.powersave=3
+EOF
 
 #Randomize MAC address and restart NetworkManager
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/00-macrandomize.conf' <<-'EOF'
@@ -238,10 +256,8 @@ sudo bash -c 'cat > /etc/NetworkManager/conf.d/00-macrandomize.conf' <<-'EOF'
 wifi.scan-rand-mac-address=yes
 
 [connection]
-# Generate a random MAC for each WiFi and associate the two permanently
 wifi.cloned-mac-address=stable
-# Randomize MAC for every ethernet connection
-ethernet.cloned-mac-address=random
+ethernet.cloned-mac-address=stable
 connection.stable-id=${CONNECTION}/${BOOT}
 EOF
 
