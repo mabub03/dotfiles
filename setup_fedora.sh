@@ -52,6 +52,7 @@ sudo echo 'deltarpm=True' | sudo tee -a /etc/dnf/dnf.conf
 
 # setup repos
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 # rpm fusion free and non free (don't need in fedora 35 just when setting up after install click turn on 3rd party repos button)
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
 
@@ -100,6 +101,7 @@ sudo dnf install -y \
   "@C Development Tools And Libraries" \
   "@Development Tools" \
   "@Development Libraries" \
+  meson \
   clang \
   gtk3-devel \
   util-linux-user \
@@ -116,6 +118,8 @@ sudo dnf install -y \
   python3-pip \
   openssl \
   sassc \
+  yubikey-manager \
+  yubikey-manager-qt \
   google-chrome-stable \
   microsoft-edge-stable
 
@@ -131,9 +135,10 @@ flatpak install -y flathub \
   com.github.tchx84.Flatseal \
   com.spotify.Client \
   com.bitwarden \
-  com.discordapp.Discord \
+  com.discordapp.DiscordCanary \
   com.github.johnfactotum.Foliate \
   com.usebottles.bottles \
+  com.github.maoschanz.drawing \
   com.jgraph.drawio
   
 echo -n "Do you want to install Nvidia drivers? [y/N]"
@@ -224,13 +229,21 @@ cd Logomenu
 make install
 cd $HOME
 
-# enable the newly installed gnome extension apps
-gnome-extensions enable blur-my-shell@aunetx
-gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
-gnome-extensions enable logomenu@aryan_k
-
 # disable background logo extension
 gnome-extensions disable background-logo@fedorahosted.org
+
+# Make Fedora fonts better
+# add a if this file doesn't exist create a symlink block here
+# sudo ln -fs /usr/share/fontconfig/conf.avail/10-autohint.conf /etc/fonts/conf.d
+# sudo ln -fs /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d
+# sudo ln -fs /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d
+gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+gsettings set org.gnome.desktop.interface font-hinting 'slight'
+
+bash -c 'cat > $HOME/.config/gtk-4.0/settings.ini' <<-'EOF'
+[Settings]
+gtk-hint-font-metrics=1
+EOF
 
 # setup chrome desktop parameters
 cp /usr/share/applications/google-chrome.desktop ~/.local/share/applications/google-chrome.desktop
