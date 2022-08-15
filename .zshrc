@@ -1,5 +1,7 @@
 # use zprof to profile zsh
 zmodload zsh/zprof
+# load zsh's built in tetris
+autoload -Uz tetriscurses
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ======================================================================
@@ -32,5 +34,6 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 
 alias ls='exa --icons'
+alias tetris='tetriscurses'
 
 eval "$(starship init zsh)"
