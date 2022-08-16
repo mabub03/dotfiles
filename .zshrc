@@ -25,8 +25,6 @@ export LANG=en_US.UTF-8
 export VOLTA_HOME=$HOME/.volta
 
 export PATH=$VOLTA_HOME/bin:$PATH
-
-export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 

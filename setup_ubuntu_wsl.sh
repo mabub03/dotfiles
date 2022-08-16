@@ -1,3 +1,10 @@
+# add nala repo and key
+echo "deb [arch=amd64,arm64,armhf] http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
+
+# add stable neovim repo since ubuntu base repos are behind usually
+sudo add-apt-repository ppa:neovim-ppa/stable
+
 sudo apt update && sudo apt upgrade
 # if on nvidia install nvidia drivers also
 sudo apt install build-essential \
@@ -15,6 +22,8 @@ sudo apt install build-essential \
   libgtk-3-dev\
   python-dev \
   python3-dev \
+  neovim \
+  nala
 
 curl https://get.volta.sh | bash
 # install volta stable node with 
@@ -22,12 +31,11 @@ volta install node
 # install latest node with 
 # volta install node@latest
 
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-sudo cp nvim.appimage /usr/bin/nvim
-sudo chmod +777 /usr/bin/nvim
-
 # sql lsp server gave issues
 $HOME/dotfiles/setup_nvim.sh
+
+sudo nala fetch
+echo "load the setup zsh script if you want to use zsh"
 
 # install lamp
 # sudo apt install apache2 \
@@ -56,9 +64,7 @@ $HOME/dotfiles/setup_nvim.sh
 
 #sudo mysql_secure_installation
 
-echo "load the setup zsh script if you want to use zsh"
-
-# IMPORTANT INFORMATION
+# ======= IMPORTANT INFORMATION =======
 # to use root account in phpmyadmin:
 # sudo mysql
 # USE mysql;

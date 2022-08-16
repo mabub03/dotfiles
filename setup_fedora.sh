@@ -90,6 +90,7 @@ sudo dnf remove -y \
   libreoffice-writer \
   libreoffice-calc \
   libreoffice-impress \
+  firefox \
   abrt
 
 # Install packages 
@@ -127,20 +128,25 @@ sudo dnf install -y \
 flatpak install -y flathub \
   org.gnome.Boxes \
   org.videolan.VLC \
-  org.kde.krita \
   org.libreoffice.LibreOffice \
   org.gnome.Extensions \
   org.freedesktop.Piper \
-  net.cozic.joplin_desktop \
   com.github.tchx84.Flatseal \
   com.spotify.Client \
   com.bitwarden \
-  com.discordapp.DiscordCanary \
   com.github.johnfactotum.Foliate \
   com.usebottles.bottles \
   com.github.maoschanz.drawing \
-  com.jgraph.drawio
-  
+  org.freedesktop.Platform.ffmpeg-full \
+  org.mozilla.firefox \
+  org.mozilla.Thunderbird
+
+flatpak install -y flathub-beta com.discordapp.DiscordCanary
+
+# enable firefox and thunderbird to use wayland
+flatpak --user override --socket=wayland --env=MOZ_ENABLE_WAYLAND=1 --device=dri --filesystem=xdg-run/pipewire-0 org.mozilla.firefox
+flatpak --user override --socket=wayland --env=MOZ_ENABLE_WAYLAND=1 --device=all --device=dri dri org.mozilla.Thunderbird
+
 echo -n "Do you want to install Nvidia drivers? [y/N]"
 read NVIDIA_PROMPT
 if [[ $NVIDIA_PROMPT == "y" || $NVIDIA_PROMPT == "Y" ]]
@@ -234,9 +240,9 @@ gnome-extensions disable background-logo@fedorahosted.org
 
 # Make Fedora fonts better
 # add a if this file doesn't exist create a symlink block here
-# sudo ln -fs /usr/share/fontconfig/conf.avail/10-autohint.conf /etc/fonts/conf.d
-# sudo ln -fs /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d
-# sudo ln -fs /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d
+sudo ln -fs /usr/share/fontconfig/conf.avail/10-autohint.conf /etc/fonts/conf.d
+sudo ln -fs /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d
+sudo ln -fs /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d
 gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
 gsettings set org.gnome.desktop.interface font-hinting 'slight'
 
