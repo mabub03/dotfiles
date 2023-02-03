@@ -40,7 +40,7 @@ echo "blacklist firewire-sbp2" | sudo tee /etc/modprobe.d/blacklist.conf
 sudo firewall-cmd --permanent --remove-port=1025-65535/udp
 sudo firewall-cmd --permanent --remove-port=1025-65535/tcp
 sudo firewall-cmd --permanent --remove-service=mdns
-sudo firewall-cmd --permanent --remove-service=ssh
+#sudo firewall-cmd --permanent --remove-service=ssh
 sudo firewall-cmd --permanent --remove-service=samba-client
 sudo firewall-cmd --reload
 
@@ -57,13 +57,17 @@ sudo flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-re
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 
 
 # enable google chrome repos
-sudo dnf install fedora-workstation-repositories
-sudo dnf config-manager --set-enabled google-chrome
+#sudo dnf install fedora-workstation-repositories
+#sudo dnf config-manager --set-enabled google-chrome
 
 # microsoft edge beta repos
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
-sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo
+#sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+#sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
+#sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo
+
+# brave repos
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
 # vscode repos
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -121,13 +125,13 @@ sudo dnf install -y \
   sassc \
   yubikey-manager \
   yubikey-manager-qt \
-  google-chrome-stable \
-  microsoft-edge-stable
+  brave-browser
+#  google-chrome-stable \
+#  microsoft-edge-stable
 
 # install gnome-boxes from flathub since the one from fedora packages can't load gnome os nightly 
 flatpak install -y flathub \
   org.gnome.Boxes \
-  org.videolan.VLC \
   org.libreoffice.LibreOffice \
   org.gnome.Extensions \
   org.freedesktop.Piper \
@@ -139,7 +143,8 @@ flatpak install -y flathub \
   com.github.maoschanz.drawing \
   org.freedesktop.Platform.ffmpeg-full \
   org.mozilla.firefox \
-  org.mozilla.Thunderbird
+  org.mozilla.Thunderbird \
+  com.github.rafostar.Clapper
 
 flatpak install -y flathub-beta com.discordapp.DiscordCanary
 
@@ -229,10 +234,6 @@ git clone https://github.com/ubuntu/gnome-shell-extension-appindicator.git
 cd gnome-shell-extension-appindicator
 meson gnome-shell-extension-appindicator /tmp/g-s-appindicators-build
 ninja -C /tmp/g-s-appindicators-build install
-cd $HOME/gnome-extensions-repos
-git clone https://github.com/Aryan20/Logomenu.git
-cd Logomenu
-make install
 cd $HOME
 
 # disable background logo extension
@@ -252,35 +253,27 @@ gtk-hint-font-metrics=1
 EOF
 
 # setup chrome desktop parameters
-cp /usr/share/applications/google-chrome.desktop ~/.local/share/applications/google-chrome.desktop
-sed -i 's;/usr/bin/google-chrome-stable;/usr/bin/google-chrome-stable --enable-features=WebUIDarkMode,VaapiVideoDecoder,VaapiVideoEncoder,CanvasOopRasterization --disable-gpu-driver-workarounds --use-gl=desktop --force-dark-mode;g' ~/.local/share/applications/google-chrome.desktop
+#cp /usr/share/applications/google-chrome.desktop ~/.local/share/applications/google-chrome.desktop
+#sed -i 's;/usr/bin/google-chrome-stable;/usr/bin/google-chrome-stable --enable-features=WebUIDarkMode,VaapiVideoDecoder,VaapiVideoEncoder,CanvasOopRasterization --disable-gpu-driver-workarounds --use-gl=desktop --force-dark-mode;g' ~/.local/share/applications/google-chrome.desktop
 
 # add wifi powersave file to deactivate wifi powersave
-# for some reason the commented out code below doesn't work so just gonna use
-# echo messages and hope it works
-#sudo bash -c 'cat > /etc/Networkmanager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
-#[connection]
-#wifi.powersave=3
-#EOF
-#sudo echo "[connection]" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
-#sudo echo "wifi.powersave = 3" >> /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
 [connection]
 wifi.powersave=3
 EOF
 
 #Randomize MAC address and restart NetworkManager
-sudo bash -c 'cat > /etc/NetworkManager/conf.d/00-macrandomize.conf' <<-'EOF'
-[device]
-wifi.scan-rand-mac-address=yes
+#sudo bash -c 'cat > /etc/NetworkManager/conf.d/00-macrandomize.conf' <<-'EOF'
+#[device]
+#wifi.scan-rand-mac-address=yes
 
-[connection]
-wifi.cloned-mac-address=stable
-ethernet.cloned-mac-address=stable
-connection.stable-id=${CONNECTION}/${BOOT}
-EOF
+#[connection]
+#wifi.cloned-mac-address=stable
+#ethernet.cloned-mac-address=stable
+#connection.stable-id=${CONNECTION}/${BOOT}
+#EOF
 
-sudo systemctl restart NetworkManager
+#sudo systemctl restart NetworkManager
 
 echo "Setup script has finished running"
 echo "Restart your computer now for changes to take effect"
