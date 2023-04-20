@@ -80,7 +80,6 @@ sudo dnf remove -y \
   konversation \
   gnome-abrt \
   abrt \
-  pimdataexporter \
   kamoso \
   kmouth \
   kmousetool \
@@ -97,9 +96,10 @@ sudo dnf remove -y \
 # remove akonadi
 sudo dnf remove -y \*akonadi\*
 
+# in vm ffmpeg gave error due to conflicts with libswscale-free
+# due to not wanting to bother with this just gonna also install vlc as a flatpak
 sudo dnf install -y \
   kate \
-  vlc \
   neovim \
   "@C Development Tools And Libraries" \
   "@Development Tools" \
@@ -112,7 +112,6 @@ sudo dnf install -y \
   ninja-build \
   timeshift \
   redhat-lsb-core \
-  ffmpeg \
   mediainfo \
   cmake \
   code \
@@ -131,6 +130,7 @@ flatpak install -y flathub \
   org.freedesktop.Platform.ffmpeg-full \
   org.mozilla.firefox \
   org.mozilla.Thunderbird \
+  org.videolan.VLC
   com.brave.Browser
 
 flatpak install -y flathub-beta com.discordapp.DiscordCanary
@@ -208,7 +208,7 @@ fc-cache -Ev
 cp -r $HOME/dotfiles/.config/btop $HOME/.config/btop
 cp -r $HOME/dotfiles/.config/gtk-3.0 $HOME/.config/gtk-3.0
 cp -r $HOME/dotfiles/.config/gtk-4.0 $HOME/.config/gtk-4.0
-cp -r $HOME/dotfiles/.config/vlc $HOME/.config/vlc
+cp -r $HOME/dotfiles/.config/vlc $HOME/.var/app/org.videolan.VLC/config/vlc
 
 # remove akonadi files
 rm -rf $HOME/.config/akonadi
