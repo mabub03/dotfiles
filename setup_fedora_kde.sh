@@ -2,6 +2,7 @@
 
 # Remove comment if you only want split clock and not full fluent and remove the git links below
 #PLASMOIDS_DIR="$HOME/.local/share/plasma/plasmoids"
+VLC_CONFIG_DIR="$HOME/.var/app/org.videolan.VLC/config"
 
 # disable ptrace
 sudo cp /usr/lib/sysctl.d/10-default-yama-scope.conf /etc/sysctl.d/
@@ -130,7 +131,7 @@ flatpak install -y flathub \
   org.freedesktop.Platform.ffmpeg-full \
   org.mozilla.firefox \
   org.mozilla.Thunderbird \
-  org.videolan.VLC
+  org.videolan.VLC \
   com.brave.Browser
 
 flatpak install -y flathub-beta com.discordapp.DiscordCanary
@@ -138,7 +139,6 @@ flatpak install -y flathub-beta com.discordapp.DiscordCanary
 # enable firefox and thunderbird to use wayland
 flatpak --user override --socket=wayland --env=MOZ_ENABLE_WAYLAND=1 --device=dri --filesystem=xdg-run/pipewire-0 org.mozilla.firefox
 flatpak --user override --socket=wayland --env=MOZ_ENABLE_WAYLAND=1 --device=all --device=dri dri org.mozilla.Thunderbird
-flatpak --user override --socket=wayland com.brave.Browser
 
 echo -n "Do you want to install Nvidia drivers? [y/N]"
 read NVIDIA_PROMPT
@@ -204,11 +204,13 @@ cp $HOME/dotfiles/.config/fontconfig/fonts.conf .config/fontconfig/fonts.conf
 cp $HOME/dotfiles/.Xresources $HOME/.Xresources
 fc-cache -Ev
 
+[[ ! -d ${VLC_CONFIG_DIR} ]] && mkdir -p ${VLC_CONFIG_DIR}
+
 # Move .config items
 cp -r $HOME/dotfiles/.config/btop $HOME/.config/btop
 cp -r $HOME/dotfiles/.config/gtk-3.0 $HOME/.config/gtk-3.0
 cp -r $HOME/dotfiles/.config/gtk-4.0 $HOME/.config/gtk-4.0
-cp -r $HOME/dotfiles/.config/vlc $HOME/.var/app/org.videolan.VLC/config/vlc
+cp -r $HOME/dotfiles/.config/vlc ${VLC_CONFIG_DIR}
 
 # remove akonadi files
 rm -rf $HOME/.config/akonadi
