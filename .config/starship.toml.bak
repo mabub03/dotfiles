@@ -52,9 +52,9 @@ symbol = "ﴃ "
 style = "blue bold"
 
 [character]
-success_symbol = "[󰘧](green bold)"
-error_symbol = "[󰘧](red)"
-vicmd_symbol = "[󰘧](purple)"
+success_symbol = "[ﬦ](green bold)"
+error_symbol = "[ﬦ](red)"
+vicmd_symbol = "[ﬦ](purple)"
 
 [cmd_duration]
 format = "[$duration]($style) "
@@ -76,7 +76,7 @@ symbol = " "
 style = "blue bold"
 
 [directory]
-read_only = "  "
+read_only = " "
 style = "green bold"
 
 [docker_context]
@@ -154,7 +154,7 @@ symbol = " "
 style = "blue bold"
 
 [memory_usage]
-symbol = "󰍛 "
+symbol = " "
 
 [nim]
 format = "[$symbol$version]($style)"
@@ -172,7 +172,7 @@ symbol = " "
 style = "green bold"
 
 [package]
-symbol = "󰏗 "
+symbol = " "
 
 [perl]
 format = "[$symbol$version]($style)"

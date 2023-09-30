@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Remove comment if you only want split clock and not full fluent and remove the git links below
-#PLASMOIDS_DIR="$HOME/.local/share/plasma/plasmoids"
+PLASMOIDS_DIR="$HOME/.local/share/plasma/plasmoids"
 VLC_CONFIG_DIR="$HOME/.var/app/org.videolan.VLC/config"
 
 # disable ptrace
@@ -155,7 +155,7 @@ if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
 then
   # might need to add lutris, wine, and winetricks if bottles isn't enough
   # add steam to dnf install if flatpak version isn't good enough
-  sudo dnf install -y gamemode
+  sudo dnf install -y gamemode steam-devices
   flatpak install flathub com.valvesoftware.Steam
 fi
 
@@ -198,12 +198,13 @@ sudo ln -fs /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/co
 sudo ln -fs /usr/share/fontconfig/conf.avail/10-hinting-slight.conf /etc/fonts/conf.d/
 sudo ln -fs /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 sudo ln -fs /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
-cp $HOME/dotfiles/.config/fontconfig/fonts.conf .config/fontconfig/fonts.conf
+cp $HOME/dotfiles/.config/fontconfig/fonts.conf $HOME/.config/fontconfig/fonts.conf
 # move x resources to the proper place
 # remove when x is no longer used
 cp $HOME/dotfiles/.Xresources $HOME/.Xresources
 fc-cache -Ev
 
+# have to make config dir manually due to flatpak apps config dir don't get created until first launch
 [[ ! -d ${VLC_CONFIG_DIR} ]] && mkdir -p ${VLC_CONFIG_DIR}
 
 # Move .config items
@@ -214,10 +215,15 @@ cp -r $HOME/dotfiles/.config/vlc ${VLC_CONFIG_DIR}
 
 # remove akonadi files
 rm -rf $HOME/.config/akonadi
+rm -rf $HOME/.config/Unknown\ Organization
 rm -rf $HOME/.local/share/akonadi
 rm -rf $HOME/.local/share/akonadi_migration_agent
 
-#[[ ! -d ${PLASMOIDS_DIR} ]] && mkdir -p ${PLASMOIDS_DIR}
+# install and hopefully setup eventcalendar widget
+[[ ! -d ${PLASMOIDS_DIR} ]] && mkdir -p ${PLASMOIDS_DIR}
+git clone https://github.com/Zren/plasma-applet-eventcalendar.git
+cd plasma-applet-eventcalendar
+sh ./install
 #git clone https://github.com/vinceliuice/Fluent-kde.git
 #cp -r Fluent-kde/plasma/plasmoids/org.kde.plasma.splitdigitalclock ${PLASMOIDS_DIR}
 #rm -rf Fluent-kde
