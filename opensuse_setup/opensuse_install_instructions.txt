@@ -42,6 +42,7 @@ Minimal Appliance Base:
   openSUSE-release
   patterns-base-minimal_base
 misc (use search):
+  xwaylandvideobridge
   kde-connect
   discover-notifier
   suse-prime (if on laptop or anything that uses optimus)
