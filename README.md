@@ -1,2 +1,2 @@
-All my dotfiles so I don't lose them and can easily put them on different machines.
-This needs big reorganization done in the future and a overhaul
+Redone my dotfiles in hopefully a more organized way that says organized!!!
+No promises on that though.
