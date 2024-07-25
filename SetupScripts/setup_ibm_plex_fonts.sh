@@ -19,6 +19,7 @@ mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-Thai
 mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-Thai-Looped
 mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-Variable
 mkdir $HOME/.local/share/fonts/IBM-Plex-Serif
+mkdir $HOME/.local/share/fonts/IBM-Plex-Math
 
 
 #copy the extracted otf of each font variant to $HOME/.local/share/fonts
@@ -37,12 +38,14 @@ cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-Thai-Looped/fonts/complete/otf/* $HO
 cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-Variable/fonts/complete/ttf/* $HOME/.local/share/fonts/IBM-Plex-Sans-Variable
 cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Serif/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Serif
 
-# until next font version that adds in chinese fonts gotta get them from master
-# TODO: remove this block and add the tc and future sc fonts from latest release instead like done above
+# until next font version that adds in chinese and math fonts gotta get them from master
+# TODO: remove this block and add the math, tc, and future sc fonts from latest release instead like done above
 cd $HOME/Downloads
 git clone https://github.com/IBM/plex.git
 cp -r plex/packages/plex-sans-tc/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Sans-TC
+cp plex/packages/plex-math/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Math
 rm -rf $HOME/Downloads/plex
+
 
 # reset the font cache
 fc-cache -fv
