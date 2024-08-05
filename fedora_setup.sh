@@ -49,6 +49,7 @@ sudo dnf in -y git \
   google-crosextra-caladea-fonts \
   google-carlito-fonts \
   gnome-shell-extension-appindicator \
+  adw-gtk3-theme\
   microsoft-edge-stable
  
 # delete fedora default flathub remote since i don't like system wide flatpak since screw passwords and add --user version
@@ -70,8 +71,6 @@ flatpak install org.gtk.Gtk3theme.adw-gtk3 \
 	com.github.tchx84.Flatseal \
 	com.github.wwmm.easyeffects \
 	org.freedesktop.Platform.ffmpeg-full
-
-sudo dnf install adw-gtk3
 
 if [[ $NVIDIA_PROMPT == "y" || $NVIDIA_PROMPT == "Y" ]]
 then
