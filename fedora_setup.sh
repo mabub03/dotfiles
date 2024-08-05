@@ -30,7 +30,7 @@ sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.m
 sudo dnf up -y
 
 # remove certain things that i don't want or wouldn't work well via package manager compared to flatpak (like gnome-boxes)
-sudo dnf rm gnome-boxes 
+sudo dnf rm -y gnome-boxes 
 
 # install general things
 # on nvidia so video codecs don't matter too much (especially since video apps except browser are via flatpak) 
@@ -49,11 +49,12 @@ sudo dnf in -y git \
   google-crosextra-caladea-fonts \
   google-carlito-fonts \
   gnome-shell-extension-appindicator \
-  adw-gtk3-theme\
+  adw-gtk3-theme \
+  v4l2loopback \
   microsoft-edge-stable
  
 # delete fedora default flathub remote since i don't like system wide flatpak since screw passwords and add --user version
-flatpak remote-delete fedora
+sudo flatpak remote-delete fedora
 flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # install general flatpak apps
@@ -105,21 +106,21 @@ curl -sS https://starship.rs/install.sh | sh
 git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
 
 # install and set up ibm plex sans and mono fonts as default
-source $HOME/dotfiles/setup_ibm_plex_fonts.sh
+source $HOME/dotfiles/SetupScripts/setup_ibm_plex_fonts.sh
 # install and set up ocean sounds as default sounds
-source $HOME/dotfiles/setup_ocean_sounds.sh
+source $HOME/dotfiles/SetupScripts/setup_ocean_sounds.sh
 # install and setup phinger cursor as default cursor
-source $HOME/dotfiles/setup_phinger_cursor.sh
+source $HOME/dotfiles/SetupScripts/setup_phinger_cursor.sh
 
 # copy templates from dotfiles to $HOME/Templates
-source $HOME/dotfiles/setup_scripts/setup_templates.sh
+source $HOME/dotfiles/SetupScripts/setup_templates.sh
 
 # copy things from dotfiles .config to $HOME/.config
 # maybe replace with symlink idk
-source $HOME/dotfiles/setup_scripts/setup_configs.sh
+source $HOME/dotfiles/SetupScripts/setup_configs.sh
 
 # setup gnome via gsettings and disable background-logo extension
-source $HOME/dotfiles/setup_gnome_settings.sh
+source $HOME/dotfiles/SetupScripts/setup_gnome_settings.sh
 
 # add wifi powersave file to deactivate wifi powersave
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
