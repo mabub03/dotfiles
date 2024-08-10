@@ -55,6 +55,6 @@ rm -rf $HOME/Downloads/v6.4.1.zip
 rm -rf $HOME/Downloads/plex-6.4.1
 
 # set the default font to IBM Plex Sans and Mono in gnome
-gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans 11'
-gsettings set org.gnome.desktop.interface monospace-font-name 'IBM Plex Mono 11'
-gsettings set org.gnome.desktop.interface document-font-name 'IBM Plex Sans 11'
+#gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans 11'
+#gsettings set org.gnome.desktop.interface monospace-font-name 'IBM Plex Mono 11'
+#gsettings set org.gnome.desktop.interface document-font-name 'IBM Plex Sans 11'
