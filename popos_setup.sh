@@ -65,6 +65,8 @@ then
     steam-devices
   
   flatpak install flathub com.valvesoftware.Steam
+  
+  mkdir $HOME/Games
 fi
 
 #if [[ $LAPTOP_PROMPT == "y" || $LAPTOP_PROMPT == "Y" ]]
@@ -90,6 +92,7 @@ cp $HOME/dotfiles/BackedUpFiles/.zshrc $HOME/.zshrc
 # move user config things
 cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fontconfig $HOME/.config/
+cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
 
 # install and set up ibm plex sans and mono fonts as default
 source $HOME/dotfiles/SetupScripts/setup_ibm_plex_fonts.sh

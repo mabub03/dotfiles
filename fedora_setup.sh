@@ -84,6 +84,8 @@ then
     steam-devices
   
   flatpak install flathub com.valvesoftware.Steam
+  
+  mkdir $HOME/Games
 fi
 
 if [[ $LAPTOP_PROMPT == "y" || $LAPTOP_PROMPT == "Y" ]]
