@@ -3,6 +3,7 @@ Some(([
 ], [
     "com.system76.CosmicAppletStatusArea",
     "com.system76.CosmicAppletTiling",
+    "io.github.wiiznokes.cosmic-ext-applet-clipboard-manager",
     "com.system76.CosmicAppletAudio",
     "com.system76.CosmicAppletNetwork",
     "com.system76.CosmicAppletBattery",

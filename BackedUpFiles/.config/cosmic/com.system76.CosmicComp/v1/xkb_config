@@ -1,6 +1,6 @@
 (
     rules: "",
-    model: "",
+    model: "pc105",
     layout: "us",
     variant: "",
     options: None,

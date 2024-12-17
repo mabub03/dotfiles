@@ -49,19 +49,19 @@ flatpak install org.gtk.Gtk3theme.adw-gtk3 \
   org.gnome.Loupe \
   com.github.rafostar.Clapper \
   com.obsproject.Studio \
-	com.obsproject.Studio.Plugin.Gstreamer \
-	com.spotify.Client \
-	dev.vencord.Vesktop \
-	org.freedesktop.Platform \
-	md.obsidian.Obsidian \
-	org.gnome.Boxes \
-	com.github.tchx84.Flatseal \
-	com.github.wwmm.easyeffects \
-	org.freedesktop.Platform.ffmpeg-full
+  com.obsproject.Studio.Plugin.Gstreamer \
+  com.spotify.Client \
+  dev.vencord.Vesktop \
+  org.freedesktop.Platform \
+  md.obsidian.Obsidian \
+  org.gnome.Boxes \
+  com.github.tchx84.Flatseal \
+  com.github.wwmm.easyeffects \
+  org.freedesktop.Platform.ffmpeg-full
 
 if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
 then
-  sudo dnf in -y gamemode \
+  sudo apt in -y gamemode \
     steam-devices
   
   flatpak install flathub com.valvesoftware.Steam
@@ -92,6 +92,7 @@ cp $HOME/dotfiles/BackedUpFiles/.zshrc $HOME/.zshrc
 # move user config things
 cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fontconfig $HOME/.config/
+cp $HOME/dotfiles/BackedUpFiles/Metaphor-ReFantazio_02_upscayl_2x_realesrgan-x4plus-anime.png $HOME/Pictures
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
 
 # install and set up ibm plex sans and mono fonts as default
