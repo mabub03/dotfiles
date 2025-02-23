@@ -30,7 +30,7 @@ sudo apt remove eog \
 # on nvidia so video codecs don't matter too much (especially since video apps except browser are via flatpak) 
 # so unsure about adding in ffmpeg-full and other codecs here right now, maybe if I do a non nvidia version
 sudo apt install -y git \
-  zsh \
+  fish \
   eza \
   curl \
   wget \
@@ -42,6 +42,9 @@ sudo apt install -y git \
   v4l2loopback-utils \
   v4l2loopback-dkms
 
+# install brave with the one command installer (see if it works and keep if it does to have less stuff in this file)  
+curl -fsS https://dl.brave.com/install.sh | sh
+
 # install general flatpak apps
 flatpak install org.gtk.Gtk3theme.adw-gtk3 \
   org.gtk.Gtk3theme.adw-gtk3-dark \
@@ -51,22 +54,25 @@ flatpak install org.gtk.Gtk3theme.adw-gtk3 \
   com.obsproject.Studio \
   com.obsproject.Studio.Plugin.Gstreamer \
   com.spotify.Client \
-  dev.vencord.Vesktop \
+  com.discordapp.Discord \
   org.freedesktop.Platform \
   md.obsidian.Obsidian \
   org.gnome.Boxes \
   com.github.tchx84.Flatseal \
   com.github.wwmm.easyeffects \
+  com.dec05eba.gpu_screen_recorder \
+  dev.edfloreshz.Calculator \
   org.freedesktop.Platform.ffmpeg-full
 
 if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
 then
   sudo apt in -y gamemode \
-    steam-devices
+    steam-devices \
+    steam
   
-  flatpak install flathub com.valvesoftware.Steam
+  #flatpak install flathub com.valvesoftware.Steam
   
-  mkdir $HOME/Games
+  #mkdir $HOME/Games
 fi
 
 #if [[ $LAPTOP_PROMPT == "y" || $LAPTOP_PROMPT == "Y" ]]
@@ -84,19 +90,21 @@ fi
 git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_USERNAME"
 
+# install and set up ibm plex sans and mono fonts as default
+source $HOME/dotfiles/SetupScripts/setup_ibm_plex_fonts.sh
+
+# moved to fish so just commented out incase i go back to zsh
 # setup zsh dependencies and setup_configs.sh will move .zsh and related files where they need to be
-curl -sS https://starship.rs/install.sh | sh
-git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
-cp $HOME/dotfiles/BackedUpFiles/.zshrc $HOME/.zshrc
+#curl -sS https://starship.rs/install.sh | sh
+#git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
+#cp $HOME/dotfiles/BackedUpFiles/.zshrc $HOME/.zshrc
 
 # move user config things
-cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
+#cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
+cp -r $HOME/dotfiles/BackedUpFiles/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fontconfig $HOME/.config/
 cp $HOME/dotfiles/BackedUpFiles/Metaphor-ReFantazio_02_upscayl_2x_realesrgan-x4plus-anime.png $HOME/Pictures
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
-
-# install and set up ibm plex sans and mono fonts as default
-source $HOME/dotfiles/SetupScripts/setup_ibm_plex_fonts.sh
 
 # install and set up ocean sounds as default sounds
 # source $HOME/dotfiles/SetupScripts/setup_ocean_sounds.sh

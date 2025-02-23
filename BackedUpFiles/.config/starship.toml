@@ -52,9 +52,9 @@ symbol = "ﴃ "
 style = "blue bold"
 
 [character]
-success_symbol = "[󰘧](green bold)"
-error_symbol = "[󰘧](red)"
-vicmd_symbol = "[󰘧](purple)"
+success_symbol = "[\u03BB](green bold)"
+error_symbol = "[\u03BB](red)"
+vicmd_symbol = "[\u03BB](purple)"
 
 [cmd_duration]
 format = "[$duration]($style) "

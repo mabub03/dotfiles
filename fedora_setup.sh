@@ -61,19 +61,21 @@ flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/fl
 
 # install general flatpak apps
 flatpak install org.gtk.Gtk3theme.adw-gtk3 \
-	org.gtk.Gtk3theme.adw-gtk3-dark \
-	com.github.johnfactotum.Foliate \
-	com.github.rafostar.Clapper \
-	com.mattjakeman.ExtensionManager \
-	com.obsproject.Studio.Plugin.Gstreamer \
-	com.spotify.Client \
-	dev.vencord.Vesktop \
-	org.freedesktop.Platform \
-	md.obsidian.Obsidian \
-	org.gnome.Boxes \
-	com.github.tchx84.Flatseal \
-	com.github.wwmm.easyeffects \
-	org.freedesktop.Platform.ffmpeg-full
+  org.gtk.Gtk3theme.adw-gtk3-dark \
+  com.github.johnfactotum.Foliate \
+  org.gnome.Loupe \
+  com.github.rafostar.Clapper \
+  com.obsproject.Studio \
+  com.obsproject.Studio.Plugin.Gstreamer \
+  com.spotify.Client \
+  com.discordapp.Discord \
+  org.freedesktop.Platform \
+  md.obsidian.Obsidian \
+  org.gnome.Boxes \
+  com.github.tchx84.Flatseal \
+  com.github.wwmm.easyeffects \
+  com.dec05eba.gpu_screen_recorder \
+  org.freedesktop.Platform.ffmpeg-full
 
 if [[ $NVIDIA_PROMPT == "y" || $NVIDIA_PROMPT == "Y" ]]
 then
