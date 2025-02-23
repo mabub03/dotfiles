@@ -17,7 +17,7 @@ read GIT_USERNAME
 # https://www.reddit.com/r/Ubuntu/comments/1bje80b/weird_apt_problem/
 # vscode repos
 
-# update fedora
+# update pop os
 sudo apt update && sudo apt upgrade -y
 
 # remove certain things that i don't want or wouldn't work well via package manager compared to flatpak (like gnome-boxes)
@@ -44,6 +44,10 @@ sudo apt install -y git \
 
 # install brave with the one command installer (see if it works and keep if it does to have less stuff in this file)  
 curl -fsS https://dl.brave.com/install.sh | sh
+
+# bottom command is for system flathub while override --user is for user flathub which pop uses
+#sudo flatpak override --socket=wayland
+flatpak override --user --socket=wayland
 
 # install general flatpak apps
 flatpak install org.gtk.Gtk3theme.adw-gtk3 \

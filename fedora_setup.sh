@@ -58,6 +58,9 @@ sudo dnf in -y git \
 # delete fedora default flathub remote since i don't like system wide flatpak since screw passwords and add --user version
 sudo flatpak remote-delete fedora
 flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# bottom command is for system flathub while override --user is for user flathub which i use
+#sudo flatpak override --socket=wayland
+flatpak override --user --socket=wayland
 
 # install general flatpak apps
 flatpak install org.gtk.Gtk3theme.adw-gtk3 \
