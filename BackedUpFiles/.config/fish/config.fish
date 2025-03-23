@@ -5,7 +5,7 @@ if status is-interactive
 
     set -U fish_user_paths /home/toasty/.cargo/bin $fish_user_paths
 
-    source ~/.asdf/asdf.fish
+    #source ~/.asdf/asdf.fish
 
     # set -g __fish_git_prompt_show_informative_status 1
     # set -g __fish_git_prompt_hide_untrackedfiles 1
