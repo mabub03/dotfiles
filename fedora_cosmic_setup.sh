@@ -25,7 +25,7 @@ sudo dnf in -y git \
   fish \
   make \
   gcc \
-  eza \
+  just \
   curl \
   wget \
   btop \
@@ -90,6 +90,8 @@ fi
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source .bashrc
 
+cargo install eza
+
 # install cosmic apps shown from cosmic-utils git repo
 mkdir $HOME/CosmicApps
 
@@ -131,13 +133,13 @@ git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_USERNAME"
 
 # setup fish dependencies and fish itself
-curl -sS https://starship.rs/install.sh | sh
+# curl -sS https://starship.rs/install.sh | sh
 
 # install and set up ibm plex sans and mono fonts as default
 source $HOME/dotfiles/SetupScripts/setup_ibm_plex_fonts.sh
 
 # copy things from dotfiles .config to $HOME/.config
-cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
+# cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fontconfig $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
