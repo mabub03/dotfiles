@@ -17,7 +17,7 @@ read GIT_USERNAME
 # rpm fusion free and non free (sadly still need since fedora 35+ doesn't include the full rpm fusion repos just a couple packages from it)
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-sudo dnf rm @cosmic-desktop-apps
+sudo dnf rm -y @cosmic-desktop-apps
 
 sudo dnf up -y
 
@@ -45,11 +45,11 @@ curl -f https://zed.dev/install.sh | sh
   
 # delete fedora default flatpak repo and add flathub
 sudo flatpak remote-delete fedora
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/
-flatpak override --socket=wayland
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sudo flatpak override --socket=wayland
 
 # install general flatpak apps
-flatpak install org.gtk.Gtk3theme.adw-gtk3 \
+flatpak install flathub org.gtk.Gtk3theme.adw-gtk3 \
   org.gtk.Gtk3theme.adw-gtk3-dark \
   com.github.johnfactotum.Foliate \
   org.gnome.Loupe \
@@ -88,7 +88,7 @@ fi
 #fi
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-exec bash
+source .bashrc
 
 # install cosmic apps shown from cosmic-utils git repo
 mkdir $HOME/CosmicApps
