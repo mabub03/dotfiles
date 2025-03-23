@@ -1,1 +1,0 @@
-/home/toasty/.asdf/completions/asdf.fish

@@ -1,0 +1,26 @@
+[
+    (
+        name: "Application opened",
+        kind: System,
+        path: "/home/toasty/.var/app/dev.edfloreshz.CosmicTweaks/data/dev.edfloreshz.CosmicTweaks/snapshots/Application opened.ron",
+        created: "2025-02-23T00:18:03.473284719",
+    ),
+    (
+        name: "Application opened",
+        kind: System,
+        path: "/home/toasty/.var/app/dev.edfloreshz.CosmicTweaks/data/dev.edfloreshz.CosmicTweaks/snapshots/Application opened.ron",
+        created: "2025-02-22T08:01:55.454586439",
+    ),
+    (
+        name: "Application opened",
+        kind: System,
+        path: "/home/toasty/.var/app/dev.edfloreshz.CosmicTweaks/data/dev.edfloreshz.CosmicTweaks/snapshots/Application opened.ron",
+        created: "2025-02-22T07:59:30.223365435",
+    ),
+    (
+        name: "Application opened",
+        kind: System,
+        path: "/home/toasty/.var/app/dev.edfloreshz.CosmicTweaks/data/dev.edfloreshz.CosmicTweaks/snapshots/Application opened.ron",
+        created: "2025-02-14T06:19:11.012887269",
+    ),
+]

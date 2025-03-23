@@ -35,6 +35,8 @@ sudo apt install -y git \
   curl \
   wget \
   btop \
+  build-essential \
+  ubuntu-restricted-extras \
   fonts-croscore \
   fonts-crosextra-caladea \
   fonts-crosextra-carlito \
@@ -45,7 +47,7 @@ sudo apt install -y git \
 # install brave with the one command installer (see if it works and keep if it does to have less stuff in this file)  
 curl -fsS https://dl.brave.com/install.sh | sh
 
-# bottom command is for system flathub while override --user is for user flathub which pop uses
+# bottom command is for system flatpak repos while override --user is for user flatpak repos which pop uses
 #sudo flatpak override --socket=wayland
 flatpak override --user --socket=wayland
 
@@ -66,6 +68,7 @@ flatpak install org.gtk.Gtk3theme.adw-gtk3 \
   com.github.wwmm.easyeffects \
   com.dec05eba.gpu_screen_recorder \
   dev.edfloreshz.Calculator \
+  flatpak install io.missioncenter.MissionCenter \
   org.freedesktop.Platform.ffmpeg-full
 
 if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
@@ -81,14 +84,46 @@ fi
 
 #if [[ $LAPTOP_PROMPT == "y" || $LAPTOP_PROMPT == "Y" ]]
 #then
-  # TODO: see what is better for battery tlp or gnome power profiles
-  #sudo dnf install -y tlp
-  #sudo systemctl enable tlp
-  #Enable tap to click
-#  gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-  # Enable disable touchpad while typing
-  # gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false
 #fi
+
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# install cosmic apps shown from cosmic-utils git repo
+mkdir $HOME/CosmicApps
+
+cd $HOME/CosmicApps && git clone https://github.com/wash2/cosmic_ext_bg_theme.git
+make all && make install && make install-service
+
+cd $HOME/CosmicApps && git clone https://github.com/cosmic-utils/clipboard-manager.git
+cd clipboard-manager
+just build-release
+sudo just install
+
+cd $HOME/CosmicApps && git clone https://github.com/cosmic-utils/observatory.git
+cd observatory
+just build-release
+sudo just install
+
+cd $HOME/CosmicApps && git clone https://github.com/D-Brox/cosmic-ext-applet-gamemode-status.git
+cd cosmic-ext-applet-gamemode-status
+just build-rpm
+sudo just install-rpm
+
+cd $HOME/CosmicApps && git clone https://github.com/leb-kuchen/cosmic-ext-applet-emoji-selector.git
+cd cosmic-ext-applet-emoji-selector 
+cargo b -r
+sudo just install
+
+#cd $HOME/CosmicApps && git clone https://github.com/PixelDoted/cosmic-ext-color-picker.git
+#cd cosmic-ext-color-picker
+#just build-release
+#sudo just install
+
+cd $HOME/CosmicApps && git clone https://github.com/cosmic-utils/calculator.git
+cd calculator
+just build-release
+sudo just install
 
 # setup git with credentials entered above
 git config --global user.email "$GIT_EMAIL"
@@ -103,11 +138,15 @@ source $HOME/dotfiles/SetupScripts/setup_ibm_plex_fonts.sh
 #git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
 #cp $HOME/dotfiles/BackedUpFiles/.zshrc $HOME/.zshrc
 
+# setup the cosmic material you/picom like app (https://github.com/wash2/cosmic_ext_bg_theme)
+git clone https://github.com/wash2/cosmic_ext_bg_theme.git $HOME/cosmic-extensions/cosmic_ext_bg_theme
+cd $HOME/cosmic-extensions/cosmic_ext_bg_theme
+make all && make install && make install-service
+
 # move user config things
 #cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fontconfig $HOME/.config/
-cp $HOME/dotfiles/BackedUpFiles/Metaphor-ReFantazio_02_upscayl_2x_realesrgan-x4plus-anime.png $HOME/Pictures
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
 
 # install and set up ocean sounds as default sounds
@@ -138,6 +177,21 @@ EOF
 #EOF
 
 sudo systemctl restart NetworkManager
+
+#change_shell() {
+#  sudo chsh -s $(which fish) 
+#}
+
+# change default shell to fish
+while true; do
+  sudo chsh -s $(which fish) $(whoami)
+  if [ $? -eq 0 ]; then
+    echo "Default shell changed to fish"
+    break
+  else
+    echo "Failed to change default shell. Please try again."
+  fi
+done
 
 echo "Setup script has finished running"
 echo "Restart your computer now for changes to take effect"

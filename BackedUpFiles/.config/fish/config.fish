@@ -2,6 +2,9 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     set -U fish_greeting
     set -U fish_prompt_pwd_dir_length 0
+
+    set -U fish_user_paths /home/toasty/.cargo/bin $fish_user_paths
+
     source ~/.asdf/asdf.fish
 
     # set -g __fish_git_prompt_show_informative_status 1

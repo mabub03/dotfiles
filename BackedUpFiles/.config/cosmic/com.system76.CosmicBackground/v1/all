@@ -1,9 +1,0 @@
-(
-    output: "all",
-    source: Path("/home/toasty/Pictures/FF7_Rebirth1.png"),
-    filter_by_theme: true,
-    rotation_frequency: 300,
-    filter_method: Lanczos,
-    scaling_mode: Zoom,
-    sampling_method: Alphanumeric,
-)

@@ -15,6 +15,7 @@ mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-Hebrew
 mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-JP
 mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-KR
 mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-TC
+mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-SC
 mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-Thai
 mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-Thai-Looped
 mkdir $HOME/.local/share/fonts/IBM-Plex-Sans-Variable
@@ -30,7 +31,7 @@ cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-Condensed/fonts/complete/otf/* $HOME
 cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-Devanagari/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Sans-Devanagari
 cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-Hebrew/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Sans-Hebrew
 # recursive since contains hinted and non hinted variants
-cp -r $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-JP/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Sans-JP
+cp -r $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-JP/fonts/complete/otf/hinted/* $HOME/.local/share/fonts/IBM-Plex-Sans-JP
 cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-KR/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Sans-KR
 cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-Thai/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Sans-Thai
 cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Sans-Thai-Looped/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Sans-Thai-Looped
@@ -42,7 +43,8 @@ cp $HOME/Downloads/plex-6.4.1/IBM-Plex-Serif/fonts/complete/otf/* $HOME/.local/s
 # TODO: remove this block and add the math, tc, and future sc fonts from latest release instead like done above
 cd $HOME/Downloads
 git clone https://github.com/IBM/plex.git
-cp -r plex/packages/plex-sans-tc/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Sans-TC
+cp -r plex/packages/plex-sans-tc/fonts/complete/otf/hinted/* $HOME/.local/share/fonts/IBM-Plex-Sans-TC
+cp -r plex/packages/plex-sans-sc/fonts/complete/otf/hinted/* $HOME/.local/share/fonts/IBM-Plex-Sans-SC
 cp plex/packages/plex-math/fonts/complete/otf/* $HOME/.local/share/fonts/IBM-Plex-Math
 rm -rf $HOME/Downloads/plex
 
