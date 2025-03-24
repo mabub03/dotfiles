@@ -5,6 +5,9 @@ read NVIDIA_PROMPT
 echo -n "Do you want to install Steam and other gaming utilities? [y/N]"
 read GAME_PROMPT
 
+echo -n "Does your system have more than 16 GB of VRAM? [y/N]"
+read ZRAM_PROMPT
+
 #echo -n "Is this a laptop? [y/N]"
 #read LAPTOP_PROMPT
 
@@ -30,6 +33,7 @@ sudo dnf in -y git \
   wget \
   btop \
   just \
+  lz4 \
   google-tinos-fonts \
   google-cousine-fonts \
   google-arimo-fonts \
@@ -40,6 +44,19 @@ sudo dnf in -y git \
 # TODO: remove this after xdg folders actually appear later on in fedora cosmic spin
 sudo dnf in -y xdg-user-dirs
 xdg-user-dirs-update
+
+if [[ $ZRAM_PROMPT == "y" || $ZRAM_PROMPT == "Y" ]]
+then
+  # this is my zram config for lz4 which is faster but worse compression than zstd only use for systems with more than 16 GB of RAM and if not then just use the default fedora config
+  sudo cp $HOME/dotfiles/BackedUpFiles/etc/zram-generator.conf /etc/systemd/
+  sudo systemctl restart systemd-zram-setup@zram0.service
+fi
+
+# sysctl configs that optimize zram and increase of vm-max-map-count to steam deck value
+sudo cp $HOME/dotfiles/BackedUpFiles/etc/99-vm-max-map-count.conf /etc/sysctl.d/
+sudo cp $HOME/dotfiles/BackedUpFiles/etc/99-vm-zram-params.conf /etc/sysctl.d/
+sudo sysctl -p /etc/sysctl.d/99-vm-zram-params.conf
+sudo sysctl -p /etc/sysctl.d/99-vm-max-map-count.conf
   
 curl -f https://zed.dev/install.sh | sh
   
