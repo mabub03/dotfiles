@@ -20,8 +20,8 @@ sudo dnf in -y @admin-tools \
 
 systemctl set-default graphical.target
 
-dnf copr enable ryanabx/cosmic-epoch
-dnf install cosmic-desktop
+sudo dnf copr enable -y ryanabx/cosmic-epoch
+sudo dnf install -y cosmic-desktop
 
 if [[ $MOKUTIL_PROMPT == "y" || $MOKUTIL_PROMPT == "Y" ]]
 then
