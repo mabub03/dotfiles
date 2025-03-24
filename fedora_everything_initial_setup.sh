@@ -18,10 +18,18 @@ sudo dnf in -y @admin-tools \
   @virtualization \
   @standard
 
+# setup the virtualization services and set current user in the libvirt group
+sudo systemctl start libvirtd
+sudo systemctl enable libvirtd
+sudo usermod -a -G libvirt $(whoami)
+
+# set fedora to load into graphics mode
 systemctl set-default graphical.target
 
 sudo dnf copr enable -y ryanabx/cosmic-epoch
 sudo dnf in -y cosmic-desktop
+
+sudo dnf rm abrt
 
 if [[ $MOKUTIL_PROMPT == "y" || $MOKUTIL_PROMPT == "Y" ]]
 then
