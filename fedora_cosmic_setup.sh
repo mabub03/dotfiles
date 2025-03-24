@@ -85,6 +85,7 @@ flatpak install flathub org.gtk.Gtk3theme.adw-gtk3 \
   com.dec05eba.gpu_screen_recorder \
   io.missioncenter.MissionCenter \
   com.discordapp.Discord \
+  mediawriter \
   org.freedesktop.Platform.ffmpeg-full
   
 if [[ $NVIDIA_PROMPT == "y" || $NVIDIA_PROMPT == "Y" ]]
