@@ -28,11 +28,12 @@ sudo dnf in -y git \
   fish \
   make \
   gcc \
+  kernel-headers \
+  kernel-devel \
   just \
   curl \
   wget \
   btop \
-  just \
   lz4 \
   google-tinos-fonts \
   google-cousine-fonts \
@@ -43,8 +44,8 @@ sudo dnf in -y git \
   
 # TODO: remove this after xdg folders actually appear later on in fedora cosmic spin
 # cosmic nightly copr doesn't need this so if doing fedora everything instead of cosmic-spin it isn't needed
-sudo dnf in -y xdg-user-dirs
-xdg-user-dirs-update
+#sudo dnf in -y xdg-user-dirs
+#xdg-user-dirs-update
 
 if [[ $ZRAM_PROMPT == "y" || $ZRAM_PROMPT == "Y" ]]
 then
@@ -63,7 +64,7 @@ curl -f https://zed.dev/install.sh | sh
   
 # delete fedora default flatpak repo and add flathub
 sudo flatpak remote-delete fedora
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo flatpak override --socket=wayland
 
 # install general flatpak apps
