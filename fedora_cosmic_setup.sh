@@ -163,6 +163,15 @@ cp -r $HOME/dotfiles/BackedUpFiles/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
 rm $HOME/dotfiles/BackedUpFiles/.config/cosmic/dont_include.txt
 
+# replace all the adwaita fonts with ibm plex for gnome apps to use ibm plex and also make sure gnome apps use rgb (don't know if needed to do all this but it doesn't hurt)
+gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans 10'
+gsettings set org.gnome.desktop.interface monospace-font-name 'IBM Plex Mono 10'
+gsettings set org.gnome.desktop.interface document-font-name 'IBM Plex Sans 10'
+gsettings set org.gnome.desktop.wm.preferences titlebar-font 'IBM Plex Sans Bold 10'
+gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+gsettings set org.gnome.desktop.interface font-rgba-order 'rgb'
+gsettings set org.gnome.desktop.interface font-hinting 'slight'
+
 # add wifi powersave file to deactivate wifi powersave
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
 [connection]
