@@ -21,11 +21,11 @@ sudo dnf in -y @admin-tools \
 systemctl set-default graphical.target
 
 sudo dnf copr enable -y ryanabx/cosmic-epoch
-sudo dnf install -y cosmic-desktop
+sudo dnf in -y cosmic-desktop
 
 if [[ $MOKUTIL_PROMPT == "y" || $MOKUTIL_PROMPT == "Y" ]]
 then
-  sudo dnf install kmodtool akmods mokutil openssl
+  sudo dnf in -y kmodtool akmods mokutil openssl
   sudo kmodgenca -a
   sudo mokutil --import /etc/pki/akmods/certs/public_key.der
 fi
