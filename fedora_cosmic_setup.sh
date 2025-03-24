@@ -42,6 +42,7 @@ sudo dnf in -y git \
   v4l2loopback
   
 # TODO: remove this after xdg folders actually appear later on in fedora cosmic spin
+# cosmic nightly copr doesn't need this so if doing fedora everything instead of cosmic-spin it isn't needed
 sudo dnf in -y xdg-user-dirs
 xdg-user-dirs-update
 
@@ -160,6 +161,7 @@ source $HOME/dotfiles/SetupScripts/setup_ibm_plex_fonts.sh
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fontconfig $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
+rm $HOME/dotfiles/BackedUpFiles/.config/cosmic/dont_include.txt
 
 # add wifi powersave file to deactivate wifi powersave
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
