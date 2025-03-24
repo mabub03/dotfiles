@@ -115,6 +115,7 @@ cargo install eza
 mkdir $HOME/CosmicApps
 
 cd $HOME/CosmicApps && git clone https://github.com/wash2/cosmic_ext_bg_theme.git
+cd cosmic_ext_bg_theme
 make all && make install && make install-service
 
 cd $HOME/CosmicApps && git clone https://github.com/cosmic-utils/clipboard-manager.git
