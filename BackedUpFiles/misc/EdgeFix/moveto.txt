@@ -1,0 +1,5 @@
+if on flatpak:
+/home/toasty/.var/app/com.microsoft.Edge/config/microsoft-edge/Default/
+
+if not on flatpak:
+.config/microsoft-edge/Default/

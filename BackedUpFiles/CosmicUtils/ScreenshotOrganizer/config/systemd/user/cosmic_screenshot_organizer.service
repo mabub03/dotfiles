@@ -1,0 +1,11 @@
+[Unit]
+Description=Moves Screenshots Taken In Cosmic To The Screenshot Folder
+
+[Service]
+ExecStart=/home/toasty/.local/bin/cosmic_screenshot_organizer.sh
+Restart=on-failure
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

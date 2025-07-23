@@ -2,6 +2,7 @@
     "com.system76.CosmicFiles",
     "com.system76.CosmicTerm",
     "org.mozilla.firefox",
+    "brave-browser",
     "discord",
     "steam",
 ]

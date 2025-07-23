@@ -1,0 +1,14 @@
+corner_radii from com.system76.CosmicTheme.[Light|Dark]
+(
+    radius_0: (0.0, 0.0, 0.0, 0.0),
+    radius_xs: (2.0, 2.0, 2.0, 2.0), // stuff like the file name hint in files when clicked (not the hover name popup)
+    radius_s: (2.0, 2.0, 2.0, 2.0), // makes app corners rounder, and same with small elements like files search bar and files or edit highlight on active tabs, drop down menus (square: 2.0, slightly rounded: 8.0, rounded: 8.0) 
+    radius_m: (8.0, 8.0, 8.0, 8.0), // makes applet corners rounder
+    radius_l: (8.0, 8.0, 8.0, 8.0), // 
+    radius_xl: (8.0, 8.0, 8.0, 8.0), // example the header bar buttons, the workspace buttons, or app tray hint (pretty much any panel applet icon hint)
+)
+
+// panel (com.system76.CosmicPanel.Panel) has its own border_radius setting that is the same value as radius_xl for some reason
+// 2 = square
+// 8 = slightly rounded
+// 160 = round

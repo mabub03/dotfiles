@@ -4,4 +4,5 @@
         profile: Some(Adaptive),
         speed: -0.10288643756187243,
     )),
+    left_handed: Some(false),
 )

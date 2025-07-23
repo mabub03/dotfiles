@@ -1,0 +1,5 @@
+# idk where to put this for a user install need to test in a pop vm since they use user install of flathub by default
+sudo mkdir -p /var/lib/flatpak/extension/org.mozilla.firefox.systemconfig/x86_64/stable/policies
+sudo cp /path/to/policy.json /var/lib/flatpak/extension/org.mozilla.firefox.systemconfig/x86_64/stable/policies
+
+cp /path/to/user.js $HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*.default-release
