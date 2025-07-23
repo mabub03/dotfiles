@@ -16,12 +16,18 @@ sudo dnf in -y @admin-tools \
   @networkmanager-submodules \
   @printing \
   @virtualization \
+  kernel-modules-extra \
   @standard
 
 # setup the virtualization services and set current user in the libvirt group
 sudo systemctl start libvirtd
 sudo systemctl enable libvirtd
 sudo usermod -a -G libvirt $(whoami)
+
+# set some selinux booleans that the workstation version has
+sudo setsebool -P selinuxuser_execmod 1
+sudo setsebool -P virt_sandbox_use_all_caps 1
+sudo setsebool -P virt_sandbox_use_nfs 1
 
 # set fedora to load into graphics mode
 systemctl set-default graphical.target

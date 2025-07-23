@@ -3,6 +3,10 @@ if status is-interactive
     set -U fish_greeting
     set -U fish_prompt_pwd_dir_length 0
 
+    set -gx __GL_SHADER_DISK_CACHE_SKIP_CLEANUP 1
+    set -gx __GL_SHADER_DISK_CACHE_SIZE 10737418240
+    #set -gx XDG_CURRENT_DESKTOP "cosmic"
+
     set -U fish_user_paths /home/toasty/.cargo/bin $fish_user_paths
 
     #source ~/.asdf/asdf.fish

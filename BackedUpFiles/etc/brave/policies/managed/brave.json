@@ -1,0 +1,23 @@
+{
+  "TorDisabled": true,
+  "BraveRewardsDisabled": true,
+  "BraveWalletDisabled": true,
+  "BraveTalkDisabled": true,
+  "BraveNewsDisabled": true,
+  "BraveVPNDisabled": true,
+  "BraveAIChatEnabled": false,
+  "DefaultNotificationsSetting": 2,
+  "CloudReportingEnabled": false,
+  "PasswordManagerEnabled": false,
+  "PasswordSharingEnabled": false,
+  "PasswordLeakDetectionEnabled": false,
+  "AutofillCreditCardEnabled": false,
+  "MetricsReportingEnabled": false,
+  "RelatedWebsiteSetsEnabled": false,
+  "ExtensionInstallForcelist": [
+    "eimadpbcbfnmbkopoojfekhnkhdbieeh",
+    "nngceckbapebfimnlniiiahkandclblb",
+    "gebbhagfogifgggkldgodflihgfeippi",
+    "fadndhdgpmmaapbmfcknlfgcflmmmieb"
+  ]
+}

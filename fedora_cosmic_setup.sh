@@ -41,6 +41,9 @@ sudo dnf in -y git \
   google-crosextra-caladea-fonts \
   google-carlito-fonts \
   v4l2loopback
+
+# this removes the default fedora firefox bookmarks and helpful if not using flatpak firefox
+sudo dnf remove fedora-bookmarks
   
 # TODO: remove this after xdg folders actually appear later on in fedora cosmic spin
 # cosmic nightly copr doesn't need this so if doing fedora everything instead of cosmic-spin it isn't needed
@@ -65,7 +68,6 @@ curl -f https://zed.dev/install.sh | sh
 # delete fedora default flatpak repo and add flathub
 sudo flatpak remote-delete fedora
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-sudo flatpak override --socket=wayland
 
 # install general flatpak apps
 flatpak install flathub org.gtk.Gtk3theme.adw-gtk3 \
@@ -87,16 +89,29 @@ flatpak install flathub org.gtk.Gtk3theme.adw-gtk3 \
   com.discordapp.Discord \
   mediawriter \
   org.freedesktop.Platform.ffmpeg-full
+
+# flatpak overrides
+sudo flatpak override --socket=wayland
+sudo flatpak override io.github.celluloid_player.Celluloid --filesystem=xdg-config/mpv
   
 if [[ $NVIDIA_PROMPT == "y" || $NVIDIA_PROMPT == "Y" ]]
 then
-  sudo dnf install -y akmod-nvidia xorg-x11-drv-nvidia-cuda
+  sudo dnf install -y akmod-nvidia \
+    xorg-x11-drv-nvidia-cuda \
+    xorg-x11-drv-nvidia \
+    xorg-x11-drv-nvidia-libs \
+    xorg-x11-drv-nvidia-libs.i686
 fi
 
 if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
 then
   sudo dnf in -y gamemode \
+    mangohud
     steam-devices
+  
+  sudo usermod -aG gamemode $(whoami)
+  
+  cp -r $HOME/dotfiles/BackedUpFiles/.config/MangoHud $HOME/.config/
   
   flatpak install flathub com.valvesoftware.Steam
   
