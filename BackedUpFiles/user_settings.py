@@ -1,4 +1,6 @@
 user_settings = {
+    "WAYLANDDRV_PRIMARY_MONITOR": "DP-1", 
+    "PROTON_ENABLE_WAYLAND": "1",
     "DXVK_FRAME_RATE": "163",
     "DXVK_FILTER_DEVICE_NAME": "NVIDIA GeForce RTX 5070",
     "PROTON_ENABLE_NGX_UPDATER": "1",
@@ -9,6 +11,6 @@ user_settings = {
     "DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION": "render_preset_latest",
     # reg edit to test dlss driver preset
     # `DXVK_NVAPI_SET_NGX_DEBUG_OPTIONS=DLSSIndicator=1024,DLSSGIndicator=2`
-    "NVPRESENT_ENABLE_SMOOTH_MOTION": "1",
+    #"NVPRESENT_ENABLE_SMOOTH_MOTION": "1",
     "VKD3D_FEATURE_LEVEL":"12_2"
 }
