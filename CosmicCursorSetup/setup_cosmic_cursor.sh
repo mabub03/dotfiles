@@ -5,7 +5,7 @@ sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/environment /etc/
 sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/index.theme /usr/share/icons/
 
 mkdir -p $HOME/.local/share/icons
-ln -s /usr/share/icons/default/ /home/toasty/.local/share/icons/default
+sudo ln -s /usr/share/icons/default/ /home/toasty/.local/share/icons/default
 
 gsettings set org.gnome.desktop.interface cursor-theme breeze_cursors
 

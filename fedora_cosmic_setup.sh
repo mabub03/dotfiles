@@ -106,7 +106,7 @@ fi
 if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
 then
   sudo dnf in -y gamemode \
-    mangohud
+    mangohud \
     steam-devices
   
   sudo usermod -aG gamemode $(whoami)
@@ -179,7 +179,7 @@ source $HOME/dotfiles/SetupScripts/setup_ibm_plex_fonts.sh
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fontconfig $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
-rm $HOME/dotfiles/BackedUpFiles/.config/cosmic/dont_include.txt
+rm $HOME/.config/cosmic/dont_include.txt
 
 # replace all the adwaita fonts with ibm plex for gnome apps to use ibm plex and also make sure gnome apps use rgb (don't know if needed to do all this but it doesn't hurt)
 gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans 10'
