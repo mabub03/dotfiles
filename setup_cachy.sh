@@ -54,6 +54,7 @@ sudo pacman -S brave-bin \
   base-devel \
   virt-manager \
   rust \
+  rust-analyzer \
   just \
   gnome-disk-utility \
   ttf-croscore \
@@ -112,7 +113,9 @@ flatpak install -y flathub org.gtk.Gtk3theme.adw-gtk3 \
   io.gitlab.theevilskeleton.Upscaler
 
 # install cosmic applets with flatpak
-flatpak install cosmic co.uk.cappsy.CosmicAppletLogoMenu
+#flatpak install cosmic co.uk.cappsy.CosmicAppletLogoMenu
+
+# flatpak overrides
 sudo flatpak override --socket=wayland
 
 # i use my own fish config so yeet the cachy one
@@ -131,13 +134,13 @@ cp -r $HOME/dotfiles/BackedUpFiles/.config/fontconfig $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/zed $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
-rm $HOME/.config/cosmic/dont_include.txt
 
 # cosmic util setup - screenshot organizer and fix nvidia vram wayland issues for cosmic
 cp -r $HOME/dotfiles/BackedUpFiles/CosmicUtils/ScreenshotOrganizer/config/systemd $HOME/.config/
-cp -r $HOME/dotfiles/BackedUpFiles/CosmicUtils/ScreenshotOrganizer/local/bin/cosmic_screenshot_organizer.sh $HOME/.local/bin
+mkdir mkdir -p $HOME/.local/bin && cp -r $HOME/dotfiles/BackedUpFiles/CosmicUtils/ScreenshotOrganizer/local/bin/cosmic_screenshot_organizer.sh $HOME/.local/bin/
 source $HOME/dotfiles/BackedUpFiles/CosmicUtils/nvidia-vram-wayland-fix.sh
-#TODO: systemctl command
+systemctl --user daemon-reload
+systemctl --user enable --now cosmic_screenshot_organizer.service
 
 # setup firefox and brave
 sudo cp -r $HOME/dotfiles/BackedUpFiles/etc/brave /etc/
