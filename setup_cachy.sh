@@ -8,47 +8,49 @@ read GIT_USERNAME
 echo -n "Do you want to install Steam and other gaming utilities? [y/N]"
 read GAME_PROMPT
 
-sudo pacman -Syu
+sudo pacman -Rns pavucontrol meld alacritty --noconfirm
+sudo pacman -Syu --noconfirm
+
+# TODO: add printing packages
 
 if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
 then
-
-# install all gaming related packages
-sudo pacman -S gamescope \
-  goverlay \
-  heroic-games-launcher \
-  lib32-mangohud mangohud \
-  steam \
-  steam-native-runtime \
-  wqy-zenhei \
-  alsa-plugins \
-  giflib glfw \
-  gst-plugins-base-libs \
-  lib32-alsa-plugins \
-  lib32-giflib \
-  lib32-gst-plugins-base-libs \
-  lib32-gtk3 \
-  lib32-libjpeg-turbo \
-  lib32-libva \
-  lib32-mpg123 \
-  lib32-ocl-icd \
-  lib32-opencl-icd-loader \
-  lib32-openal \
-  libjpeg-turbo \
-  libva libxslt \
-  mpg123 \
-  opencl-icd-loader \
-  openal proton-cachyos \
-  ttf-liberation \
-  vulkan-tools \
-  proton-ge-custom-bin \
-  umu-launcher
+  # install all gaming related packages
+  sudo pacman -S --noconfirm gamescope \
+    goverlay \
+    heroic-games-launcher \
+    lib32-mangohud mangohud \
+    steam \
+    steam-native-runtime \
+    wqy-zenhei \
+    alsa-plugins \
+    giflib glfw \
+    gst-plugins-base-libs \
+    lib32-alsa-plugins \
+    lib32-giflib \
+    lib32-gst-plugins-base-libs \
+    lib32-gtk3 \
+    lib32-libjpeg-turbo \
+    lib32-libva \
+    lib32-mpg123 \
+    lib32-ocl-icd \
+    lib32-opencl-icd-loader \
+    lib32-openal \
+    libjpeg-turbo \
+    libva libxslt \
+    mpg123 \
+    opencl-icd-loader \
+    openal proton-cachyos \
+    ttf-liberation \
+    vulkan-tools \
+    proton-ge-custom-bin \
+    umu-launcher
 
   cp -r $HOME/dotfiles/BackedUpFiles/.config/MangoHud $HOME/.config/
 fi
 
 # install general packages
-sudo pacman -S brave-bin \
+sudo pacman -S --noconfirm brave-bin \
   ttf-ibmplex-mono-nerd \
   7zip \
   base-devel \
@@ -67,7 +69,7 @@ sudo pacman -S brave-bin \
   zed
 
 # install all video, audio, and image codecs
-sudo pacman -S ffmpeg \
+sudo pacman -S --noconfirm ffmpeg \
   gst-plugins-good \
   gst-plugins-bad \
   gst-plugins-ugly \
@@ -85,7 +87,7 @@ sudo pacman -S ffmpeg \
 # might move them back to flatpak slowly idk will see how it goes
 # see if these are needed for easyeffects because it adds in an app i don't want called ardour
 # lsp-plugins-lv2 zam-plugins-lv2 mda.lv2 calf
-sudo pacman -S loupe \
+sudo pacman -S --noconfirm loupe \
   celluloid \
   easyeffects \
   gpu-screen-recorder-ui \
@@ -118,7 +120,7 @@ sudo flatpak override --socket=wayland
 
 # i use my own fish config so yeet the cachy one
 rm -rf $HOME/.config/fish/*
-sudo pacman -Rn cachyos-fish-config
+sudo pacman -Rn --noconfirm cachyos-fish-config
 
 # setup git with credentials entered above
 git config --global user.email "$GIT_EMAIL"
@@ -158,7 +160,7 @@ gsettings set org.gnome.desktop.interface font-hinting 'slight'
 
 # setup cosmic cursor
 # TODO: Reverse this and delete this when it becomes a real cosmic setting
-paru -S xcursor-breeze
+paru -S --noconfirm xcursor-breeze
 
 sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/ArchConfig/environment /etc/environment
 sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/ArchConfig/index.theme /usr/share/icons/default/index.theme

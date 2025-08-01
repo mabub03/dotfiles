@@ -1,6 +1,6 @@
 sudo pacman -Sy
 
-sudo pacman -S cosmic-session-git \
+sudo pacman -S --noconfirm cosmic-session-git \
   cosmic-edit-git \
   cosmic-player \
   cosmic-store \
