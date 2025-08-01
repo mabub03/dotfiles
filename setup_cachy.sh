@@ -116,7 +116,7 @@ flatpak install cosmic co.uk.cappsy.CosmicAppletLogoMenu
 sudo flatpak override --socket=wayland
 
 # i use my own fish config so yeet the cachy one
-rm $HOME/.config/fish/*
+rm -rf $HOME/.config/fish/*
 
 # setup git with credentials entered above
 git config --global user.email "$GIT_EMAIL"
