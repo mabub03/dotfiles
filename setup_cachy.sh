@@ -8,101 +8,114 @@ read GIT_USERNAME
 echo -n "Do you want to install Steam and other gaming utilities? [y/N]"
 read GAME_PROMPT
 
-pikman update && pikman upgrade -y
+sudo pacman -Syu
 
-# install codecs metapackage and remove vlc because i don't like it
-pikman install pika-codecs-meta -y
-pikman remove vlc -y
-
-# install printing drivers
-pikman install cups cups-filters cups-pk-helper printer-driver-all -y
-
-# install general packages
-pikman install brave-browser \
-  code \
-  unrar \
-  rar \
-  eza \
-  virt-manager \
-  fish \
-  build-essential \
-  just \
-  curl \
-  wget \
-  btop \
-  gnome-disk-utility \
-  fonts-croscore \
-  fonts-crosextra-caladea \
-  fonts-crosextra-carlito \
-  v4l2loopback-source \
-  obs-studio -y
-
-# install apps that i would usually have as flatpaks on other distros
-# might move them back to flatpak slowly idk will see how it goes
-pikman install loupe \
-  celluloid \
-  easyeffects \
-  gpu-screen-recorder-ui \
-  foliate \
-  discord \
-  papers \
-  pinta \
-  gimp \
-  gnome-font-viewer \
-  spotify-client -y
-
-# install gaming packages- pretty much everything from gaming metapackage except wine (since proton is better and umu exists), bottles, and lutris
 if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
 then
-  pikman install steam-launcher \
-    heroic-games-launcher \
-    protonplus \
-    umu-launcher \
-    nvidia-dlss-switcher \
-    mangohud \
-    goverlay \
-    falcon \
-    falcond \
-    fabiscafe-devices \
-    mesa-common-dev \
-    mesa-vulkan-drivers \
-    libegl1-mesa-dev \
-    libgbm-dev \
-    libgl1-mesa-dri \
-    libglu1-mesa -y
-    
+
+# install all gaming related packages
+sudo pacman -S gamescope \
+  goverlay \
+  heroic-games-launcher \
+  lib32-mangohud mangohud \
+  steam \
+  steam-native-runtime \
+  wqy-zenhei \
+  alsa-plugins \
+  giflib glfw \
+  gst-plugins-base-libs \
+  lib32-alsa-plugins \
+  lib32-giflib \
+  lib32-gst-plugins-base-libs \
+  lib32-gtk3 \
+  lib32-libjpeg-turbo \
+  lib32-libva \
+  lib32-mpg123 \
+  lib32-ocl-icd \
+  lib32-opencl-icd-loader \
+  lib32-openal \
+  libjpeg-turbo \
+  libva libxslt \
+  mpg123 \
+  opencl-icd-loader \
+  openal proton-cachyos \
+  protontricks \
+  ttf-liberation \
+  vulkan-tools \
+  proton-ge-custom-bin \
+  umu-launcher
+
   cp -r $HOME/dotfiles/BackedUpFiles/.config/MangoHud $HOME/.config/
 fi
 
-# setup flatpak repos
+# install general packages
+sudo pacman -S brave-bin \
+  7zip \
+  base-devel \
+  virt-manager \
+  rust \
+  just \
+  gnome-disk-utility \
+  ttf-crosscore \
+  ttf-caladea \
+  ttf-carlito \
+  v4l2loopback-dkms \
+  v4l2loopback-utils \
+  obs-studio \
+  obsidian \
+  zed
+
+# install all video, audio, and image codecs
+sudo pacman -S ffmpeg \
+  gst-plugins-good \
+  gst-plugins-bad \
+  gst-plugins-ugly \
+  gst-plugins-base \
+  gst-libav \
+  gstreamer \
+  celt \
+  libmad \
+  jasper \
+  libavif \
+  libheif \
+  schroedinger
+
+# install apps that i would usually have as flatpaks on other distros
+# might move them back to flatpak slowly idk will see how it goes
+sudo pacman -S loupe \
+  celluloid \
+  easyeffects \
+  calf \
+  lsp-plugins-lv2 \
+  zam-plugins-lv2 \
+  mda.lv2 \
+  gpu-screen-recorder-ui \
+  foliate \
+  discord \
+  spotify-launcher \
+  papers \
+  gimp \
+  gnome-font-viewer \
+  mission-center
+
+# setup flathub and install flatpak apps
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak remote-add --if-not-exists --user cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
 
-# install flatpak packages and setup permission overrides
-pikman -fl install flathub org.gtk.Gtk3theme.adw-gtk3 \
+flatpak install -y flathub org.gtk.Gtk3theme.adw-gtk3 \
   org.gtk.Gtk3theme.adw-gtk3-dark \
-  io.missioncenter.MissionCenter \
   com.github.tchx84.Flatseal \
   com.github.neithern.g4music \
   io.github.nozwock.Packet \
-  md.obsidian.Obsidian \
-  io.gitlab.theevilskeleton.Upscaler -y
+  com.github.PintaProject.Pinta \
+  io.gitlab.theevilskeleton.Upscaler
 
 # install cosmic applets with flatpak
-pikman -fl install cosmic co.uk.cappsy.CosmicAppletLogoMenu -y
-#  io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
-
+flatpak install cosmic co.uk.cappsy.CosmicAppletLogoMenu
 sudo flatpak override --socket=wayland
-sudo flatpak override io.github.celluloid_player.Celluloid --filesystem=xdg-config/mpv
 
-pikman install cosmic-comp -y
-
-# maybe switch back to just installing via rustup if pika optimizations isn't that much more performant
-pikman install rustc \
-  cargo -y
-
-# install zed
-curl -f https://zed.dev/install.sh | sh
+# i use my own fish config so yeet the cachy one
+rm .config/toasty/fish/*
 
 # setup git with credentials entered above
 git config --global user.email "$GIT_EMAIL"
@@ -115,6 +128,7 @@ source $HOME/dotfiles/SetupScripts/setup_ibm_plex_fonts.sh
 # cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fontconfig $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/fish $HOME/.config/
+cp -r $HOME/dotfiles/BackedUpFiles/.config/zed $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
 rm $HOME/.config/cosmic/dont_include.txt
 
@@ -127,12 +141,12 @@ gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
 gsettings set org.gnome.desktop.interface font-rgba-order 'rgb'
 gsettings set org.gnome.desktop.interface font-hinting 'slight'
 
-# setup cosmic cursor 
+# setup cosmic cursor
 # TODO: Reverse this and delete this when it becomes a real cosmic setting
-pikman install breeze-cursor-theme -y
+paru -S xcursor-breeze
 
-sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/environment /etc/
-sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/index.theme /usr/share/icons/
+sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/ArchConfig/environment /etc/
+sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/ArchConfig/index.theme /usr/share/icons/default
 
 mkdir -p $HOME/.local/share/icons
 sudo ln -s /usr/share/icons/default/ /home/toasty/.local/share/icons/default
@@ -147,18 +161,5 @@ EOF
 
 sudo systemctl restart NetworkManager
 
-# change default shell to fish
-while true; do
-  sudo chsh -s $(which fish) $(whoami)
-  if [ $? -eq 0 ]; then
-    echo "Default shell changed to fish"
-    break
-  else
-    echo "Failed to change default shell. Please try again."
-  fi
-done
-
 echo "Setup script has finished running"
 echo "Restart your computer now for changes to take effect"
-
-
