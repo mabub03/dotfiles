@@ -49,6 +49,7 @@ fi
 
 # install general packages
 sudo pacman -S brave-bin \
+  ttf-ibmplex-mono-nerd \
   7zip \
   base-devel \
   virt-manager \
