@@ -39,7 +39,6 @@ sudo pacman -S gamescope \
   mpg123 \
   opencl-icd-loader \
   openal proton-cachyos \
-  protontricks \
   ttf-liberation \
   vulkan-tools \
   proton-ge-custom-bin \
@@ -83,13 +82,11 @@ sudo pacman -S ffmpeg \
 
 # install apps that i would usually have as flatpaks on other distros
 # might move them back to flatpak slowly idk will see how it goes
+# see if these are needed for easyeffects because it adds in an app i don't want called ardour
+# lsp-plugins-lv2 zam-plugins-lv2 mda.lv2 calf
 sudo pacman -S loupe \
   celluloid \
   easyeffects \
-  calf \
-  lsp-plugins-lv2 \
-  zam-plugins-lv2 \
-  mda.lv2 \
   gpu-screen-recorder-ui \
   foliate \
   discord \
@@ -120,6 +117,7 @@ sudo flatpak override --socket=wayland
 
 # i use my own fish config so yeet the cachy one
 rm -rf $HOME/.config/fish/*
+sudo pacman -Rn cachyos-fish-config
 
 # setup git with credentials entered above
 git config --global user.email "$GIT_EMAIL"
