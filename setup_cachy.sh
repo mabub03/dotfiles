@@ -132,6 +132,16 @@ cp -r $HOME/dotfiles/BackedUpFiles/.config/zed $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/.config/cosmic $HOME/.config/
 rm $HOME/.config/cosmic/dont_include.txt
 
+# cosmic util setup - screenshot organizer and fix nvidia vram wayland issues for cosmic
+cp -r $HOME/dotfiles/BackedUpFiles/CosmicUtils/ScreenshotOrganizer/config/systemd $HOME/.config/
+cp -r $HOME/dotfiles/BackedUpFiles/CosmicUtils/ScreenshotOrganizer/local/bin/cosmic_screenshot_organizer.sh $HOME/.local/bin
+source $HOME/dotfiles/BackedUpFiles/CosmicUtils/nvidia-vram-wayland-fix.sh
+
+# setup firefox and brave
+sudo cp -r $HOME/dotfiles/BackedUpFiles/etc/brave /etc/
+sudo cp -r $HOME/dotfiles/BackedUpFiles/etc/firefox /etc/
+cp $HOME/dotfiles/BackedUpFiles/firefox/default-release/user.js $HOME/.mozilla/firefox/*.default-release
+
 # replace all the adwaita fonts with ibm plex for gnome apps to use ibm plex and also make sure gnome apps use rgb (don't know if needed to do all this but it doesn't hurt)
 gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans 10'
 gsettings set org.gnome.desktop.interface monospace-font-name 'IBM Plex Mono 10'

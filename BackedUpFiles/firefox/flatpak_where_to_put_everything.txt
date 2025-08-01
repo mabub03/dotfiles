@@ -3,3 +3,6 @@ sudo mkdir -p /var/lib/flatpak/extension/org.mozilla.firefox.systemconfig/x86_64
 sudo cp /path/to/policy.json /var/lib/flatpak/extension/org.mozilla.firefox.systemconfig/x86_64/stable/policies
 
 cp /path/to/user.js $HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*.default-release
+
+# for native
+cp $HOME/dotfiles/BackedUpFiles/firefox/default-release/user.js $HOME/.mozilla/firefox/*.default-release
