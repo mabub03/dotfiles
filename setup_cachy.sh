@@ -56,7 +56,7 @@ sudo pacman -S brave-bin \
   rust \
   just \
   gnome-disk-utility \
-  ttf-crosscore \
+  ttf-croscore \
   ttf-caladea \
   ttf-carlito \
   v4l2loopback-dkms \
@@ -108,6 +108,7 @@ flatpak install -y flathub org.gtk.Gtk3theme.adw-gtk3 \
   com.github.neithern.g4music \
   io.github.nozwock.Packet \
   com.github.PintaProject.Pinta \
+  org.freedesktop.Platform/x86_64/24.08 \
   io.gitlab.theevilskeleton.Upscaler
 
 # install cosmic applets with flatpak
@@ -115,7 +116,7 @@ flatpak install cosmic co.uk.cappsy.CosmicAppletLogoMenu
 sudo flatpak override --socket=wayland
 
 # i use my own fish config so yeet the cachy one
-rm .config/toasty/fish/*
+rm $HOME/.config/fish/*
 
 # setup git with credentials entered above
 git config --global user.email "$GIT_EMAIL"
@@ -136,9 +137,11 @@ rm $HOME/.config/cosmic/dont_include.txt
 cp -r $HOME/dotfiles/BackedUpFiles/CosmicUtils/ScreenshotOrganizer/config/systemd $HOME/.config/
 cp -r $HOME/dotfiles/BackedUpFiles/CosmicUtils/ScreenshotOrganizer/local/bin/cosmic_screenshot_organizer.sh $HOME/.local/bin
 source $HOME/dotfiles/BackedUpFiles/CosmicUtils/nvidia-vram-wayland-fix.sh
+#TODO: systemctl command
 
 # setup firefox and brave
 sudo cp -r $HOME/dotfiles/BackedUpFiles/etc/brave /etc/
+cp -r $HOME/dotfiles/BackedUpFiles/.config/BraveSoftware /$HOME/.config/
 sudo cp -r $HOME/dotfiles/BackedUpFiles/etc/firefox /etc/
 cp $HOME/dotfiles/BackedUpFiles/firefox/default-release/user.js $HOME/.mozilla/firefox/*.default-release
 
@@ -155,13 +158,13 @@ gsettings set org.gnome.desktop.interface font-hinting 'slight'
 # TODO: Reverse this and delete this when it becomes a real cosmic setting
 paru -S xcursor-breeze
 
-sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/ArchConfig/environment /etc/
-sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/ArchConfig/index.theme /usr/share/icons/default
+sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/ArchConfig/environment /etc/environment
+sudo cp $HOME/dotfiles/CosmicCursorSetup/ChangedFiles/ArchConfig/index.theme /usr/share/icons/default/index.theme
 
 mkdir -p $HOME/.local/share/icons
 sudo ln -s /usr/share/icons/default/ /home/toasty/.local/share/icons/default
 
-gsettings set org.gnome.desktop.interface cursor-theme breeze_cursors
+gsettings set org.gnome.desktop.interface cursor-theme Breeze
 
 # add wifi powersave file to deactivate wifi powersave
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
