@@ -2,8 +2,8 @@ sudo pacman -Sy
 
 sudo pacman -S cosmic-session-git \
   cosmic-edit-git \
-  cosmic-player-git \
-  cosmic-store-git \
+  cosmic-player \
+  cosmic-store \
   cosmic-term-git \
   cosmic-wallpapers-git \
   cosmic-files-git
