@@ -171,7 +171,7 @@ cd $HOME && git clone https://github.com/cosmic-utils/clipboard-manager.git
 cd clipboard-manager && just build-release && sudo just install && cd $HOME
 
 # flatpak overrides
-sudo flatpak override --socket=wayland
+flatpak override --user --socket=wayland
 #sudo flatpak override io.github.celluloid_player.Celluloid --filesystem=xdg-config/mpv
 
 # setup full codecs
@@ -214,7 +214,7 @@ cp -r $HOME/dotfiles/home/.config/fontconfig $HOME/.config/
 cp -r $HOME/dotfiles/home/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/home/.config/cosmic $HOME/.config/
 
-#echo 'export COSMIC_DATA_CONTROL_ENABLED=1' | sudo tee /etc/profile.d/data_control_cosmic.sh > /dev/null
+echo 'export COSMIC_DATA_CONTROL_ENABLED=1' | sudo tee /etc/profile.d/data_control_cosmic.sh > /dev/null
 
 # add user to required groups
 # remove whenever i stop getting razer mice
