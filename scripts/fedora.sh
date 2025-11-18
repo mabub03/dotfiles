@@ -47,13 +47,6 @@ cachyos-ananicy-rules
 brave-browser
 )
 
-# razer associated packages
-# remove whenever i stop getting razer mice
-RPMPKGS+=(
-openrazer-meta
-polychromatic
-)
-
 # fedora build essential equivalent
 RPMPKGS+=(
 make
@@ -145,14 +138,18 @@ then
 
   # setup controller udev rules
   cd $HOME && git clone https://codeberg.org/fabiscafe/game-devices-udev.git
-  cp game-devices-udev/*.rules /etc/udev/rules.d/
-  sudo echo uinput > /etc/modules-load.d/uinput.conf
+  sudo cp game-devices-udev/*.rules /etc/udev/rules.d/
+  echo uinput | sudo tee /etc/modules-load.d/uinput.conf
+  rm -rf $HOME/game-devices-udev
 
   cp -r $HOME/dotfiles/files/home/.config/MangoHud $HOME/.config/
 fi
 
 # install all the rpm pkgs, flatpaks, and extras
 sudo dnf install -y "${RPMPKGS[@]}"
+# razer associated packages had to include them seperatly because kernel headers are required and part of the previous transaction so not fully installed for openrazer until the previous transaction is finished
+# remove whenever i stop getting razer mice
+sudo dnf in openrazer-meta polychromatic
 flatpak install --user flathub "${FLATPAKS[@]}"
 #flatpak install flathub "${SYSTEMFLATPAKS[@]}"
 #flatpak install cosmic "${COSMICFLATPAKS[@]}"
@@ -163,7 +160,7 @@ sudo dnf install rustup && rustup-init && source .bashrc
 cargo install eza
 
 # flatpak app broken so gotta build the clipboard manager and hope things work
-sudo dnf install libxkbcommon-devel
+sudo dnf install -y libxkbcommon-devel
 cd $HOME && git clone https://github.com/cosmic-utils/clipboard-manager.git
 cd clipboard-manager && just build-release && sudo just install && cd $HOME
 
@@ -183,12 +180,12 @@ sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
 sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
 # TODO:setup zram (still haven't decided if i wanna keep this config so it is commented out for now)
-#cp $HOME/dotfiles/files/etc/systemd/zram-generator.conf /etc/systemd/
+#sudo cp $HOME/dotfiles/files/etc/systemd/zram-generator.conf /etc/systemd/
 #systemctl restart systemd-zram-setup@zram0.service
 
 # setup sysctl optimizations (pop os zram /proc/sys/vm settings and steam deck & pop os /proc/sys/vm/max-map-count value)
-cp $HOME/dotfiles/etc/sysctl.d/99-vm-zram-params.conf /etc/sysctl.d/
-cp $HOME/dotfiles/etc/sysctl.d/99-vm-max-map-count.conf /etc/sysctl.d/
+sudo cp $HOME/dotfiles/etc/sysctl.d/99-vm-zram-params.conf /etc/sysctl.d/
+sudo cp $HOME/dotfiles/etc/sysctl.d/99-vm-max-map-count.conf /etc/sysctl.d/
 sudo sysctl -p /etc/sysctl.d/99-vm-zram-params.conf
 sudo sysctl -p /etc/sysctl.d/99-vm-max-map-count.conf
 
@@ -221,6 +218,7 @@ sudo gpasswd -a $USER plugdev
 sudo systemctl enable --now ananicy-cpp
 
 # hopefully just a temp service so bundling in the cp command also for easier removal later
+mkdir $HOME/Pictures/Screenshots
 cp -r $HOME/dotfiles/cosmic_utilities/screenshot_organizer/config/systemd $HOME/.config/
 cp -r $HOME/dotfiles/cosmic_utilities/screenshot_organizer/local/bin $HOME/.local/
 systemctl --user daemon-reload
