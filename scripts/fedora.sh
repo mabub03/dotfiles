@@ -22,6 +22,7 @@ sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rel
 # add openrazer
 sudo dnf config-manager addrepo --from-repofile=https://openrazer.github.io/hardware:razer.repo
 sudo dnf copr enable bieszczaders/kernel-cachyos-addons
+sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
 # remove the cosmic supplmentary apps group and fedora bookmarks package and then update to fetch mirrors and update the core
 sudo dnf rm -y @cosmic-desktop-apps fedora-bookmarks
@@ -30,6 +31,7 @@ sudo dnf autoremove -y
 
 # general packages
 RPMPKGS=(
+lz4
 sudo-rs
 yaru-icon-theme
 fish
@@ -42,9 +44,11 @@ v4l2loopback
 gnome-disk-utility
 ananicy-cpp
 cachyos-ananicy-rules
+brave-browser
 )
 
 # razer associated packages
+# remove whenever i stop getting razer mice
 RPMPKGS+=(
 openrazer-meta
 polychromatic
@@ -85,8 +89,8 @@ if [ -d /sys/module/nvidia ]
 then
   # Set up negativo17 repos for nvidia drivers
   sudo dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-nvidia.repo
-  sudo dnf config-manager --add-repo=https://negativo17.org/repos/epel-nvidia.repo
-  #sudo dnf install libva-nvidia-driver
+  sudo dnf config-manager setopt fedora-nvidia.repoid=90
+
 	RPMPKGS+=(
 	libva-nvidia-driver
 	akmod-nvidia --disablerepo="rpmfusion-nonfree"
@@ -123,9 +127,10 @@ dev.edfloreshz.CosmicTweaks
 page.codeberg.libre_menu_editor.LibreMenuEditor
 )
 
-COSMICFLATPAKS=(
-io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
-)
+# clipboard manager via flatpak doesn't work due to a change in the protocol not supporting flatpaks
+#COSMICFLATPAKS=(
+#io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
+#)
 
 if [[ $GAME_PROMPT == "y" || $GAME_PROMPT == "Y" ]]
 then
@@ -150,15 +155,20 @@ fi
 sudo dnf install -y "${RPMPKGS[@]}"
 flatpak install --user flathub "${FLATPAKS[@]}"
 #flatpak install flathub "${SYSTEMFLATPAKS[@]}"
-flatpak install cosmic "${COSMICFLATPAKS[@]}"
+#flatpak install cosmic "${COSMICFLATPAKS[@]}"
 
 curl -f https://zed.dev/install.sh | sh
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && source .bashrc
+#curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && source .bashrc
+sudo dnf install rustup && rustup-init && source .bashrc
 cargo install eza
+
+# flatpak app broken so gotta build the clipboard manager and hope things work
+sudo dnf install libxkbcommon-devel
+cd $HOME && git clone https://github.com/cosmic-utils/clipboard-manager.git
+cd clipboard-manager && just build-release && sudo just install && cd $HOME
 
 # flatpak overrides
 sudo flatpak override --socket=wayland
-flatpak override --user --env=COSMIC_DATA_CONTROL_ENABLED=1 io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
 #sudo flatpak override io.github.celluloid_player.Celluloid --filesystem=xdg-config/mpv
 
 # setup full codecs
@@ -172,6 +182,22 @@ flatpak override --user --env=COSMIC_DATA_CONTROL_ENABLED=1 io.github.cosmic_uti
 sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
 sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
+# TODO:setup zram (still haven't decided if i wanna keep this config so it is commented out for now)
+#cp $HOME/dotfiles/files/etc/systemd/zram-generator.conf /etc/systemd/
+#systemctl restart systemd-zram-setup@zram0.service
+
+# setup sysctl optimizations (pop os zram /proc/sys/vm settings and steam deck & pop os /proc/sys/vm/max-map-count value)
+cp $HOME/dotfiles/etc/sysctl.d/99-vm-zram-params.conf /etc/sysctl.d/
+cp $HOME/dotfiles/etc/sysctl.d/99-vm-max-map-count.conf /etc/sysctl.d/
+sudo sysctl -p /etc/sysctl.d/99-vm-zram-params.conf
+sudo sysctl -p /etc/sysctl.d/99-vm-max-map-count.conf
+
+# setup firefox and brave
+sudo cp -r $HOME/dotfiles/etc/brave /etc/
+#cp -r $HOME/dotfiles/files/home/.config/BraveSoftware /$HOME/.config/
+sudo cp -r $HOME/dotfiles/etc/firefox /etc/
+cp $HOME/dotfiles/home/.mozilla/firefox/default-release/user.js $HOME/.mozilla/firefox/*.default-release
+
 # setup git with credentials entered above
 git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_USERNAME"
@@ -181,21 +207,14 @@ source $HOME/dotfiles/scripts/setup_ibm_plex_fonts.sh
 source $HOME/dotfiles/cosmic_utilities/cosmic_cursor_setup/setup_cosmic_cursor.sh
 # copy things from dotfiles .config to $HOME/.config
 # cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
-cp -r $HOME/dotfiles/files/home/.config/fontconfig $HOME/.config/
-cp -r $HOME/dotfiles/files/home/.config/fish $HOME/.config/
-cp -r $HOME/dotfiles/files/home/.config/cosmic $HOME/.config/
-#rm $HOME/.config/cosmic/dont_include.txt
+cp -r $HOME/dotfiles/home/.config/fontconfig $HOME/.config/
+cp -r $HOME/dotfiles/home/.config/fish $HOME/.config/
+cp -r $HOME/dotfiles/home/.config/cosmic $HOME/.config/
 
-# replace all the adwaita fonts with ibm plex for gnome apps to use ibm plex and also make sure gnome apps use rgb (don't know if needed to do all this but it doesn't hurt)
-#gsettings set org.gnome.desktop.interface font-name 'IBM Plex Sans 10'
-#gsettings set org.gnome.desktop.interface monospace-font-name 'IBM Plex Mono 10'
-#gsettings set org.gnome.desktop.interface document-font-name 'IBM Plex Sans 10'
-#gsettings set org.gnome.desktop.wm.preferences titlebar-font 'IBM Plex Sans Bold 10'
-#gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
-#gsettings set org.gnome.desktop.interface font-rgba-order 'rgb'
-#gsettings set org.gnome.desktop.interface font-hinting 'slight'
+#echo 'export COSMIC_DATA_CONTROL_ENABLED=1' | sudo tee /etc/profile.d/data_control_cosmic.sh > /dev/null
 
 # add user to required groups
+# remove whenever i stop getting razer mice
 sudo gpasswd -a $USER plugdev
 
 # set up services
