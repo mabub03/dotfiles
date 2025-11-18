@@ -26,7 +26,7 @@ sudo dnf copr enable bieszczaders/kernel-cachyos-addons
 # remove the cosmic supplmentary apps group and fedora bookmarks package and then update to fetch mirrors and update the core
 sudo dnf rm -y @cosmic-desktop-apps fedora-bookmarks
 sudo dnf up -y
-sudo dnf autoremove
+sudo dnf autoremove -y
 
 # general packages
 RPMPKGS=(
@@ -41,7 +41,7 @@ btop
 v4l2loopback
 gnome-disk-utility
 ananicy-cpp
-cachyos-ananicy-cpp
+cachyos-ananicy-rules
 )
 
 # razer associated packages
@@ -51,14 +51,14 @@ polychromatic
 )
 
 # fedora build essential equivalent
-#RPMPKGS+=(
-#make
-#automake
-#gcc
-#gcc-c++
+RPMPKGS+=(
+make
+gcc
+gcc-c++
+glibc-devel
 #kernel-devel
-#kernel-headers
-#)
+#rpm-devel
+)
 
 # font packages
 RPMPKGS+=(
@@ -163,14 +163,14 @@ flatpak override --user --env=COSMIC_DATA_CONTROL_ENABLED=1 io.github.cosmic_uti
 
 # setup full codecs
 # for amd systems using mesa
-# sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
-# sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-# sudo dnf swap mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686 # for steam and maybe obs
-# sudo dnf swap mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686 # for steam and maybe obs
+# sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
+# sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+# sudo dnf swap -y mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686 # for steam and maybe obs
+# sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686 # for steam and maybe obs
 # for intel
-# sudo dnf install intel-media-driver
-sudo dnf swap ffmpeg-free ffmpeg --allowerasing
-sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+# sudo dnf install -y intel-media-driver
+sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
 # setup git with credentials entered above
 git config --global user.email "$GIT_EMAIL"
