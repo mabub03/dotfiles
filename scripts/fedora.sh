@@ -26,6 +26,7 @@ sudo dnf copr enable bieszczaders/kernel-cachyos-addons
 # remove the cosmic supplmentary apps group and fedora bookmarks package and then update to fetch mirrors and update the core
 sudo dnf rm -y @cosmic-desktop-apps fedora-bookmarks
 sudo dnf up -y
+sudo dnf autoremove
 
 # general packages
 RPMPKGS=(
@@ -137,6 +138,11 @@ then
    com.vysp3r.ProtonPlus
   )
 
+  # setup controller udev rules
+  cd $HOME && git clone https://codeberg.org/fabiscafe/game-devices-udev.git
+  cp game-devices-udev/*.rules /etc/udev/rules.d/
+  sudo echo uinput > /etc/modules-load.d/uinput.conf
+
   cp -r $HOME/dotfiles/files/home/.config/MangoHud $HOME/.config/
 fi
 
@@ -145,6 +151,7 @@ sudo dnf install -y "${RPMPKGS[@]}"
 flatpak install --user flathub "${FLATPAKS[@]}"
 #flatpak install flathub "${SYSTEMFLATPAKS[@]}"
 flatpak install cosmic "${COSMICFLATPAKS[@]}"
+
 curl -f https://zed.dev/install.sh | sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && source .bashrc
 cargo install eza

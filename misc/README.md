@@ -1,0 +1,1 @@
+This is just for misc stuff that is nice to have just in case I need it or to refer to like with proton user_settings.py. Didn't know where else to put it in a organized way so a micillenous folder it goes.
