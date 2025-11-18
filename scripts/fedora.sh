@@ -31,6 +31,7 @@ sudo dnf autoremove -y
 
 # general packages
 RPMPKGS=(
+@virtualization
 lz4
 sudo-rs
 yaru-icon-theme
@@ -158,6 +159,11 @@ curl -f https://zed.dev/install.sh | sh
 #curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && source .bashrc
 sudo dnf install rustup && rustup-init && source .bashrc
 cargo install eza
+
+# setup virtualization
+sudo gpasswd -a $(whoami) libvirt
+sudo systemctl enable --now libvirtd
+sudo virsh net-autostart default
 
 # flatpak app broken so gotta build the clipboard manager and hope things work
 sudo dnf install -y libxkbcommon-devel
