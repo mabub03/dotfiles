@@ -55,6 +55,8 @@ sudo pacman -S --noconfirm brave-bin \
   7zip \
   base-devel \
   virt-manager \
+  libvirt \
+  qemu-full \
   rust \
   rust-analyzer \
   just \
@@ -118,9 +120,25 @@ flatpak install -y flathub org.gtk.Gtk3theme.adw-gtk3 \
 # flatpak overrides
 sudo flatpak override --socket=wayland
 
+# setup vms
+sudo gpasswd -a $(whoami) kvm
+# add /etc/modules/load.d/kvm.conf with either kvm_intel or kvm_amd
+# modprobe kvm_amd
+sudo gpasswd -a $(whoami) libvirt
+sudo systemctl enable --now libvirtd
+sudo virsh net-autostart default
+
 # i use my own fish config so yeet the cachy one
-rm -rf $HOME/.config/fish/*
-sudo pacman -Rn --noconfirm cachyos-fish-config
+# instead of just removing cachy fish variables and such maybe just set the universals here 
+#rm -rf $HOME/.config/fish/*
+
+# setup fish universal varaiables
+set -U ELECTRON_OZONE_PLATFORM_HINT auto
+if [ -d /sys/module/nvidia ]
+then
+  set -U __GL_SHADER_DISK_CACHE_SIZE 12884901888
+fi
+#sudo pacman -Rn --noconfirm cachyos-fish-config
 
 # setup git with credentials entered above
 git config --global user.email "$GIT_EMAIL"
