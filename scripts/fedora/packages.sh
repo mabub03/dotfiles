@@ -1,3 +1,4 @@
+#!/bin/bash
 # setup repos
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf config-manager addrepo --from-repofile=https://openrazer.github.io/hardware:razer.repo
@@ -17,11 +18,11 @@ just
 curl
 wget
 btop
-v4l2loopback
 gnome-disk-utility
 ananicy-cpp
 cachyos-ananicy-rules
 brave-browser
+7zip
 )
 
 # fedora build essential equivalent
@@ -43,15 +44,19 @@ google-crosextra-caladea-fonts
 google-carlito-fonts
 )
 
+# obs packages
+RPMPKGS+=(
+  obs-studio
+  v4l2loopback
+)
+
 # Apps I used to use as flatpaks and probably would again in an immutable system
 RPMPKGS+=(
 loupe
 papers
 foliate
 celluloid
-obs-studio
-g4music
-pinta
+gnome-font-viewer
 )
 
 # remove this when cosmic screenshot organizer service isn't needed anymore

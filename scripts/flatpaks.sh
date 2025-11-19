@@ -28,6 +28,8 @@ io.github.nozwock.Packet
 io.gitlab.theevilskeleton.Upscaler
 dev.edfloreshz.CosmicTweaks
 page.codeberg.libre_menu_editor.LibreMenuEditor
+com.github.neithern.g4music
+com.github.PintaProject.Pinta
 )
 
 if [ -d /sys/module/nvidia ]
