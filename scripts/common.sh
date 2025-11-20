@@ -27,6 +27,7 @@ if [ "$ID" != "pop" ]; then
   sudo cp $HOME/dotfiles/etc/systemd/system/minfree.service /etc/systemd/system/
   sudo systemctl enable --now minfree.service
 
+  # since almost all the sysctl values i use are default in pop since that is my reference point for optimizations and security (due to how pop also uses ubuntu security values) don't include any of these on pop installs and any that would apply to pop should go in scripts/popos.sh
   sudo cp $HOME/dotfiles/etc/sysctl.d/* /etc/sysctl.d/
   sudo sysctl --system
 fi
