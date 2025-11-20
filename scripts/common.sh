@@ -13,16 +13,20 @@ fi
 
 curl -f https://zed.dev/install.sh | sh
 
-# TODO:setup zram (still haven't decided if i wanna keep this config so it is commented out for now)
-#sudo cp $HOME/dotfiles/files/etc/systemd/zram-generator.conf /etc/systemd/
-#systemctl restart systemd-zram-setup@zram0.service
-
 # setup sysctl optimizations (pop os zram /proc/sys/vm settings and steam deck & pop os /proc/sys/vm/max-map-count value)
 # source just so I can use the variables in the file for the next conditional
 source /etc/os-release
 
 # PopOS has these settings so only run if the distro isn't PopOS
 if [ "$ID" != "pop" ]; then
+  # zram setup which is just pop's converteed to systemd zram generator (https://github.com/pop-os/default-settings/blob/08748e69527547b16b32d58c171a9be2f2f8f640/etc/default/pop-zram)
+  sudo cp $HOME/dotfiles/etc/systemd/zram-generator.conf /etc/systemd/
+  sudo systemctl restart systemd-zram-setup@zram0.service
+  #pop zram's 1% of total memory being free script via a system (refer to https://github.com/pop-os/default-settings/blob/08748e69527547b16b32d58c171a9be2f2f8f640/usr/bin/pop-zram-config#L62)
+  # done this way since on immutable systems a /usr is locked so can't really put a systemwide systemd script there that you have the service file execute, so i guess the entire if statment goes into the service itself plus systemctl parameters can't be dynamic anyway so we doing it this way
+  sudo cp $HOME/dotfiles/etc/systemd/system/minfree.service /etc/systemd/system/
+  sudo systemctl enable --now minfree.service
+
   sudo cp $HOME/dotfiles/etc/sysctl.d/* /etc/sysctl.d/
   sudo sysctl --system
 fi

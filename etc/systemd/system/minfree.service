@@ -1,0 +1,13 @@
+# this service is created since pop does this for their zram config here:
+# https://github.com/pop-os/default-settings/blob/08748e69527547b16b32d58c171a9be2f2f8f640/usr/bin/pop-zram-config#L62
+# reason why ExecStart contents isn't in a script is because I wanted a service that could be ran even on immutable systems where /usr is locked and don't know where else I would put that system wide systemd service script.
+[Unit]
+Description=Ensure vm.min_free_kbytes is >= 1% of RAM
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'MIN=$(awk "/MemTotal/ {printf \\"%.0f\\", \$2*0.01}" /proc/meminfo); CUR=$(sysctl -n vm.min_free_kbytes); if ((MIN > CUR)); then sysctl -w vm.min_free_kbytes=$MIN; fi'
+
+[Install]
+WantedBy=multi-user.target
