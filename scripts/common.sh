@@ -23,10 +23,8 @@ source /etc/os-release
 
 # PopOS has these settings so only run if the distro isn't PopOS
 if [ "$ID" != "pop" ]; then
-  sudo cp $HOME/dotfiles/etc/sysctl.d/99-vm-zram-params.conf /etc/sysctl.d/
-  sudo cp $HOME/dotfiles/etc/sysctl.d/99-vm-max-map-count.conf /etc/sysctl.d/
-  sudo sysctl -p /etc/sysctl.d/99-vm-zram-params.conf
-  sudo sysctl -p /etc/sysctl.d/99-vm-max-map-count.conf
+  sudo cp $HOME/dotfiles/etc/sysctl.d/* /etc/sysctl.d/
+  sudo sysctl --system
 fi
 
 # setup firefox and brave
