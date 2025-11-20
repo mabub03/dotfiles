@@ -68,12 +68,8 @@ cp -r $HOME/dotfiles/cosmic_utilities/screenshot_organizer/local/bin $HOME/.loca
 systemctl --user daemon-reload
 systemctl --user enable --now cosmic_screenshot_organizer.service
 
-# add wifi powersave file to deactivate wifi powersave
-sudo bash -c 'cat > /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf' <<-'EOF'
-[connection]
-wifi.powersave=2
-EOF
-
+# add wifi stable ssid mac addr randomization and disable wifi powersave
+sudo cp $HOME/dotfiles/etc/NetworkManager/conf.d/* /etc/NetworkManager/conf.d/
 sudo systemctl restart NetworkManager
 
 fish -c "set -U ELECTRON_OZONE_PLATFORM_HINT auto"
