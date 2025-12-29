@@ -12,18 +12,18 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
   "soft_wrap": "editor_width",
   "experimental.theme_overrides": {
     "syntax": {
       "comment": {
-        "font_style": "italic"
+        "font_style": "italic",
       },
       "comment.doc": {
-        "font_style": "italic"
-      }
-    }
+        "font_style": "italic",
+      },
+    },
   },
   "auto_install_extensions": {
     "fish": true,
@@ -31,12 +31,12 @@
     "html": true,
     "just": true,
     "kdl": true,
-    "toml": true
+    "toml": true,
   },
   "languages": {
     "Shell Script": {
       "tab_size": 2,
-      "hard_tabs": false
-    }
-  }
+      "hard_tabs": false,
+    },
+  },
 }

@@ -72,7 +72,15 @@ systemctl --user enable --now cosmic_screenshot_organizer.service
 sudo cp $HOME/dotfiles/etc/NetworkManager/conf.d/* /etc/NetworkManager/conf.d/
 sudo systemctl restart NetworkManager
 
-fish -c "set -U ELECTRON_OZONE_PLATFORM_HINT auto"
+fish -c "set -Ux ELECTRON_OZONE_PLATFORM_HINT auto"
+if [ -d /sys/modules/amdgpu ]
+then
+  fish -c "set -Ux MESA_LOADER_DRIVER_OVERRIDE zinc"
+  fish -c "set -Ux AMD_VULKAN_ICD RADV"
+  fish -c "set -Ux MESA_SHADER_CACHE_MAX_SIZE 12G"
+  fish -c "set -Ux MANGOHUD 1"
+fi
+
 if [ -d /sys/module/nvidia ]
 then
   fish -c "set -U __GL_SHADER_DISK_CACHE_SIZE 12884901888"

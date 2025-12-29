@@ -1,16 +1,10 @@
 user_settings = {
     #"WAYLANDDRV_PRIMARY_MONITOR": "DP-1", 
     #"PROTON_ENABLE_WAYLAND": "1",
-    "DXVK_FRAME_RATE": "163",
-    "DXVK_FILTER_DEVICE_NAME": "NVIDIA GeForce RTX 5070",
-    "PROTON_ENABLE_NGX_UPDATER": "1",
-    "DXVK_NVAPI_DRS_NGX_DLSS_RR_OVERRIDE": "on",
-    "DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE": "on",
-    "DXVK_NVAPI_DRS_NGX_DLSS_FG_OVERRIDE": "on",
-    "DXVK_NVAPI_DRS_NGX_DLSS_RR_OVERRIDE_RENDER_PRESET_SELECTION": "render_preset_latest",
-    "DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION": "render_preset_latest",
-    # reg edit to test dlss driver preset
-    # `DXVK_NVAPI_SET_NGX_DEBUG_OPTIONS=DLSSIndicator=1024,DLSSGIndicator=2`
-    #"NVPRESENT_ENABLE_SMOOTH_MOTION": "1",
+    "DXVK_FILTER_DEVICE_NAME": "AMD Radeon RX 9070",
+    #Enable WoW64 Mode For Wine Prefixes (only needed for 32 bit games so don't ever use globally just here as an example)
+#   "PROTON_USE_WOW64": "1",
+    "PROTON_FSR4_UPGRADE": "1",
+    "VKD3D_FRAME_RATE": "162",
     "VKD3D_FEATURE_LEVEL":"12_2"
 }

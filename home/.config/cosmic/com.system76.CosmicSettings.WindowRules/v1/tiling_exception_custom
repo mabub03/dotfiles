@@ -1,0 +1,8 @@
+[
+  //don't float steam
+  (
+    appid: "",
+    title: "Steam",
+    enabled: false
+  )
+]

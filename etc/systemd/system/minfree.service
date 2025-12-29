@@ -2,7 +2,7 @@
 # https://github.com/pop-os/default-settings/blob/08748e69527547b16b32d58c171a9be2f2f8f640/usr/bin/pop-zram-config#L62
 # reason why ExecStart contents isn't in a script is because I wanted a service that could be ran even on immutable systems where /usr is locked and don't know where else I would put that system wide systemd service script.
 [Unit]
-Description=Ensure vm.min_free_kbytes is >= 1% of RAM
+Description=Ensure vm.min_free_kbytes is >= 1% of RAM to avoid system freeze
 After=local-fs.target
 
 [Service]
