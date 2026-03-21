@@ -1,0 +1,7 @@
+[Unit]
+Description=Update custom protons with proton plus every 6 hours
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/proton_plus_update.sh

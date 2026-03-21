@@ -47,6 +47,12 @@ source $HOME/dotfiles/scripts/setup_ibm_plex_fonts.sh
 source $HOME/dotfiles/cosmic_utilities/cosmic_cursor_setup/setup_cosmic_cursor.sh
 # copy things from dotfiles .config to $HOME/.config
 # cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
+
+# move services
+cp -r $HOME/dotfiles/home/.config/systemd $HOME/.config/systemd
+cp -r $HOME/dotfiles/home/.local/bin $HOME/.local/bin
+systemctl --user daemon-reload
+
 cp -r $HOME/dotfiles/home/.config/environment.d/ $HOME/.config
 cp -r $HOME/dotfiles/home/.config/fontconfig $HOME/.config/
 cp -r $HOME/dotfiles/home/.config/fish $HOME/.config/
@@ -70,6 +76,9 @@ cp -r $HOME/dotfiles/cosmic_utilities/screenshot_organizer/config/systemd $HOME/
 cp -r $HOME/dotfiles/cosmic_utilities/screenshot_organizer/local/bin $HOME/.local/
 systemctl --user daemon-reload
 systemctl --user enable --now cosmic_screenshot_organizer.service
+
+if command -v protonplus &> /dev/null || flatpak list --app | grep -iq "ProtonPlus"; then
+  systemctl --user enable --now proton_plus_update.timer
 
 # add wifi stable ssid mac addr randomization and disable wifi powersave
 sudo cp $HOME/dotfiles/etc/NetworkManager/conf.d/* /etc/NetworkManager/conf.d/

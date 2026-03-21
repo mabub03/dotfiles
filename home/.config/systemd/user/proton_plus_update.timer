@@ -1,0 +1,11 @@
+[Unit]
+Description=Run proton plus update every 6 hours
+
+[Timer]
+OnBootSec=10s
+OnUnitActiveSec=6h
+Unit=proton_plus_update.service
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target
