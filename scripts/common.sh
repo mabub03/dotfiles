@@ -47,9 +47,12 @@ source $HOME/dotfiles/scripts/setup_ibm_plex_fonts.sh
 source $HOME/dotfiles/cosmic_utilities/cosmic_cursor_setup/setup_cosmic_cursor.sh
 # copy things from dotfiles .config to $HOME/.config
 # cp $HOME/dotfiles/BackedUpFiles/.config/starship.toml $HOME/.config/
+cp -r $HOME/dotfiles/home/.config/environment.d/ $HOME/.config
 cp -r $HOME/dotfiles/home/.config/fontconfig $HOME/.config/
 cp -r $HOME/dotfiles/home/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/home/.config/cosmic $HOME/.config/
+mkdir -p $HOME/.var/app/dev.edfloreshz.CosmicTweaks/data/dev.edfloreshz.CosmicTweaks/layouts/
+cp -r $HOME/dotfiles/home/.var/app/dev.edfloreshz.CosmicTweaks/data/dev.edfloreshz.CosmicTweaks/layouts/ 
 
 echo 'export COSMIC_DATA_CONTROL_ENABLED=1' | sudo tee /etc/profile.d/data_control_cosmic.sh > /dev/null
 
@@ -71,20 +74,6 @@ systemctl --user enable --now cosmic_screenshot_organizer.service
 # add wifi stable ssid mac addr randomization and disable wifi powersave
 sudo cp $HOME/dotfiles/etc/NetworkManager/conf.d/* /etc/NetworkManager/conf.d/
 sudo systemctl restart NetworkManager
-
-fish -c "set -Ux ELECTRON_OZONE_PLATFORM_HINT auto"
-if [ -d /sys/modules/amdgpu ]
-then
-  fish -c "set -Ux MESA_LOADER_DRIVER_OVERRIDE zinc"
-  fish -c "set -Ux AMD_VULKAN_ICD RADV"
-  fish -c "set -Ux MESA_SHADER_CACHE_MAX_SIZE 12G"
-  fish -c "set -Ux MANGOHUD 1"
-fi
-
-if [ -d /sys/module/nvidia ]
-then
-  fish -c "set -U __GL_SHADER_DISK_CACHE_SIZE 12884901888"
-fi
 
 # change default shell to fish
 while true; do
