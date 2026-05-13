@@ -34,11 +34,16 @@ cp -r $HOME/dotfiles/home/.config/fontconfig $HOME/.config/
 #cp -r $HOME/dotfiles/home/.config/fish $HOME/.config/
 cp -r $HOME/dotfiles/home/.config/cosmic $HOME/.config/
 mkdir -p $HOME/.var/app/dev.edfloreshz.CosmicTweaks/data/dev.edfloreshz.CosmicTweaks/layouts/
-cp -r $HOME/dotfiles/home/.var/app/dev.edfloreshz.CosmicTweaks/data/dev.edfloreshz.CosmicTweaks/layouts/ 
+cp -r $HOME/dotfiles/home/.var/app/dev.edfloreshz.CosmicTweaks/data/dev.edfloreshz.CosmicTweaks/layouts/
 
 # add user to required groups
 # remove whenever i stop getting razer mice
 sudo gpasswd -a $USER plugdev
+
+# makes it so it doesn't show the nm applet in the panel on cosmic on pika os
+mkdir -p $HOME/.config/autostart/
+cp /etc/xdg/autostart/nm-applet.desktop $HOME/.config/autostart/
+sed -i '/NotShowIn=/s/$/COSMIC;/' $HOME/.config/autostart/nm-applet.desktop
 
 # if the system has proton plus installed then enable the service
 if command -v protonplus &> /dev/null || flatpak list --app | grep -iq "ProtonPlus"; then

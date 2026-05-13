@@ -114,7 +114,3 @@ fonts-crosextra-carlito
 pikman install "${INSTALL[@]}" -y
 pikman remove "${REMOVE[@]}" -y
 pikman autoremove
-
-mkdir -p $HOME/.config/autostart/
-cp /etc/xdg/autostart/nm-applet.desktop $HOME/.config/autostart/
-sed -i '/NotShowIn=/s/$/COSMIC;/' $HOME/.config/autostart/
