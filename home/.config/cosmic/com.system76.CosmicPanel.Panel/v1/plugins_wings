@@ -1,8 +1,10 @@
 Some(([
-    "com.system76.CosmicAppletWorkspaces",
+    "gnomeStyleWorkspaceIndicator",
 ], [
     "com.system76.CosmicAppletStatusArea",
     "com.system76.CosmicAppletTiling",
+    "io.github.hepp3n.kdeconnect",
+    "io.github.k33wee.clippy-land",
     "com.system76.CosmicAppletAudio",
     "com.system76.CosmicAppletBluetooth",
     "com.system76.CosmicAppletNetwork",

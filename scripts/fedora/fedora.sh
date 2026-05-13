@@ -55,10 +55,5 @@ sudo systemctl enable --now ananicy-cpp
 rustup-init && source $HOME/.bashrc
 cargo install eza
 
-# flatpak app broken so gotta build the clipboard manager and hope things work
-sudo dnf install -y libxkbcommon-devel
-cd $HOME && git clone https://github.com/cosmic-utils/clipboard-manager.git
-cd clipboard-manager && just build-release && sudo just install && cd $HOME
-
 source $HOME/dotfiles/scripts/flatpaks.sh
 source $HOME/dotfiles/scripts/common.sh

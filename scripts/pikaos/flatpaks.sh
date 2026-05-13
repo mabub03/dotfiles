@@ -4,11 +4,11 @@
 #)
 
 COSMICFLATPAKS=(
-  io.github.hepp3n.kdeconnect
-  io.github.k33wee.clippy-land
+io.github.hepp3n.kdeconnect
+io.github.k33wee.clippy-land
 )
 
-flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+#flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak remote-add --if-not-exists --user cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
 
 FLATPAKS=(
@@ -17,8 +17,8 @@ org.gtk.Gtk3theme.adw-gtk3
 org.gtk.Gtk3theme.adw-gtk3-dark
 #com.obsproject.Studio
 #com.obsproject.Studio.Plugin.Gstreamer
-com.spotify.Client
-com.discordapp.Discord
+#com.spotify.Client
+#com.discordapp.Discord
 org.freedesktop.Platform
 md.obsidian.Obsidian
 com.github.tchx84.Flatseal
@@ -30,27 +30,16 @@ dev.edfloreshz.CosmicTweaks
 page.codeberg.libre_menu_editor.LibreMenuEditor
 com.github.neithern.g4music
 com.github.PintaProject.Pinta
+com.github.rafostar.Clapper
+com.github.rafostar.Clapper.Enhancers
 )
 
-if [ -d /sys/module/nvidia ]
-then
-  FLATPAKS+=(
-  com.vysp3r.ProtonPlus
-  )
+  #cp -r $HOME/dotfiles/files/home/.config/MangoHud $HOME/.config/
 
-  # setup controller udev rules
-  cd $HOME && git clone https://codeberg.org/fabiscafe/game-devices-udev.git
-  sudo cp game-devices-udev/*.rules /etc/udev/rules.d/
-  echo uinput | sudo tee /etc/modules-load.d/uinput.conf
-  rm -rf $HOME/game-devices-udev
-
-  cp -r $HOME/dotfiles/files/home/.config/MangoHud $HOME/.config/
-fi
-
-flatpak install --user flathub "${FLATPAKS[@]}"
+flatpak install flathub "${FLATPAKS[@]}"
 #flatpak install flathub "${SYSTEMFLATPAKS[@]}"
 flatpak install --user cosmic "${COSMICFLATPAKS[@]}"
 
 # flatpak overrides
-flatpak override --user --socket=wayland
+sudo flatpak override --socket=wayland
 #sudo flatpak override io.github.celluloid_player.Celluloid --filesystem=xdg-config/mpv
