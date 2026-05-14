@@ -6,12 +6,15 @@ echo -n "What is your git username? "
 read GIT_USERNAME
 
 # this will disable the ibus notification that shows up at startup for fedora cosmic spin
-sudo sed -i 's/KDE-wayland/COSMIC-wayland/g' /etc/X11/xinit/xinput.d/ibus.conf
+#sudo sed -i 's/KDE-wayland/COSMIC-wayland/g' /etc/X11/xinit/xinput.d/ibus.conf
 
 # remove the cosmic supplmentary apps group and fedora bookmarks package and then update to fetch mirrors and update the core
 sudo dnf rm -y @cosmic-desktop-apps fedora-bookmarks abrt
 sudo dnf up -y
 sudo dnf autoremove -y
+
+# set up repos and add packages to an array and then install them
+source $HOME/dotfiles/scripts/fedora/packages.sh
 
 # setup full codecs
 sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
@@ -34,21 +37,19 @@ fi
 sudo flatpak remote-delete fedora
 #sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# set up repos and add packages to an array and then install them
-source $HOME/dotfiles/scripts/fedora/packages.sh
-
 # razer associated packages had to include them seperatly because kernel headers are required and part of the previous transaction so not fully installed for openrazer until the previous transaction is finished
 # remove whenever i stop getting razer mice
 sudo dnf in -y kernel-devel-$(uname -r)
 sudo dnf in -y openrazer-meta polychromatic
 
 # setup virtualization
-sudo gpasswd -a $(whoami) libvirt
-sudo systemctl enable --now libvirtd
-sudo virsh net-autostart default
+#sudo gpasswd -a $(whoami) libvirt
+#sudo systemctl enable --now libvirtd
+#sudo virsh net-autostart default
 
 # setup services
-sudo systemctl enable --now ananicy-cpp
+#sudo systemctl enable --now ananicy-cpp
+sudo systemctl enable --now com.system76.Scheduler.service
 
 #curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh && source .bashrc
 # setup rust and install eza since somehow that still isn't in fedora repos
